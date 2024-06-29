@@ -1,4 +1,5 @@
 import 'package:bootcamp91/product/project_texts.dart';
+import 'package:bootcamp91/view/feed_screen.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -28,7 +29,29 @@ class WelcomeScreenState extends State<WelcomeScreen> {
               style: Theme.of(context).textTheme.bodySmall,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) =>
+                        FeedScreen(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      var begin = Offset(1.0, 0.0);
+                      var end = Offset.zero;
+                      var curve = Curves.ease;
+
+                      var tween = Tween(begin: begin, end: end)
+                          .chain(CurveTween(curve: curve));
+
+                      return SlideTransition(
+                        position: animation.drive(tween),
+                        child: child,
+                      );
+                    },
+                  ),
+                ); //NAVIGATION FINISH HERE
+              },
               child: Text(ProjectTexts().welcomeButtonText),
             ),
           ],

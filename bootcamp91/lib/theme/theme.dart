@@ -18,6 +18,12 @@ ThemeData appTheme = ThemeData.dark().copyWith(
       fontSize: 25,
       fontWeight: FontWeight.bold,
     ),
+    iconTheme: IconThemeData(
+      color: ProjectColors.project_gray,
+    ),
+    actionsIconTheme: IconThemeData(
+      color: ProjectColors.project_gray,
+    ),
   ),
   //TEXT THEME
   textTheme: const TextTheme(
@@ -25,6 +31,7 @@ ThemeData appTheme = ThemeData.dark().copyWith(
     bodyMedium: TextStyle(color: ProjectColors.textColor, fontSize: 20),
     bodySmall: TextStyle(color: ProjectColors.textColor, fontSize: 18),
   ),
+  hintColor: ProjectColors.project_gray,
   //ELEVATED BUTTON THEME
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
