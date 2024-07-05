@@ -26,7 +26,7 @@ class WelcomeScreenState extends State<WelcomeScreen> {
             Text(
               textAlign: TextAlign.center,
               ProjectTexts().welcomeText,
-              style: Theme.of(context).textTheme.bodySmall,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
             ElevatedButton(
               onPressed: () {

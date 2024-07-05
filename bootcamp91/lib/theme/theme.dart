@@ -14,15 +14,15 @@ ThemeData appTheme = ThemeData.dark().copyWith(
     foregroundColor: ProjectColors.project_yellow,
     centerTitle: true,
     titleTextStyle: TextStyle(
-      color: ProjectColors.project_gray,
+      color: ProjectColors.firstColor,
       fontSize: 25,
       fontWeight: FontWeight.bold,
     ),
     iconTheme: IconThemeData(
-      color: ProjectColors.project_gray,
+      color: ProjectColors.firstColor,
     ),
     actionsIconTheme: IconThemeData(
-      color: ProjectColors.project_gray,
+      color: ProjectColors.firstColor,
     ),
   ),
   //TEXT THEME
@@ -42,7 +42,7 @@ ThemeData appTheme = ThemeData.dark().copyWith(
           // Buton devre dışı bırakıldığında gri arka plan
         }
         return ProjectColors
-            .project_yellow; // Buton etkin olduğunda sarı arka plan
+            .project_blue; // Buton etkin olduğunda sarı arka plan
       }),
       foregroundColor:
           WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
@@ -50,7 +50,7 @@ ThemeData appTheme = ThemeData.dark().copyWith(
           return Colors.red;
           // Buton devre dışı bırakıldığında kırmızı yazı rengi
         }
-        return ProjectColors.textColor; // Buton etkin olduğunda metin rengi
+        return ProjectColors.firstColor; // Buton etkin olduğunda metin rengi
       }),
       textStyle: WidgetStateProperty.all<TextStyle>(
         const TextStyle(
