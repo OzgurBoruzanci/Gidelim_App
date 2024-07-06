@@ -7,7 +7,7 @@ Flutter Takım 91
 - Özcan Bayram: Developer
 - Yasemin Yılmaz: Developer
 
-  # Ürün İle İLgili Bilgiler
+  # Ürün İle İlgili Bilgiler
   ## Ürün İsmi
   gidelim
   ### Ürün Açıklaması
