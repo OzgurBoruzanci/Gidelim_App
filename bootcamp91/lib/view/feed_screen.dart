@@ -38,10 +38,22 @@ class _FeedScreenState extends State<FeedScreen> {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          // Diğer widget'lar buraya eklenebilir
-        ],
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Card(
+          color: Colors.white,
+          elevation: 5, // Arkadaki gölge
+          child: SizedBox(
+            width: double.infinity, // Genişliği sayfanın tamamını kaplar
+            height: 75, // Yükseklik
+            child: Center(
+              child: Text(
+                'KAHVE DÜNYASI', //Veri tabanından gelecek kafe ismi
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
