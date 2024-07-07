@@ -53,16 +53,19 @@ Daily Scrum: Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşma
     <summary><h2>Project Images</h2></summary>
   
       
-![daily scrum](https://github.com/OzgurBoruzanci/OUA_Bootcamp_Flutter_91/assets/117665864/18e5d02f-158c-4462-a0f0-be4c2dfd202b)
+![Proje görselleri](https://github.com/OzgurBoruzanci/OUA_Bootcamp_Flutter_91/assets/154309718/5e124555-4653-4793-bd78-5a0e51346bbf)
+
     
-   </details>
+  <html>
+  <head></head>
+  <body>
+    <details>
+    <summary><h2>Daily Scrum Images</h2></summary>
+  
+![daily scrum](https://github.com/OzgurBoruzanci/OUA_Bootcamp_Flutter_91/assets/154309718/5fd6fb4a-b01a-4f43-b349-2ebdd62c13dd)
 
-  </body>
-</html>
 
-
-
-
+ 
 
   
 
