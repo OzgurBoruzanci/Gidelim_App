@@ -18,6 +18,7 @@ Flutter Takım 91
 - Kullanıcının bulunduğu konuma en yakın restoran önerisi sunması 
 - Yapay zeka asistanı desteğiyle kullanıcı tercihlerine göre öneri sunması
 - gidelim social sayesinde daha fazla insanla deneyim ve öneri paylaşma fırsatı
+  
   ### Ürün Hedef Kitlesi
 - Gidecekleri mekanla ilgili ön bilgi sahibi olmak isteyenler
 - Yeni lezzetler ve mekanlar keşfetmek isteyenler
@@ -27,6 +28,7 @@ Flutter Takım 91
  # Sprint 1
  ## Sprint içinde tamamlanması tahmin edilen puan: 
  100 puan
+ 
  ### Puan tamamlama mantığı
 Toplamda proje boyunca tamamlanması gereken 350 puanlık backlog bulunmaktadır. İlk sprint 100, ikinci sprint 150 ve son sprintte 100 puanı hedeflemekteyiz.
 
