@@ -1,24 +1,23 @@
 import 'package:Gidelim/product/project_colors.dart';
 import 'package:Gidelim/product/project_texts.dart';
 import 'package:Gidelim/view/feed_screen.dart';
-import 'package:Gidelim/view/second_welcome_screen.dart';
 import 'package:flutter/material.dart';
 
-class WelcomeScreen extends StatefulWidget {
-  const WelcomeScreen({super.key});
+class SecondWelcomeScreen extends StatefulWidget {
+  const SecondWelcomeScreen({super.key});
 
   @override
-  State<WelcomeScreen> createState() => WelcomeScreenState();
+  State<SecondWelcomeScreen> createState() => _SecondWelcomeScreenState();
 }
 
-class WelcomeScreenState extends State<WelcomeScreen> {
+class _SecondWelcomeScreenState extends State<SecondWelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffF2B84B),
+      backgroundColor: ProjectColors.project_yellow,
       appBar: AppBar(
-          // title: Text(ProjectTexts().projectName),
-          ),
+        title: Text(ProjectTexts().projectName),
+      ),
       body: Padding(
         padding: const EdgeInsets.only(top: 8, left: 32, right: 32),
         child: Column(
@@ -40,9 +39,11 @@ class WelcomeScreenState extends State<WelcomeScreen> {
               ),
             ),
             Text(
-              ProjectTexts().welcomeText,
+              ProjectTexts().welcome,
               style: const TextStyle(
                 color: ProjectColors.whiteTextColor,
+                fontSize: 35,
+                fontWeight: FontWeight.w800,
               ),
             ),
             // Text(
@@ -51,14 +52,14 @@ class WelcomeScreenState extends State<WelcomeScreen> {
             //   style: Theme.of(context).textTheme.bodyLarge,
             // ),
             Padding(
-              padding: const EdgeInsets.only(top: 180.0),
+              padding: const EdgeInsets.only(top: 150.0),
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
                     PageRouteBuilder(
                       pageBuilder: (context, animation, secondaryAnimation) =>
-                          const SecondWelcomeScreen(),
+                          const FeedScreen(),
                       transitionsBuilder:
                           (context, animation, secondaryAnimation, child) {
                         var begin = const Offset(1.0, 0.0);
@@ -76,7 +77,36 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                     ),
                   ); //NAVIGATION FINISH HERE
                 },
-                child: Text(ProjectTexts().welcomeButtonText),
+                child: Text(ProjectTexts().registerButton),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) =>
+                          const FeedScreen(),
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) {
+                        var begin = const Offset(1.0, 0.0);
+                        var end = Offset.zero;
+                        var curve = Curves.ease;
+
+                        var tween = Tween(begin: begin, end: end)
+                            .chain(CurveTween(curve: curve));
+
+                        return SlideTransition(
+                          position: animation.drive(tween),
+                          child: child,
+                        );
+                      },
+                    ),
+                  ); //NAVIGATION FINISH HERE
+                },
+                child: Text(ProjectTexts().loginButton),
               ),
             ),
           ],
