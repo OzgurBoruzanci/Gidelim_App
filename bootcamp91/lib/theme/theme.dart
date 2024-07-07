@@ -1,4 +1,4 @@
-import 'package:bootcamp91/product/project_colors.dart';
+import 'package:Gidelim/product/project_colors.dart';
 import 'package:flutter/material.dart';
 
 ThemeData appTheme = ThemeData.dark().copyWith(
@@ -42,7 +42,7 @@ ThemeData appTheme = ThemeData.dark().copyWith(
           // Buton devre dışı bırakıldığında gri arka plan
         }
         return ProjectColors
-            .project_blue; // Buton etkin olduğunda sarı arka plan
+            .buttonColor; // Buton etkin olduğunda sarı arka plan
       }),
       foregroundColor:
           WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
@@ -64,7 +64,7 @@ ThemeData appTheme = ThemeData.dark().copyWith(
       ),
       shape: WidgetStateProperty.all<OutlinedBorder>(
         RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(5),
         ),
       ),
     ),

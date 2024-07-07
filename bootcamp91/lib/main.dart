@@ -1,7 +1,7 @@
+import 'package:Gidelim/theme/theme.dart';
+import 'package:Gidelim/view/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:bootcamp91/theme/theme.dart';
-import 'package:bootcamp91/view/welcome_screen.dart';
 
 void main() {
   runApp(const MyApp());

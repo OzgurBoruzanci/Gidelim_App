@@ -1,4 +1,4 @@
-import 'package:bootcamp91/product/project_texts.dart';
+import 'package:Gidelim/product/project_texts.dart';
 import 'package:flutter/material.dart';
 
 class FeedScreen extends StatefulWidget {
