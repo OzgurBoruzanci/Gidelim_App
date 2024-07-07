@@ -52,22 +52,25 @@ Daha daha sık toplantılar yapılmasına karar verildi.Görev dağılımının 
   <head></head>
   <body>
     <details>
-    <summary><h2>Project Images</h2></summary>
+    <summary><h2>Project Images</h2></summary> 
   
       
 ![Proje görselleri](https://github.com/OzgurBoruzanci/OUA_Bootcamp_Flutter_91/assets/154309718/5e124555-4653-4793-bd78-5a0e51346bbf)
-
-    
+</details>
+</body>
+</html>
+ 
   <html>
   <head></head>
   <body>
     <details>
     <summary><h2>Daily Scrum Images</h2></summary>
+    
   
 ![daily scrum](https://github.com/OzgurBoruzanci/OUA_Bootcamp_Flutter_91/assets/154309718/5fd6fb4a-b01a-4f43-b349-2ebdd62c13dd)
-
-
- 
+</details>
+</body>
+</html>
 
   
 
