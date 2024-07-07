@@ -1,18 +1,17 @@
 import 'package:Gidelim/product/project_texts.dart';
-import 'package:Gidelim/view/login_screen.dart';
+import 'package:Gidelim/view/regsiter_screen.dart';
 import 'package:flutter/material.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +29,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: SizedBox(
                   width: 300,
                   height: 150,
-                  child: Image.asset("assets/images/ic_register.png"),
+                  child: Image.asset("assets/images/ic_login_screen.png"),
                 ),
               ),
               Padding(
@@ -58,7 +57,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         print('Email: ${_emailController.text}');
                         print('Password: ${_passwordController.text}');
                       },
-                      child: Text(ProjectTexts().registerButton),
+                      child: Text(ProjectTexts().loginButton),
                     ),
                     TextButton(
                       onPressed: () {
@@ -67,7 +66,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           PageRouteBuilder(
                             pageBuilder:
                                 (context, animation, secondaryAnimation) =>
-                                    const LoginScreen(),
+                                    const RegisterScreen(),
                             transitionsBuilder: (context, animation,
                                 secondaryAnimation, child) {
                               var begin = const Offset(1.0, 0.0);
@@ -85,7 +84,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ); //NAVIGATION FINISH HERE
                       },
-                      child: const Text('Zaten bir hesabın var mı? Giriş yap.'),
+                      child: const Text('Hesabın yok mu? Kayıt ol.'),
                     ),
                   ],
                 ),

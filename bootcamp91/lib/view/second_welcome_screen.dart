@@ -1,6 +1,7 @@
 import 'package:Gidelim/product/project_colors.dart';
 import 'package:Gidelim/product/project_texts.dart';
 import 'package:Gidelim/view/feed_screen.dart';
+import 'package:Gidelim/view/login_screen.dart';
 import 'package:Gidelim/view/regsiter_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -92,7 +93,7 @@ class _SecondWelcomeScreenState extends State<SecondWelcomeScreen> {
                     context,
                     PageRouteBuilder(
                       pageBuilder: (context, animation, secondaryAnimation) =>
-                          const FeedScreen(),
+                          const LoginScreen(),
                       transitionsBuilder:
                           (context, animation, secondaryAnimation, child) {
                         var begin = const Offset(1.0, 0.0);
