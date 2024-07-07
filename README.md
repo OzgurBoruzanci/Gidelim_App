@@ -1,3 +1,4 @@
+
 # Takım İsmi
 Flutter Takım 91
 # Takım Üyeleri
@@ -50,11 +51,11 @@ Daily Scrum: Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşma
   <body>
     <details>
     <summary><h2>Project Images</h2></summary>
-    https://drive.google.com/file/d/1gWpXhUTInAoqUzkL8Pe4TMuQbiqtYYhN/view?usp=share_link
+      
+![daily scrum](https://github.com/OzgurBoruzanci/OUA_Bootcamp_Flutter_91/assets/117665864/18e5d02f-158c-4462-a0f0-be4c2dfd202b)
 
-<html>
-  <head></head>
-  <body>
+
+
     <details>
     <summary><h2>Daily Scrum Görselleri</h2></summary>
     https://drive.google.com/file/d/1pCO9649JjHneyxKQdyjicEm6ypP0MjUq/view?usp=share_link
