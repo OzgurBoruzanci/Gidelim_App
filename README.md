@@ -10,9 +10,9 @@ Flutter Takım 91
 
   # Ürün İle İlgili Bilgiler
   ## Ürün İsmi
-  gidelim
+  GİDELİM
   ### Ürün Açıklaması
-  Gidelim app sayesinde gitmeyi planladığınız restoranların menülerine  önceden erişim sağlayarak kendinize en uygun tercihi başarıyla gerçekleştirebilirsiniz aynı zamanda bulunduğunuz konumun yakınındaki restoranları harita üzerinde listeleyerek size yeni deneyimler sunar. Yapay zeka asistanı kullanan gidelim app sizin daha önceki ziyaretlerinizi göz önünde bulundurarak öneriler yapar bu sayede nereye gidelim sorusu da ortadan kalkar. Uygulama içindeki ‘gidelim social’ size arkadaşlarınızla ya da ortak zevklerinizin olduğu insalarla bağlantı kurmanızı, fotoğraf ve video paylaşarak restoran yorumlama ve öneride bulunma imkanı sunar.
+  GİDELİM app sayesinde gitmeyi planladığınız restoranların menülerine  önceden erişim sağlayarak kendinize en uygun tercihi başarıyla gerçekleştirebilirsiniz aynı zamanda bulunduğunuz konumun yakınındaki restoranları harita üzerinde listeleyerek size yeni deneyimler sunar. Yapay zeka asistanı kullanan gidelim app sizin daha önceki ziyaretlerinizi göz önünde bulundurarak öneriler yapar bu sayede nereye gidelim sorusu da ortadan kalkar. Uygulama içindeki ‘gidelim social’ size arkadaşlarınızla ya da ortak zevklerinizin olduğu insalarla bağlantı kurmanızı, fotoğraf ve video paylaşarak restoran yorumlama ve öneride bulunma imkanı sunar.
   ### Ürün Özellikleri
 - Zengin Menü seçeneği
 - Kullanıcının bulunduğu konuma en yakın restoran önerisi sunması 
