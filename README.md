@@ -22,6 +22,24 @@ Flutter Takım 91
 - Yeni lezzetler ve mekanlar keşfetmek isteyenler
 - Gidecekleri mekan konusunda kararsız olanlar
 - Deneyimlerini paylaşmak isteyenler
+
+ # Sprint 1
+ ## Sprint içinde tamamlanması tahmin edilen puan: 
+ 100 puan
+ ### Puan tamamlama mantığı
+Toplamda proje boyunca tamamlanması gereken 350 puanlık backlog bulunmaktadır. İlk sprint 100, ikinci sprint 150 ve son sprintte 100 puanı hedeflemekteyiz.
+
+Daily Scrum: Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketlerle ve discord üzerinden toplantılar yaparak gerçekleştirdik.Daily Scrum toplantısı örneği jpeg veya word olarak Readme'de tarafımızdan paylaşılmaktadır
+
+
+
+
+# Sprint Review:  
+
+# Sprint Retrospective:
+
+
+
   
 
 
