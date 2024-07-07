@@ -1,6 +1,7 @@
 import 'package:Gidelim/product/project_colors.dart';
 import 'package:Gidelim/product/project_texts.dart';
 import 'package:Gidelim/view/feed_screen.dart';
+import 'package:Gidelim/view/regsiter_screen.dart';
 import 'package:flutter/material.dart';
 
 class SecondWelcomeScreen extends StatefulWidget {
@@ -16,8 +17,8 @@ class _SecondWelcomeScreenState extends State<SecondWelcomeScreen> {
     return Scaffold(
       backgroundColor: ProjectColors.project_yellow,
       appBar: AppBar(
-        title: Text(ProjectTexts().projectName),
-      ),
+          // title: Text(ProjectTexts().projectName),
+          ),
       body: Padding(
         padding: const EdgeInsets.only(top: 8, left: 32, right: 32),
         child: Column(
@@ -25,8 +26,11 @@ class _SecondWelcomeScreenState extends State<SecondWelcomeScreen> {
           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 128.0),
-              child: Image.asset("assets/images/ic_welcome_image.png"),
+              padding: const EdgeInsets.only(top: 70.0),
+              child: SizedBox(
+                  width: 300,
+                  height: 150,
+                  child: Image.asset("assets/images/ic_login.png")),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 16.0),
@@ -43,7 +47,7 @@ class _SecondWelcomeScreenState extends State<SecondWelcomeScreen> {
               style: const TextStyle(
                 color: ProjectColors.whiteTextColor,
                 fontSize: 35,
-                fontWeight: FontWeight.w800,
+                fontWeight: FontWeight.w900,
               ),
             ),
             // Text(
@@ -59,7 +63,7 @@ class _SecondWelcomeScreenState extends State<SecondWelcomeScreen> {
                     context,
                     PageRouteBuilder(
                       pageBuilder: (context, animation, secondaryAnimation) =>
-                          const FeedScreen(),
+                          const RegisterScreen(),
                       transitionsBuilder:
                           (context, animation, secondaryAnimation, child) {
                         var begin = const Offset(1.0, 0.0);

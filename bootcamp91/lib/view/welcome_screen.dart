@@ -1,6 +1,5 @@
 import 'package:Gidelim/product/project_colors.dart';
 import 'package:Gidelim/product/project_texts.dart';
-import 'package:Gidelim/view/feed_screen.dart';
 import 'package:Gidelim/view/second_welcome_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +31,7 @@ class WelcomeScreenState extends State<WelcomeScreen> {
             Padding(
               padding: const EdgeInsets.only(top: 16.0),
               child: Text(
-                ProjectTexts().toGidelim,
+                ProjectTexts().projectNameUppercase,
                 style: const TextStyle(
                     color: ProjectColors.whiteTextColor,
                     fontSize: 50,

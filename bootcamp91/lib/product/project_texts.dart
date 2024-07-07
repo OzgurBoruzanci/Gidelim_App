@@ -6,6 +6,6 @@ class ProjectTexts {
   final String welcomeButtonText = 'Hemen Başla!';
   final String loginButton = 'Giriş Yap';
   final String registerButton = 'Kayıt Ol';
-  final String welcome = 'Hoşgeldin';
-  final String toGidelim = 'Gidelim\'e';
+  final String welcome = 'HOŞGELDİN';
+  final String toGidelim = 'GİDELİM\'e';
 }

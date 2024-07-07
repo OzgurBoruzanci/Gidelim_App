@@ -69,4 +69,22 @@ ThemeData appTheme = ThemeData.dark().copyWith(
       ),
     ),
   ),
+  // TEXT FIELD THEME
+  inputDecorationTheme: InputDecorationTheme(
+    filled: true,
+    fillColor: Colors.transparent,
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8.0),
+      borderSide: const BorderSide(color: ProjectColors.default_color),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8.0),
+      borderSide: const BorderSide(color: ProjectColors.default_color),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8.0),
+      borderSide: const BorderSide(color: ProjectColors.project_yellow),
+    ),
+    labelStyle: const TextStyle(color: ProjectColors.default_color),
+  ),
 );
