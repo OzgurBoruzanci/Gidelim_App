@@ -1,4 +1,5 @@
 import 'package:Gidelim/product/project_texts.dart';
+import 'package:Gidelim/view/second_welcome_screen.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -18,16 +19,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
       appBar: AppBar(
         title: Text(ProjectTexts().projectName),
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SizedBox(
-                width: 300,
-                height: 150,
-                child: Image.asset("assets/images/ic_register.png"),
+              Padding(
+                padding: const EdgeInsets.all(64.0),
+                child: SizedBox(
+                  width: 300,
+                  height: 150,
+                  child: Image.asset("assets/images/ic_register.png"),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -55,6 +59,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         print('Password: ${_passwordController.text}');
                       },
                       child: Text(ProjectTexts().registerButton),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) =>
+                                    const SecondWelcomeScreen(),
+                            transitionsBuilder: (context, animation,
+                                secondaryAnimation, child) {
+                              var begin = const Offset(1.0, 0.0);
+                              var end = Offset.zero;
+                              var curve = Curves.ease;
+
+                              var tween = Tween(begin: begin, end: end)
+                                  .chain(CurveTween(curve: curve));
+
+                              return SlideTransition(
+                                position: animation.drive(tween),
+                                child: child,
+                              );
+                            },
+                          ),
+                        ); //NAVIGATION FINISH HERE
+                      },
+                      child: const Text('Zaten bir hesabın var mı? Giriş yap.'),
                     ),
                   ],
                 ),
