@@ -36,8 +36,10 @@ Daily Scrum: Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşma
 
 
 # Sprint Review:  
+Başlangıç,hoşgeldin,giriş ve kaydolma ekranları ve ana ekran oluşturuldu.Figma tasarımları bitti.İsim ve temaya karar verildi, ikinci sprint için görevler belirlendi.Görevler dqağılımı yapıldı.
 
 # Sprint Retrospective:
+Daha daha sık toplantılar yapılmasına karar verildi.Görev dağılımının esnek olmasına karar verildi. Harita özelliğini ekleyip çıkarma konusu ikinci sprinte bırakıldı.
 
 
 
