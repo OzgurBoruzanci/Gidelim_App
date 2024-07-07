@@ -49,9 +49,15 @@ Daily Scrum: Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşma
   <head></head>
   <body>
     <details>
-    <summary><h2>Daily Scrum Images</h2></summary>
+    <summary><h2>Project Images</h2></summary>
+    https://drive.google.com/file/d/1gWpXhUTInAoqUzkL8Pe4TMuQbiqtYYhN/view?usp=share_link
 
-    
+<html>
+  <head></head>
+  <body>
+    <details>
+    <summary><h2>Daily Scrum Görselleri</h2></summary>
+    https://drive.google.com/file/d/1pCO9649JjHneyxKQdyjicEm6ypP0MjUq/view?usp=share_link
   
   </body>
 </html>
