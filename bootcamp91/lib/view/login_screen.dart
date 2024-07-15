@@ -1,6 +1,6 @@
-import 'package:Gidelim/product/project_texts.dart';
-import 'package:Gidelim/view/feed_screen.dart';
-import 'package:Gidelim/view/regsiter_screen.dart';
+import 'package:bootcamp91/product/project_texts.dart';
+import 'package:bootcamp91/view/feed_screen.dart';
+import 'package:bootcamp91/view/regsiter_screen.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {

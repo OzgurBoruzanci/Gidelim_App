@@ -1,6 +1,6 @@
-import 'package:Gidelim/product/project_colors.dart';
-import 'package:Gidelim/product/project_texts.dart';
-import 'package:Gidelim/view/second_welcome_screen.dart';
+import 'package:bootcamp91/product/project_colors.dart';
+import 'package:bootcamp91/product/project_texts.dart';
+import 'package:bootcamp91/view/second_welcome_screen.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatefulWidget {
