@@ -1,6 +1,5 @@
 import 'package:Gidelim/product/project_colors.dart';
 import 'package:Gidelim/product/project_texts.dart';
-import 'package:Gidelim/view/feed_screen.dart';
 import 'package:Gidelim/view/login_screen.dart';
 import 'package:Gidelim/view/regsiter_screen.dart';
 import 'package:flutter/material.dart';

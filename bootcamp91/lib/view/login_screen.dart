@@ -1,4 +1,5 @@
 import 'package:Gidelim/product/project_texts.dart';
+import 'package:Gidelim/view/feed_screen.dart';
 import 'package:Gidelim/view/regsiter_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -54,6 +55,28 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 16),
                     ElevatedButton(
                       onPressed: () {
+                        Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) =>
+                                    const FeedScreen(),
+                            transitionsBuilder: (context, animation,
+                                secondaryAnimation, child) {
+                              var begin = const Offset(1.0, 0.0);
+                              var end = Offset.zero;
+                              var curve = Curves.ease;
+
+                              var tween = Tween(begin: begin, end: end)
+                                  .chain(CurveTween(curve: curve));
+
+                              return SlideTransition(
+                                position: animation.drive(tween),
+                                child: child,
+                              );
+                            },
+                          ),
+                        ); //NAVIGAT
                         print('Email: ${_emailController.text}');
                         print('Password: ${_passwordController.text}');
                       },

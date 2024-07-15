@@ -48,7 +48,7 @@ class _FeedScreenState extends State<FeedScreen> {
             height: 75, // Yükseklik
             child: Center(
               child: Text(
-                'KAHVE DÜNYASI', //Veri tabanından gelecek kafe ismi
+                'MENÜ', //Veri tabanından gelecek kafe ismi
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
             ),
