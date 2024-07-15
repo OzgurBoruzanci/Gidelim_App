@@ -1,3 +1,15 @@
+buildscript { //ADDED AFTER FIREBASE
+    ext.kotlin_version = '1.8.22' // Burada kullanılan Kotlin sürümünü güncel sürümle eşitleyin
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // Diğer classpath bağımlılıklarınıza göz atın
+    }
+}
+
 allprojects {
     repositories {
         google()
