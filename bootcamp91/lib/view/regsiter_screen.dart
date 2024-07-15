@@ -12,6 +12,7 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _namedController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +38,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
                   children: [
+                    TextField(
+                      controller: _namedController,
+                      decoration: const InputDecoration(
+                        labelText: 'Ad Soyad',
+                      ),
+                      keyboardType: TextInputType.emailAddress,
+                    ),
+                    const SizedBox(height: 16),
                     TextField(
                       controller: _emailController,
                       decoration: const InputDecoration(
