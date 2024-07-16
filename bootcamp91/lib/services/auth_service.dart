@@ -50,7 +50,7 @@ class AuthService {
       rethrow;
     }
   }
-  // SIGN OUT
+  // ********************* SIGN OUT *********************
 
   Future<void> signOut(BuildContext context) async {
     try {

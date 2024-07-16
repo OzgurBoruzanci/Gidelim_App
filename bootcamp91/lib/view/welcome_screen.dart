@@ -16,8 +16,9 @@ class WelcomeScreenState extends State<WelcomeScreen> {
     return Scaffold(
       backgroundColor: const Color(0xffF2B84B),
       appBar: AppBar(
-          // title: Text(ProjectTexts().projectName),
-          ),
+        // title: Text(ProjectTexts().projectName),
+        automaticallyImplyLeading: false, // Geri butonunu gizler
+      ),
       body: Padding(
         padding: const EdgeInsets.only(top: 8, left: 32, right: 32),
         child: Column(
