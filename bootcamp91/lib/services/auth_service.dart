@@ -1,4 +1,5 @@
 import 'package:bootcamp91/view/feed_screen.dart';
+import 'package:bootcamp91/view/welcome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -47,6 +48,33 @@ class AuthService {
       // ignore: use_build_context_synchronously
       _showSnackBar(context, 'Bir hata oluştu: $e', Colors.red);
       rethrow;
+    }
+  }
+  // SIGN OUT
+
+  Future<void> signOut(BuildContext context) async {
+    try {
+      await _firebaseAuth.signOut(); // Firebase'den çıkış yap
+      // Çıkış yapıldıktan sonra kullanıcıyı WelcomeScreen'e yönlendir
+      // ignore: use_build_context_synchronously
+      _navigateToScreen(context, const WelcomeScreen());
+
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Çıkış yapıldı.'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } catch (e) {
+      // Hata durumunda SnackBar göster
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Çıkış yaparken bir hata oluştu: $e'),
+          backgroundColor: Colors.red,
+        ),
+      );
     }
   }
 

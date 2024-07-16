@@ -1,5 +1,6 @@
-import 'package:bootcamp91/product/project_texts.dart';
 import 'package:flutter/material.dart';
+import 'package:bootcamp91/product/project_texts.dart';
+import 'package:bootcamp91/services/auth_service.dart'; // AuthService'i ekleyin
 
 class FeedScreen extends StatefulWidget {
   const FeedScreen({super.key});
@@ -9,6 +10,8 @@ class FeedScreen extends StatefulWidget {
 }
 
 class _FeedScreenState extends State<FeedScreen> {
+  final AuthService _authService = AuthService(); // AuthService örneği oluştur
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,6 +20,36 @@ class _FeedScreenState extends State<FeedScreen> {
             Size.fromHeight(kToolbarHeight + 70), // AppBar yüksekliği
         child: AppBar(
           title: Text(ProjectTexts().projectName),
+          automaticallyImplyLeading: false, // Geri butonunu gizler
+
+          actions: [
+            PopupMenuButton<String>(
+              onSelected: (value) {
+                if (value == 'logout') {
+                  _authService
+                      .signOut(context); // AuthService'ten çıkış yapma çağrısı
+                }
+              },
+              itemBuilder: (BuildContext context) {
+                return [
+                  const PopupMenuItem<String>(
+                    value: 'logout',
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.logout,
+                          color: Colors.black,
+                        ),
+                        SizedBox(width: 8.0),
+                        Text('Çıkış Yap'),
+                      ],
+                    ),
+                  ),
+                ];
+              },
+            ),
+          ],
+
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(60.0), // TextField için yükseklik
             child: Padding(
