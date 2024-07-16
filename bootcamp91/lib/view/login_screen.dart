@@ -1,5 +1,5 @@
 import 'package:bootcamp91/product/project_texts.dart';
-import 'package:bootcamp91/view/feed_screen.dart';
+import 'package:bootcamp91/services/auth_service.dart';
 import 'package:bootcamp91/view/regsiter_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -13,11 +13,25 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final AuthService _authService = AuthService();
+
+  Future<void> _login() async {
+    try {
+      await _authService.login(
+        email: _emailController.text,
+        password: _passwordController.text,
+        context: context,
+      );
+    } catch (e) {
+      print('Hata: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(ProjectTexts().projectName),
+        title: Text(ProjectTexts().loginButton),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -54,32 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                            pageBuilder:
-                                (context, animation, secondaryAnimation) =>
-                                    const FeedScreen(),
-                            transitionsBuilder: (context, animation,
-                                secondaryAnimation, child) {
-                              var begin = const Offset(1.0, 0.0);
-                              var end = Offset.zero;
-                              var curve = Curves.ease;
-
-                              var tween = Tween(begin: begin, end: end)
-                                  .chain(CurveTween(curve: curve));
-
-                              return SlideTransition(
-                                position: animation.drive(tween),
-                                child: child,
-                              );
-                            },
-                          ),
-                        ); //NAVIGAT
-                        print('Email: ${_emailController.text}');
-                        print('Password: ${_passwordController.text}');
-                      },
+                      onPressed: _login,
                       child: Text(ProjectTexts().loginButton),
                     ),
                     TextButton(
@@ -105,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               );
                             },
                           ),
-                        ); //NAVIGATION FINISH HERE
+                        );
                       },
                       child: const Text('Hesabın yok mu? Kayıt ol.'),
                     ),
