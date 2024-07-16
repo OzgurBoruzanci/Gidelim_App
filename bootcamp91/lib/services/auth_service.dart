@@ -1,5 +1,4 @@
 import 'package:bootcamp91/view/feed_screen.dart';
-import 'package:bootcamp91/view/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -78,12 +77,12 @@ class AuthService {
       await userCredential.user!.updateProfile(displayName: displayName);
 
       // ignore: use_build_context_synchronously
-      _showSnackBar(context, 'Kullanıcı başarıyla kaydedildi!', Colors.green);
+      _showSnackBar(context, 'Kaydın oluşturuldu $displayName!', Colors.green);
 
       // 2 saniye bekle ve LoginScreen'e yönlendir
       await Future.delayed(const Duration(seconds: 2));
       // ignore: use_build_context_synchronously
-      _navigateToScreen(context, const LoginScreen());
+      _navigateToScreen(context, const FeedScreen());
     } on FirebaseAuthException catch (e) {
       String message = _getFirebaseAuthErrorMessage(e.code);
       // ignore: use_build_context_synchronously

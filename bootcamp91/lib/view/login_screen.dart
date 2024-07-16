@@ -53,16 +53,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     TextField(
                       controller: _emailController,
-                      decoration: const InputDecoration(
-                        labelText: 'E-posta',
+                      decoration: InputDecoration(
+                        labelText: ProjectTexts().email,
                       ),
                       keyboardType: TextInputType.emailAddress,
                     ),
                     const SizedBox(height: 16),
                     TextField(
                       controller: _passwordController,
-                      decoration: const InputDecoration(
-                        labelText: 'Parola',
+                      decoration: InputDecoration(
+                        labelText: ProjectTexts().password,
                       ),
                       obscureText: true,
                     ),
@@ -96,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         );
                       },
-                      child: const Text('Hesabın yok mu? Kayıt ol.'),
+                      child: Text(ProjectTexts().loginTextButton),
                     ),
                   ],
                 ),

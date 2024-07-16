@@ -13,4 +13,5 @@ class ProjectTexts {
   final String password = 'Parola';
   final String register = 'Kayıt Ol';
   final String registerTextButton = 'Zaten bir hesabın var mı? Giriş yap.';
+  final String loginTextButton = 'Hesabın yok mu? Kayıt ol.';
 }
