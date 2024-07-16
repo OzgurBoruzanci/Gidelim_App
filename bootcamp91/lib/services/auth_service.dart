@@ -29,12 +29,14 @@ class AuthService {
       );
       await userCredential.user!.updateProfile(displayName: displayName);
 
+      // ignore: use_build_context_synchronously
       _showSnackBar(context, 'Kullanıcı başarıyla kaydedildi!', Colors.green);
 
       // 2 saniye bekle ve LoginScreen'e yönlendir
       await Future.delayed(const Duration(seconds: 2));
 
       Navigator.push(
+        // ignore: use_build_context_synchronously
         context,
         PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) =>
@@ -53,13 +55,12 @@ class AuthService {
           },
         ),
       );
-
-     
-
     } on FirebaseAuthException catch (e) {
       String message = _getFirebaseAuthErrorMessage(e.code);
+      // ignore: use_build_context_synchronously
       _showSnackBar(context, message, Colors.red);
     } catch (e) {
+      // ignore: use_build_context_synchronously
       _showSnackBar(context, 'Bir hata oluştu: $e', Colors.red);
     }
   }

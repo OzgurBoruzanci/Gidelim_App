@@ -18,6 +18,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final AuthService _authService = AuthService(); // AuthService objesi
 
   void _register() {
+    //Servis ile kayıt işlemi metodu.
     _authService.register(
       email: _emailController.text,
       password: _passwordController.text,
@@ -30,7 +31,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Kayıt Ol'),
+        title: Text(ProjectTexts().register),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -52,31 +53,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   children: [
                     TextField(
                       controller: _namedController,
-                      decoration: const InputDecoration(
-                        labelText: 'Ad Soyad',
+                      decoration: InputDecoration(
+                        labelText: ProjectTexts().name_surname,
                       ),
                       keyboardType: TextInputType.name,
                     ),
                     const SizedBox(height: 16),
                     TextField(
                       controller: _emailController,
-                      decoration: const InputDecoration(
-                        labelText: 'E-posta',
+                      decoration: InputDecoration(
+                        labelText: ProjectTexts().email,
                       ),
                       keyboardType: TextInputType.emailAddress,
                     ),
                     const SizedBox(height: 16),
                     TextField(
                       controller: _passwordController,
-                      decoration: const InputDecoration(
-                        labelText: 'Parola',
+                      decoration: InputDecoration(
+                        labelText: ProjectTexts().password,
                       ),
                       obscureText: true,
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton(
                       onPressed: _register,
-                      child: Text('Kayıt Ol'),
+                      child: Text(ProjectTexts().registerButton),
                     ),
                     TextButton(
                       onPressed: () {
@@ -103,7 +104,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         );
                       },
-                      child: const Text('Zaten bir hesabın var mı? Giriş yap.'),
+                      child: Text(ProjectTexts().registerTextButton),
                     ),
                   ],
                 ),
