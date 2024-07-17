@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/services/cafe_service.dart';
 import 'package:bootcamp91/view/categoru_items_screen.dart';
-import 'package:flutter/material.dart';
 
 class CafeDetailScreen extends StatefulWidget {
   final Cafe cafe;
@@ -9,11 +10,24 @@ class CafeDetailScreen extends StatefulWidget {
   const CafeDetailScreen({super.key, required this.cafe});
 
   @override
-  // ignore: library_private_types_in_public_api
   _CafeDetailScreenState createState() => _CafeDetailScreenState();
 }
 
 class _CafeDetailScreenState extends State<CafeDetailScreen> {
+  // Google Haritalar'ı açacak fonksiyon
+  Future<void> _openGoogleMaps() async {
+    final Uri googleMapsUrl = Uri.parse(
+      'https://www.google.com/maps/search/?api=1&query=${widget.cafe.name}',
+    );
+
+    if (!await launchUrl(
+      googleMapsUrl,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw 'Google Maps açılamadı: $googleMapsUrl';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,22 +48,25 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
                     child: Image.network(
                       widget.cafe.logoUrl,
                       height: 100, // Logo yüksekliği
-
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
                 const SizedBox(height: 8.0),
-                // Center(
-                //   child: Text(
-                //     widget.cafe.name,
-                //     style: TextStyle(
-                //       fontSize: 24,
-                //       fontWeight: FontWeight.bold,
-                //       color: ProjectColors.project_gray,
-                //     ),
-                //   ),
-                // ),
+                ElevatedButton(
+                  onPressed: _openGoogleMaps,
+                  child:  Text('En Yakın ${widget.cafe.name}'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        ProjectColors.project_gray, // Butonun arka plan rengi
+                    foregroundColor: ProjectColors
+                        .whiteTextColor, // Buton üzerindeki metin rengi
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
