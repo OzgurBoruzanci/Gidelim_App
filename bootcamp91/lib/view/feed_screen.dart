@@ -119,8 +119,7 @@ class _FeedScreenState extends State<FeedScreen> {
                 child: Card(
                   color: Colors.white,
                   elevation: 5,
-                  margin: EdgeInsets.symmetric(
-                      vertical: 8.0), // Kartlar arası boşluk
+                  margin: EdgeInsets.all(8.0), // Kartlar arası boşluk
                   child: Container(
                     height: 150, // Kartın yüksekliğini arttır
                     padding: EdgeInsets.all(16.0), // Kartın iç kenar boşluğu
