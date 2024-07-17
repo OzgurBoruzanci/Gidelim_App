@@ -1,5 +1,3 @@
-// lib/screens/feed_screen.dart
-
 import 'package:bootcamp91/view/cafe_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bootcamp91/product/project_texts.dart';
@@ -16,6 +14,34 @@ class FeedScreen extends StatefulWidget {
 class _FeedScreenState extends State<FeedScreen> {
   final AuthService _authService = AuthService(); // AuthService örneği oluştur
   final CafeService _cafeService = CafeService(); // CafeService örneği oluştur
+  TextEditingController _searchController = TextEditingController();
+  String _searchText = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController.addListener(_onSearchTextChanged);
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _onSearchTextChanged() {
+    String text = _searchController.text;
+    if (text.isNotEmpty) {
+      text = text[0].toUpperCase() + text.substring(1);
+    }
+    setState(() {
+      _searchText = text.toLowerCase();
+      _searchController.value = _searchController.value.copyWith(
+        text: text,
+        selection: TextSelection.collapsed(offset: text.length),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +86,7 @@ class _FeedScreenState extends State<FeedScreen> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
+                controller: _searchController,
                 decoration: InputDecoration(
                   hintText: 'Kafe ara',
                   prefixIcon: Icon(Icons.search),
@@ -87,10 +114,14 @@ class _FeedScreenState extends State<FeedScreen> {
           }
 
           List<Cafe> cafes = snapshot.data!;
+          List<Cafe> filteredCafes = cafes.where((cafe) {
+            return cafe.name.toLowerCase().contains(_searchText);
+          }).toList();
+
           return ListView.builder(
-            itemCount: cafes.length,
+            itemCount: filteredCafes.length,
             itemBuilder: (context, index) {
-              Cafe cafe = cafes[index];
+              Cafe cafe = filteredCafes[index];
               return GestureDetector(
                 onTap: () {
                   Navigator.push(

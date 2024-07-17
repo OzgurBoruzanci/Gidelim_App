@@ -24,16 +24,16 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
         children: [
           // Kafe logosu ve ismi
           Padding(
-            padding: const EdgeInsets.all(0.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
                 Center(
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
+                    borderRadius: BorderRadius.circular(0),
                     child: Image.network(
                       widget.cafe.logoUrl,
                       height: 100, // Logo yüksekliği
-                      width: 100, // Logo genişliği
+
                       fit: BoxFit.cover,
                     ),
                   ),
