@@ -17,10 +17,7 @@ class CafeService {
         .doc(cafeId)
         .collection('menu')
         .snapshots()
-        .map((snapshot) => snapshot.docs
-            .map((doc) => doc.id) // Menü belgelerinin ID'leri kategorilerdir
-            .toSet()
-            .toList());
+        .map((snapshot) => snapshot.docs.map((doc) => doc.id).toSet().toList());
   }
 
   // Belirli bir kategoriye ait menü öğelerini al
