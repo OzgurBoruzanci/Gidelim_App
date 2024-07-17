@@ -82,9 +82,20 @@ class CategoryItemsScreen extends StatelessWidget {
                             Expanded(
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Image.network(
-                                  drink.imageUrl,
-                                  fit: BoxFit.cover,
+                                child: FutureBuilder(
+                                  future: _loadImage(context, drink.imageUrl),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.done) {
+                                      return Image.network(
+                                        drink.imageUrl,
+                                        fit: BoxFit.cover,
+                                      );
+                                    } else {
+                                      return const Center(
+                                          child: CircularProgressIndicator());
+                                    }
+                                  },
                                 ),
                               ),
                             ),
@@ -117,6 +128,10 @@ class CategoryItemsScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _loadImage(BuildContext context, String imageUrl) async {
+    await precacheImage(NetworkImage(imageUrl), context);
   }
 
   // Kategori isimlerini belirleyen fonksiyon
