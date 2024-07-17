@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:bootcamp91/product/project_texts.dart';
 import 'package:bootcamp91/services/auth_service.dart';
 import 'package:bootcamp91/services/cafe_service.dart';
+import 'package:bootcamp91/product/custom_loading_widget.dart'; // Yeni widget'ı import ettik
 
 class FeedScreen extends StatefulWidget {
   const FeedScreen({super.key});
@@ -57,8 +58,7 @@ class _FeedScreenState extends State<FeedScreen> {
             PopupMenuButton<String>(
               onSelected: (value) {
                 if (value == 'logout') {
-                  _authService
-                      .signOut(context); // AuthService'ten çıkış yapma çağrısı
+                  _authService.signOut(context); // AuthService'ten çıkış yapma çağrısı
                 }
               },
               itemBuilder: (BuildContext context) {
@@ -110,7 +110,9 @@ class _FeedScreenState extends State<FeedScreen> {
             return const Center(child: Text('Bir hata oluştu'));
           }
           if (!snapshot.hasData) {
-            return const Center(child: CircularProgressIndicator());
+            return Center(
+              child: CustomLoadingWidget(), // Özelleştirilmiş yükleme widget'ını kullan
+            );
           }
 
           List<Cafe> cafes = snapshot.data!;

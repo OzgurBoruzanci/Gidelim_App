@@ -1,8 +1,9 @@
+import 'package:bootcamp91/view/categoru_items_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/services/cafe_service.dart';
-import 'package:bootcamp91/view/categoru_items_screen.dart';
+import 'package:bootcamp91/product/custom_loading_widget.dart'; // Yeni widget'ı import ettik
 
 class CafeDetailScreen extends StatefulWidget {
   final Cafe cafe;
@@ -55,7 +56,7 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
                 const SizedBox(height: 8.0),
                 ElevatedButton(
                   onPressed: _openGoogleMaps,
-                  child:  Text('En Yakın ${widget.cafe.name}'),
+                  child: Text('En Yakın ${widget.cafe.name}'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
                         ProjectColors.project_gray, // Butonun arka plan rengi
@@ -79,7 +80,9 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
                       child: Text('Bir hata oluştu: ${snapshot.error}'));
                 }
                 if (!snapshot.hasData) {
-                  return const Center(child: CircularProgressIndicator());
+                  return Center(
+                      child:
+                          CustomLoadingWidget()); // Özelleştirilmiş yükleme widget'ını kullan
                 }
 
                 List<String> categories = snapshot.data!;

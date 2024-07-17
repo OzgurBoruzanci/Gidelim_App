@@ -1,6 +1,7 @@
 import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/services/cafe_service.dart';
 import 'package:flutter/material.dart';
+import 'package:bootcamp91/product/custom_loading_widget.dart'; // Özelleştirilmiş yükleme widget'ını import ettik
 
 class CategoryItemsScreen extends StatelessWidget {
   final Cafe cafe;
@@ -51,7 +52,9 @@ class CategoryItemsScreen extends StatelessWidget {
                       child: Text('Bir hata oluştu: ${snapshot.error}'));
                 }
                 if (!snapshot.hasData) {
-                  return const Center(child: CircularProgressIndicator());
+                  return Center(
+                      child:
+                          CustomLoadingWidget()); // Özelleştirilmiş yükleme widget'ını kullan
                 }
 
                 List<Drink> drinks = snapshot.data!;
@@ -93,7 +96,8 @@ class CategoryItemsScreen extends StatelessWidget {
                                       );
                                     } else {
                                       return const Center(
-                                          child: CircularProgressIndicator());
+                                          child:
+                                              CustomLoadingWidget()); // Özelleştirilmiş yükleme widget'ını kullan
                                     }
                                   },
                                 ),
