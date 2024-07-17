@@ -9,6 +9,7 @@ class CafeDetailScreen extends StatefulWidget {
   const CafeDetailScreen({super.key, required this.cafe});
 
   @override
+  // ignore: library_private_types_in_public_api
   _CafeDetailScreenState createState() => _CafeDetailScreenState();
 }
 
@@ -38,7 +39,7 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 8.0),
+                const SizedBox(height: 8.0),
                 // Center(
                 //   child: Text(
                 //     widget.cafe.name,
@@ -61,7 +62,7 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
                       child: Text('Bir hata oluştu: ${snapshot.error}'));
                 }
                 if (!snapshot.hasData) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 }
 
                 List<String> categories = snapshot.data!;
@@ -112,7 +113,7 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
                               child: Text(
                                 _getCategoryName(category),
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 25,
                                   fontWeight: FontWeight.w500,
                                   color: ProjectColors.project_gray,

@@ -48,7 +48,7 @@ class _FeedScreenState extends State<FeedScreen> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize:
-            Size.fromHeight(kToolbarHeight + 70), // AppBar yüksekliği
+            const Size.fromHeight(kToolbarHeight + 70), // AppBar yüksekliği
         child: AppBar(
           title: Text(ProjectTexts().projectName),
           automaticallyImplyLeading: false, // Geri butonunu gizler
@@ -82,21 +82,21 @@ class _FeedScreenState extends State<FeedScreen> {
           ],
 
           bottom: PreferredSize(
-            preferredSize: Size.fromHeight(60.0), // TextField için yükseklik
+            preferredSize: const Size.fromHeight(60.0), // TextField için yükseklik
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
                 controller: _searchController,
                 decoration: InputDecoration(
                   hintText: 'Kafe ara',
-                  prefixIcon: Icon(Icons.search),
+                  prefixIcon: const Icon(Icons.search),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
                     borderSide: BorderSide.none,
                   ),
                   filled: true,
                   fillColor: Colors.white,
-                  contentPadding: EdgeInsets.symmetric(vertical: 5.0),
+                  contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
                 ),
               ),
             ),
@@ -107,10 +107,10 @@ class _FeedScreenState extends State<FeedScreen> {
         stream: _cafeService.getCafes(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            return Center(child: Text('Bir hata oluştu'));
+            return const Center(child: Text('Bir hata oluştu'));
           }
           if (!snapshot.hasData) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
 
           List<Cafe> cafes = snapshot.data!;
@@ -150,10 +150,10 @@ class _FeedScreenState extends State<FeedScreen> {
                 child: Card(
                   color: Colors.white,
                   elevation: 5,
-                  margin: EdgeInsets.all(8.0), // Kartlar arası boşluk
+                  margin: const EdgeInsets.all(8.0), // Kartlar arası boşluk
                   child: Container(
                     height: 150, // Kartın yüksekliğini arttır
-                    padding: EdgeInsets.all(16.0), // Kartın iç kenar boşluğu
+                    padding: const EdgeInsets.all(16.0), // Kartın iç kenar boşluğu
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -162,7 +162,7 @@ class _FeedScreenState extends State<FeedScreen> {
                             child: Image.network(cafe.logoUrl),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                             height: 8.0), // Logo ile kafe ismi arası boşluk
                         Text(
                           cafe.name,
