@@ -7,10 +7,10 @@ class CategoryItemsScreen extends StatelessWidget {
   final String category;
 
   const CategoryItemsScreen({
-    Key? key,
+    super.key,
     required this.cafe,
     required this.category,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class CategoryItemsScreen extends StatelessWidget {
         children: [
           // Kafe logosu ve ismi
           Padding(
-            padding: const EdgeInsets.all(0.0),
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
                 Center(
@@ -128,6 +128,8 @@ class CategoryItemsScreen extends StatelessWidget {
         return 'Soğuk İçecekler';
       case 'desserts':
         return 'Tatlılar';
+      case 'foods':
+        return 'Yiyecekler';
       default:
         return 'Bilinmeyen Kategori';
     }

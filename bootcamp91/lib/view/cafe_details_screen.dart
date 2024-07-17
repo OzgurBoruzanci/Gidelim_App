@@ -24,7 +24,7 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
         children: [
           // Kafe logosu ve ismi
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
                 Center(
@@ -142,6 +142,8 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
         return 'SOĞUK İÇECEKLER';
       case 'desserts':
         return 'TATLILAR';
+      case 'foods':
+        return 'YİYECEKLER';
       default:
         return 'Bilinmeyen Kategori';
     }
