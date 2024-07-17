@@ -1,3 +1,4 @@
+import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/services/cafe_service.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,7 @@ class CategoryItemsScreen extends StatelessWidget {
         children: [
           // Kafe logosu ve ismi
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(0.0),
             child: Column(
               children: [
                 Center(
@@ -31,13 +32,13 @@ class CategoryItemsScreen extends StatelessWidget {
                     height: 100, // Logo yüksekliği
                   ),
                 ),
-                SizedBox(height: 8.0),
-                Center(
-                  child: Text(
-                    cafe.name,
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                ),
+                // SizedBox(height: 8.0),
+                // Center(
+                //   child: Text(
+                //     cafe.name,
+                //     style: Theme.of(context).textTheme.bodyLarge,
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -60,7 +61,7 @@ class CategoryItemsScreen extends StatelessWidget {
                 }
 
                 return GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 8.0,
                     mainAxisSpacing: 8.0,
@@ -72,6 +73,7 @@ class CategoryItemsScreen extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Card(
+                        color: ProjectColors.whiteColor,
                         elevation: 5,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
