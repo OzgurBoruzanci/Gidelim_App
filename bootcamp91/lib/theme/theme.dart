@@ -27,7 +27,10 @@ ThemeData appTheme = ThemeData.dark().copyWith(
   ),
   //TEXT THEME
   textTheme: const TextTheme(
-    bodyLarge: TextStyle(color: ProjectColors.textColor, fontSize: 22),
+    bodyLarge: TextStyle(
+        color: ProjectColors.textColor,
+        fontSize: 22,
+        fontWeight: FontWeight.w800),
     bodyMedium: TextStyle(color: ProjectColors.textColor, fontSize: 20),
     bodySmall: TextStyle(color: ProjectColors.textColor, fontSize: 18),
   ),
