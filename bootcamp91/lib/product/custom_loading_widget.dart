@@ -17,7 +17,7 @@ class CustomLoadingWidget extends StatelessWidget {
     return Center(
       child: LoadingAnimationWidget.inkDrop(
         color: ProjectColors.project_yellow,
-        size: 50 ,
+        size: 50,
       ),
     );
   }

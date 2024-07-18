@@ -52,9 +52,9 @@ class CategoryItemsScreen extends StatelessWidget {
                       child: Text('Bir hata oluştu: ${snapshot.error}'));
                 }
                 if (!snapshot.hasData) {
-                  return Center(
-                      child:
-                          CustomLoadingWidget()); // Özelleştirilmiş yükleme widget'ını kullan
+                  return const Center(
+                      // Özelleştirilmiş yükleme widget'ını kullan
+                      child: CustomLoadingWidget());
                 }
 
                 List<Drink> drinks = snapshot.data!;

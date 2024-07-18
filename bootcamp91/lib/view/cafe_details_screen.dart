@@ -50,13 +50,23 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
                       widget.cafe.logoUrl,
                       height: 100, // Logo yüksekliği
                       fit: BoxFit.cover,
+                      loadingBuilder: (BuildContext context, Widget child,
+                          ImageChunkEvent? loadingProgress) {
+                        if (loadingProgress == null) {
+                          return child;
+                        } else {
+                          return Center(
+                            child:
+                                CustomLoadingWidget(), // Özelleştirilmiş yükleme widget'ı
+                          );
+                        }
+                      },
                     ),
                   ),
                 ),
                 const SizedBox(height: 8.0),
                 ElevatedButton(
                   onPressed: _openGoogleMaps,
-                  child: Text('En Yakın ${widget.cafe.name}'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
                         ProjectColors.project_gray, // Butonun arka plan rengi
@@ -67,6 +77,7 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
                       borderRadius: BorderRadius.circular(5),
                     ),
                   ),
+                  child: Text('En Yakın ${widget.cafe.name}'),
                 ),
               ],
             ),
@@ -80,12 +91,15 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
                       child: Text('Bir hata oluştu: ${snapshot.error}'));
                 }
                 if (!snapshot.hasData) {
-                  return Center(
-                      child:
-                          CustomLoadingWidget()); // Özelleştirilmiş yükleme widget'ını kullan
+                  return const Center(
+                      // Özelleştirilmiş yükleme widget'ını kullan
+                      child: CustomLoadingWidget());
                 }
 
                 List<String> categories = snapshot.data!;
+                categories.sort((a, b) => _getCategoryName(a).compareTo(
+                    _getCategoryName(b))); // Alfabetik olarak sıralama
+
                 return ListView.builder(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   itemCount: categories.length,
@@ -121,24 +135,37 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
                       },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Card(
-                          color: ProjectColors.whiteColor,
-                          elevation: 5,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(50.0),
-                              child: Text(
-                                _getCategoryName(category),
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w500,
-                                  color: ProjectColors.project_gray,
+                        child: Container(
+                          height: 135, // Yükseklik ayarı
+                          child: Card(
+                            color: ProjectColors.whiteColor,
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Stack(
+                              children: [
+                                Positioned.fill(
+                                  child: Image.asset(
+                                    'assets/images/ic_card_bg.png', // Arka plan resmi asset olarak kullanılıyor
+                                    fit: BoxFit.contain,
+                                  ),
                                 ),
-                              ),
+                                Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: Text(
+                                      _getCategoryName(category),
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: ProjectColors.project_gray,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),

@@ -58,7 +58,8 @@ class _FeedScreenState extends State<FeedScreen> {
             PopupMenuButton<String>(
               onSelected: (value) {
                 if (value == 'logout') {
-                  _authService.signOut(context); // AuthService'ten çıkış yapma çağrısı
+                  _authService
+                      .signOut(context); // AuthService'ten çıkış yapma çağrısı
                 }
               },
               itemBuilder: (BuildContext context) {
@@ -82,7 +83,8 @@ class _FeedScreenState extends State<FeedScreen> {
           ],
 
           bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(60.0), // TextField için yükseklik
+            preferredSize:
+                const Size.fromHeight(60.0), // TextField için yükseklik
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
@@ -111,7 +113,8 @@ class _FeedScreenState extends State<FeedScreen> {
           }
           if (!snapshot.hasData) {
             return Center(
-              child: CustomLoadingWidget(), // Özelleştirilmiş yükleme widget'ını kullan
+              child:
+                  CustomLoadingWidget(), // Özelleştirilmiş yükleme widget'ını kullan
             );
           }
 
@@ -155,13 +158,28 @@ class _FeedScreenState extends State<FeedScreen> {
                   margin: const EdgeInsets.all(8.0), // Kartlar arası boşluk
                   child: Container(
                     height: 150, // Kartın yüksekliğini arttır
-                    padding: const EdgeInsets.all(16.0), // Kartın iç kenar boşluğu
+                    padding:
+                        const EdgeInsets.all(16.0), // Kartın iç kenar boşluğu
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Expanded(
                           child: Center(
-                            child: Image.network(cafe.logoUrl),
+                            child: Image.network(
+                              cafe.logoUrl,
+                              loadingBuilder: (BuildContext context,
+                                  Widget child,
+                                  ImageChunkEvent? loadingProgress) {
+                                if (loadingProgress == null) {
+                                  return child;
+                                } else {
+                                  return Center(
+                                    child:
+                                        CustomLoadingWidget(), // Özelleştirilmiş yükleme widget'ını kullan
+                                  );
+                                }
+                              },
+                            ),
                           ),
                         ),
                         const SizedBox(
