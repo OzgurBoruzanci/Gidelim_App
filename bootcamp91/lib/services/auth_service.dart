@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 class AuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
+  String? get currentUserUid => _firebaseAuth.currentUser?.uid;
+
   Future<User?> login({
     required String email,
     required String password,
@@ -30,36 +32,25 @@ class AuthService {
       User? user = userCredential.user;
 
       if (user != null) {
-        // ignore: use_build_context_synchronously
         _showSnackBar(context, 'Hoş geldin ${user.displayName}!', Colors.green);
-
-        // Kullanıcıyı FeedScreen'e yönlendir
-        await Future.delayed(const Duration(seconds: 2));
-        // ignore: use_build_context_synchronously
         _navigateToScreen(context, const FeedScreen());
       }
       return user;
     } on FirebaseAuthException catch (e) {
       String message = _getFirebaseAuthErrorMessage(e.code);
-      // ignore: use_build_context_synchronously
       _showSnackBar(context, message, Colors.red);
       rethrow;
     } catch (e) {
-      // ignore: use_build_context_synchronously
       _showSnackBar(context, 'Bir hata oluştu: $e', Colors.red);
       rethrow;
     }
   }
-  // ********************* SIGN OUT *********************
 
   Future<void> signOut(BuildContext context) async {
     try {
-      await _firebaseAuth.signOut(); // Firebase'den çıkış yap
-      // Çıkış yapıldıktan sonra kullanıcıyı WelcomeScreen'e yönlendir
-      // ignore: use_build_context_synchronously
+      await _firebaseAuth.signOut();
       _navigateToScreen(context, const WelcomeScreen());
 
-      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Çıkış yapıldı.'),
@@ -67,8 +58,6 @@ class AuthService {
         ),
       );
     } catch (e) {
-      // Hata durumunda SnackBar göster
-      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Çıkış yaparken bir hata oluştu: $e'),
@@ -77,8 +66,6 @@ class AuthService {
       );
     }
   }
-
-  // ********************************* REGISTER METHOD *********************************
 
   Future<void> register({
     required String email,
@@ -104,19 +91,13 @@ class AuthService {
       );
       await userCredential.user!.updateProfile(displayName: displayName);
 
-      // ignore: use_build_context_synchronously
       _showSnackBar(context, 'Kaydın oluşturuldu $displayName!', Colors.green);
 
-      // 2 saniye bekle ve LoginScreen'e yönlendir
-      await Future.delayed(const Duration(seconds: 2));
-      // ignore: use_build_context_synchronously
       _navigateToScreen(context, const FeedScreen());
     } on FirebaseAuthException catch (e) {
       String message = _getFirebaseAuthErrorMessage(e.code);
-      // ignore: use_build_context_synchronously
       _showSnackBar(context, message, Colors.red);
     } catch (e) {
-      // ignore: use_build_context_synchronously
       _showSnackBar(context, 'Bir hata oluştu: $e', Colors.red);
     }
   }

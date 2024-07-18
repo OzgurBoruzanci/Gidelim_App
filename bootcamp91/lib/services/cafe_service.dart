@@ -17,7 +17,7 @@ class CafeService {
         .doc(cafeId)
         .collection('menu')
         .snapshots()
-        .map((snapshot) => snapshot.docs.map((doc) => doc.id).toSet().toList());
+        .map((snapshot) => snapshot.docs.map((doc) => doc.id).toList());
   }
 
   // Belirli bir kategoriye ait menü öğelerini al
@@ -27,13 +27,40 @@ class CafeService {
         .doc(cafeId)
         .collection('menu')
         .doc(category)
-        .collection('items') // Kategori içindeki içecekler alt koleksiyonu
+        .collection('items')
         .snapshots()
-        .map((snapshot) {
-      print(
-          'Snapshot data: ${snapshot.docs.map((doc) => doc.data())}'); // Veriyi konsola yazdırın
-      return snapshot.docs.map((doc) => Drink.fromFirestore(doc)).toList();
-    });
+        .map((snapshot) =>
+            snapshot.docs.map((doc) => Drink.fromFirestore(doc)).toList());
+  }
+
+  // Kullanıcının favorilerine kafe ekleme veya çıkarma
+  Future<void> toggleFavoriteCafe(
+      String userUid, String cafeId, bool isFavorite) async {
+    var userFavoritesRef =
+        _firestore.collection('users').doc(userUid).collection('user_favorites');
+
+    if (isFavorite) {
+      await userFavoritesRef.doc(cafeId).delete();
+    } else {
+      await userFavoritesRef.doc(cafeId).set({
+        'cafe_name': cafeId,
+      });
+    }
+  }
+
+  // Kullanıcının favori kafelerini al
+  Stream<List<String>> getUserFavorites(String userUid) {
+    return _firestore
+        .collection('users')
+        .doc(userUid)
+        .collection('user_favorites')
+        .snapshots()
+        .map((snapshot) => snapshot.docs.map((doc) => doc.id).toList());
+  }
+
+  // Belirli bir kafe için verileri al
+  Stream<Cafe> getCafe(String cafeId) {
+    return _firestore.collection('cafes').doc(cafeId).snapshots().map((snapshot) => Cafe.fromFirestore(snapshot));
   }
 }
 

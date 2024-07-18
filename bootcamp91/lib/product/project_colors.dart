@@ -10,4 +10,6 @@ class ProjectColors {
   static const buttonColor = Color(0xff262626);
   static const project_gray = Color.fromARGB(244, 71, 70, 70);
   static const default_color = Color.fromARGB(244, 0, 0, 0);
+  static const red_color = Colors.pink;
+  static const green_color = Colors.green;
 }

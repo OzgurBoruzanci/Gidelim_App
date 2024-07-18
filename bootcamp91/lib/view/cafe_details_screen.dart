@@ -1,31 +1,65 @@
 import 'package:bootcamp91/view/categoru_items_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/services/cafe_service.dart';
-import 'package:bootcamp91/product/custom_loading_widget.dart'; // Yeni widget'ı import ettik
+import 'package:bootcamp91/product/custom_loading_widget.dart';
 
 class CafeDetailScreen extends StatefulWidget {
   final Cafe cafe;
+  final String userUid;
 
-  const CafeDetailScreen({super.key, required this.cafe});
+  const CafeDetailScreen({Key? key, required this.cafe, required this.userUid})
+      : super(key: key);
 
   @override
   _CafeDetailScreenState createState() => _CafeDetailScreenState();
 }
 
 class _CafeDetailScreenState extends State<CafeDetailScreen> {
-  // Google Haritalar'ı açacak fonksiyon
+  bool _isFavorite = false;
+  final CafeService _cafeService = CafeService();
+
+  @override
+  void initState() {
+    super.initState();
+    _checkIfFavorite();
+  }
+
+  Future<void> _checkIfFavorite() async {
+    var userFavorites =
+        await _cafeService.getUserFavorites(widget.userUid).first;
+    setState(() {
+      _isFavorite = userFavorites.contains(widget.cafe.id);
+    });
+  }
+
+  void _toggleFavorite() async {
+    await _cafeService.toggleFavoriteCafe(
+        widget.userUid, widget.cafe.id, _isFavorite);
+    setState(() {
+      _isFavorite = !_isFavorite;
+    });
+
+    Fluttertoast.showToast(
+      msg: _isFavorite ? 'Favorilere eklendi' : 'Favorilerden çıkarıldı',
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      backgroundColor:
+          _isFavorite ? ProjectColors.green_color : ProjectColors.red_color,
+      textColor: ProjectColors.whiteTextColor,
+      fontSize: 20.0,
+    );
+  }
+
   Future<void> _openGoogleMaps() async {
     final Uri googleMapsUrl = Uri.parse(
       'https://www.google.com/maps/search/?api=1&query=${widget.cafe.name}',
     );
 
-    if (!await launchUrl(
-      googleMapsUrl,
-      mode: LaunchMode.externalApplication,
-    )) {
-      throw 'Google Maps açılamadı: $googleMapsUrl';
+    if (!await launch(googleMapsUrl.toString())) {
+      throw 'Could not launch Google Maps: $googleMapsUrl';
     }
   }
 
@@ -34,21 +68,33 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.cafe.name),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 8.0),
+            child: IconButton(
+              icon: Icon(_isFavorite ? Icons.favorite : Icons.favorite_border),
+              color: _isFavorite
+                  ? ProjectColors.red_color
+                  : ProjectColors.buttonColor,
+              onPressed: _toggleFavorite,
+              iconSize: 35,
+            ),
+          ),
+        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Kafe logosu ve ismi
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0),
             child: Column(
               children: [
                 Center(
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(0),
+                    borderRadius: BorderRadius.circular(8.0),
                     child: Image.network(
                       widget.cafe.logoUrl,
-                      height: 100, // Logo yüksekliği
+                      height: 100.0,
                       fit: BoxFit.cover,
                       loadingBuilder: (BuildContext context, Widget child,
                           ImageChunkEvent? loadingProgress) {
@@ -56,8 +102,7 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
                           return child;
                         } else {
                           return Center(
-                            child:
-                                CustomLoadingWidget(), // Özelleştirilmiş yükleme widget'ı
+                            child: CustomLoadingWidget(),
                           );
                         }
                       },
@@ -68,10 +113,8 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
                 ElevatedButton(
                   onPressed: _openGoogleMaps,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        ProjectColors.project_gray, // Butonun arka plan rengi
-                    foregroundColor: ProjectColors
-                        .whiteTextColor, // Buton üzerindeki metin rengi
+                    backgroundColor: ProjectColors.buttonColor,
+                    foregroundColor: ProjectColors.whiteTextColor,
                     elevation: 5,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5),
@@ -84,24 +127,19 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
           ),
           Expanded(
             child: StreamBuilder<List<String>>(
-              stream: CafeService().getMenuCategories(widget.cafe.id),
+              stream: _cafeService.getMenuCategories(widget.cafe.id),
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
-                  return Center(
-                      child: Text('Bir hata oluştu: ${snapshot.error}'));
+                  return Center(child: Text('Hata: ${snapshot.error}'));
                 }
+
                 if (!snapshot.hasData) {
-                  return const Center(
-                      // Özelleştirilmiş yükleme widget'ını kullan
-                      child: CustomLoadingWidget());
+                  return Center(child: CustomLoadingWidget());
                 }
 
                 List<String> categories = snapshot.data!;
-                categories.sort((a, b) => _getCategoryName(a).compareTo(
-                    _getCategoryName(b))); // Alfabetik olarak sıralama
 
                 return ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   itemCount: categories.length,
                   itemBuilder: (context, index) {
                     final category = categories[index];
@@ -109,46 +147,32 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          PageRouteBuilder(
-                            pageBuilder:
-                                (context, animation, secondaryAnimation) =>
-                                    CategoryItemsScreen(
+                          MaterialPageRoute(
+                            builder: (context) => CategoryItemsScreen(
                               cafe: widget.cafe,
                               category: category,
                             ),
-                            transitionsBuilder: (context, animation,
-                                secondaryAnimation, child) {
-                              const begin =
-                                  Offset(0.0, 1.0); // Aşağıdan yukarıya geçiş
-                              const end = Offset.zero;
-                              const curve = Curves.easeInOut;
-
-                              var tween = Tween(begin: begin, end: end);
-                              var offsetAnimation = animation
-                                  .drive(tween.chain(CurveTween(curve: curve)));
-
-                              return SlideTransition(
-                                  position: offsetAnimation, child: child);
-                            },
                           ),
                         );
                       },
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Container(
-                          height: 135, // Yükseklik ayarı
-                          child: Card(
-                            color: ProjectColors.whiteColor,
-                            elevation: 5,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 16.0),
+                        child: Card(
+                          elevation: 5,
+                          color: Colors.white, // Kart rengi beyaz yapıldı
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          child: Container(
+                            height: 135, // Kart yüksekliği 200 olarak ayarlandı
                             child: Stack(
                               children: [
                                 Positioned.fill(
                                   child: Image.asset(
-                                    'assets/images/ic_card_bg.png', // Arka plan resmi asset olarak kullanılıyor
-                                    fit: BoxFit.contain,
+                                    'assets/images/ic_card_bg.png',
+                                    fit: BoxFit
+                                        .contain, // Resim sığacak şekilde ayarlandı
                                   ),
                                 ),
                                 Center(
@@ -156,12 +180,12 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
                                     padding: const EdgeInsets.all(16.0),
                                     child: Text(
                                       _getCategoryName(category),
-                                      textAlign: TextAlign.center,
-                                      style: const TextStyle(
-                                        fontSize: 20,
+                                      style: TextStyle(
+                                        fontSize: 20.0,
                                         fontWeight: FontWeight.bold,
                                         color: ProjectColors.project_gray,
                                       ),
+                                      textAlign: TextAlign.center,
                                     ),
                                   ),
                                 ),
@@ -181,7 +205,6 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
     );
   }
 
-  // Kategori isimlerini belirleyen fonksiyon
   String _getCategoryName(String category) {
     switch (category) {
       case 'hot_drinks':

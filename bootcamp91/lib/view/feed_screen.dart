@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:bootcamp91/product/project_texts.dart';
 import 'package:bootcamp91/services/auth_service.dart';
 import 'package:bootcamp91/services/cafe_service.dart';
-import 'package:bootcamp91/product/custom_loading_widget.dart'; // Yeni widget'ı import ettik
+import 'package:bootcamp91/product/custom_loading_widget.dart'; // CustomLoadingWidget'ı import ettik
 
 class FeedScreen extends StatefulWidget {
   const FeedScreen({super.key});
@@ -13,8 +13,8 @@ class FeedScreen extends StatefulWidget {
 }
 
 class _FeedScreenState extends State<FeedScreen> {
-  final AuthService _authService = AuthService(); // AuthService örneği oluştur
-  final CafeService _cafeService = CafeService(); // CafeService örneği oluştur
+  final AuthService _authService = AuthService();
+  final CafeService _cafeService = CafeService();
   TextEditingController _searchController = TextEditingController();
   String _searchText = '';
 
@@ -48,18 +48,15 @@ class _FeedScreenState extends State<FeedScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize:
-            const Size.fromHeight(kToolbarHeight + 70), // AppBar yüksekliği
+        preferredSize: const Size.fromHeight(kToolbarHeight + 70),
         child: AppBar(
           title: Text(ProjectTexts().projectName),
-          automaticallyImplyLeading: false, // Geri butonunu gizler
-
+          automaticallyImplyLeading: false,
           actions: [
             PopupMenuButton<String>(
               onSelected: (value) {
                 if (value == 'logout') {
-                  _authService
-                      .signOut(context); // AuthService'ten çıkış yapma çağrısı
+                  _authService.signOut(context);
                 }
               },
               itemBuilder: (BuildContext context) {
@@ -81,10 +78,8 @@ class _FeedScreenState extends State<FeedScreen> {
               },
             ),
           ],
-
           bottom: PreferredSize(
-            preferredSize:
-                const Size.fromHeight(60.0), // TextField için yükseklik
+            preferredSize: const Size.fromHeight(60.0),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
@@ -113,8 +108,7 @@ class _FeedScreenState extends State<FeedScreen> {
           }
           if (!snapshot.hasData) {
             return Center(
-              child:
-                  CustomLoadingWidget(), // Özelleştirilmiş yükleme widget'ını kullan
+              child: CustomLoadingWidget(), // CustomLoadingWidget kullanıldı
             );
           }
 
@@ -133,7 +127,9 @@ class _FeedScreenState extends State<FeedScreen> {
                     context,
                     PageRouteBuilder(
                       pageBuilder: (context, animation, secondaryAnimation) =>
-                          CafeDetailScreen(cafe: cafe),
+                          CafeDetailScreen(
+                              cafe: cafe,
+                              userUid: _authService.currentUserUid.toString()),
                       transitionsBuilder:
                           (context, animation, secondaryAnimation, child) {
                         const begin = Offset(1.0, 0.0);
@@ -155,39 +151,23 @@ class _FeedScreenState extends State<FeedScreen> {
                 child: Card(
                   color: Colors.white,
                   elevation: 5,
-                  margin: const EdgeInsets.all(8.0), // Kartlar arası boşluk
+                  margin: const EdgeInsets.all(8.0),
                   child: Container(
-                    height: 150, // Kartın yüksekliğini arttır
-                    padding:
-                        const EdgeInsets.all(16.0), // Kartın iç kenar boşluğu
+                    height: 150,
+                    padding: const EdgeInsets.all(16.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Expanded(
                           child: Center(
-                            child: Image.network(
-                              cafe.logoUrl,
-                              loadingBuilder: (BuildContext context,
-                                  Widget child,
-                                  ImageChunkEvent? loadingProgress) {
-                                if (loadingProgress == null) {
-                                  return child;
-                                } else {
-                                  return Center(
-                                    child:
-                                        CustomLoadingWidget(), // Özelleştirilmiş yükleme widget'ını kullan
-                                  );
-                                }
-                              },
-                            ),
+                            child: Image.network(cafe.logoUrl),
                           ),
                         ),
-                        const SizedBox(
-                            height: 8.0), // Logo ile kafe ismi arası boşluk
+                        const SizedBox(height: 8.0),
                         Text(
                           cafe.name,
                           style: Theme.of(context).textTheme.bodyLarge,
-                          textAlign: TextAlign.center, // İsmi ortala
+                          textAlign: TextAlign.center,
                         ),
                       ],
                     ),
