@@ -148,28 +148,31 @@ class _FeedScreenState extends State<FeedScreen> {
                     ),
                   );
                 },
-                child: Card(
-                  color: Colors.white,
-                  elevation: 5,
-                  margin: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 150,
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Center(
-                            child: Image.network(cafe.logoUrl),
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Card(
+                    color: Colors.white,
+                    elevation: 5,
+                    margin: const EdgeInsets.all(0.0),
+                    child: Container(
+                      height: 150,
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Center(
+                              child: Image.network(cafe.logoUrl),
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 8.0),
-                        Text(
-                          cafe.name,
-                          style: Theme.of(context).textTheme.bodyLarge,
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
+                          const SizedBox(height: 8.0),
+                          Text(
+                            cafe.name,
+                            style: Theme.of(context).textTheme.bodyLarge,
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

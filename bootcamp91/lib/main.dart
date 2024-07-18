@@ -1,5 +1,5 @@
 import 'package:bootcamp91/theme/theme.dart';
-import 'package:bootcamp91/view/feed_screen.dart';
+import 'package:bootcamp91/view/main_screen.dart';
 import 'package:bootcamp91/view/welcome_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -37,7 +37,9 @@ class _HomeScreen extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasData && snapshot.data != null) {
-          return const FeedScreen(); // Kullanıcı giriş yapmışsa FeedScreen
+          return MainScreen(
+              userUid:
+                  snapshot.data!.uid); // Kullanıcı giriş yapmışsa MainScreen
         } else {
           return const WelcomeScreen(); // Kullanıcı giriş yapmamışsa WelcomeScreen
         }

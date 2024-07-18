@@ -43,7 +43,9 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
     });
 
     Fluttertoast.showToast(
-      msg: _isFavorite ? 'Favorilere eklendi' : 'Favorilerden çıkarıldı',
+      msg: _isFavorite
+          ? '${widget.cafe.name} \n Favorilere eklendi'
+          : '${widget.cafe.name} \n Favorilerden çıkarıldı',
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.CENTER,
       backgroundColor:
@@ -147,11 +149,27 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => CategoryItemsScreen(
+                          PageRouteBuilder(
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) =>
+                                    CategoryItemsScreen(
                               cafe: widget.cafe,
                               category: category,
                             ),
+                            transitionsBuilder: (context, animation,
+                                secondaryAnimation, child) {
+                              const begin =
+                                  Offset(0.0, 1.0); // Aşağıdan yukarıya geçiş
+                              const end = Offset.zero;
+                              const curve = Curves.easeInOut;
+
+                              var tween = Tween(begin: begin, end: end);
+                              var offsetAnimation = animation
+                                  .drive(tween.chain(CurveTween(curve: curve)));
+
+                              return SlideTransition(
+                                  position: offsetAnimation, child: child);
+                            },
                           ),
                         );
                       },
