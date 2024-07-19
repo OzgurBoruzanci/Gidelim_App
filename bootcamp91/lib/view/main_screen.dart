@@ -2,6 +2,7 @@ import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/view/feed_screen.dart';
 import 'package:bootcamp91/view/user_favorites_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart'; // SystemNavigator için import
 
 class MainScreen extends StatefulWidget {
   final String userUid;
@@ -15,6 +16,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
   PageController _pageController = PageController();
+  DateTime? _lastPressedTime;
 
   @override
   void dispose() {
@@ -33,41 +35,66 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
+  Future<bool> _onWillPop() async {
+    DateTime currentTime = DateTime.now();
+    bool backButtonHasNotBeenPressedOrSnackBarHasBeenDismissed =
+        _lastPressedTime == null ||
+            currentTime.difference(_lastPressedTime!) > Duration(seconds: 2);
+
+    if (backButtonHasNotBeenPressedOrSnackBarHasBeenDismissed) {
+      _lastPressedTime = currentTime;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Kapatmak için tekrar basın.'),
+          backgroundColor: ProjectColors.buttonColor,
+          duration: Duration(seconds: 1),
+        ),
+      );
+      return Future.value(false); // Geri tuşu işlem yapılmıyor
+    }
+    // Uygulama kapanır
+    SystemNavigator.pop();
+    return Future.value(true);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: PageView(
-        controller: _pageController,
-        children: [
-          FeedScreen(),
-          UserFavoritesScreen(userUid: widget.userUid),
-        ],
-        onPageChanged: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: ProjectColors.project_yellow,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.coffee, size: 30),
-            label: 'Tüm Kafeler',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite, size: 30),
-            label: 'Favorilerim',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: ProjectColors.buttonColor,
-        unselectedItemColor: Colors.white,
-        selectedFontSize: 14,
-        unselectedFontSize: 12,
-        onTap: _onItemTapped,
-        type: BottomNavigationBarType.fixed,
-        showUnselectedLabels: true,
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        body: PageView(
+          controller: _pageController,
+          children: [
+            FeedScreen(),
+            UserFavoritesScreen(userUid: widget.userUid),
+          ],
+          onPageChanged: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: ProjectColors.project_yellow,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.coffee, size: 30),
+              label: 'Tüm Kafeler',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.favorite, size: 30),
+              label: 'Favorilerim',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: ProjectColors.buttonColor,
+          unselectedItemColor: Colors.white,
+          selectedFontSize: 14,
+          unselectedFontSize: 12,
+          onTap: _onItemTapped,
+          type: BottomNavigationBarType.fixed,
+          showUnselectedLabels: true,
+        ),
       ),
     );
   }

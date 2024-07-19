@@ -26,7 +26,7 @@ class CustomDrawer extends StatelessWidget {
                         ? user.displayName ?? 'Kullanıcı'
                         : 'Kullanıcı',
                     style: TextStyle(
-                        color: Colors.white,
+                        color: ProjectColors.whiteTextColor,
                         fontSize: 24,
                         fontWeight: FontWeight.bold),
                   ),
