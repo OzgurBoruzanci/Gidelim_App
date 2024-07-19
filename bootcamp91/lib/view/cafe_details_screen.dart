@@ -10,21 +10,35 @@ class CafeDetailScreen extends StatefulWidget {
   final Cafe cafe;
   final String userUid;
 
-  const CafeDetailScreen({Key? key, required this.cafe, required this.userUid})
-      : super(key: key);
+  const CafeDetailScreen(
+      {super.key, required this.cafe, required this.userUid});
 
   @override
+  // ignore: library_private_types_in_public_api
   _CafeDetailScreenState createState() => _CafeDetailScreenState();
 }
 
-class _CafeDetailScreenState extends State<CafeDetailScreen> {
+class _CafeDetailScreenState extends State<CafeDetailScreen>
+    with SingleTickerProviderStateMixin {
   bool _isFavorite = false;
   final CafeService _cafeService = CafeService();
+  late AnimationController _animationController;
+  late Animation<double> _animation;
 
   @override
   void initState() {
     super.initState();
     _checkIfFavorite();
+
+    // AnimationController ve Animation oluşturma
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 200),
+      vsync: this,
+    );
+
+    _animation = Tween<double>(begin: 1.0, end: 1.2).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
+    );
   }
 
   Future<void> _checkIfFavorite() async {
@@ -44,15 +58,21 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
 
     Fluttertoast.showToast(
       msg: _isFavorite
-          ? '${widget.cafe.name} \n Favorilere eklendi'
-          : '${widget.cafe.name} \n Favorilerden çıkarıldı',
+          ? '${widget.cafe.name} \n    Favorilere eklendi   '
+          : '${widget.cafe.name} \n    Favorilerden çıkarıldı   ',
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.CENTER,
-      backgroundColor:
-          _isFavorite ? ProjectColors.green_color : ProjectColors.red_color,
+      backgroundColor: _isFavorite
+          ? const Color.fromARGB(216, 233, 30, 98)
+          : const Color.fromARGB(163, 38, 38, 38),
       textColor: ProjectColors.whiteTextColor,
       fontSize: 20.0,
     );
+
+    // Animasyonu başlat
+    _animationController.forward().then((_) {
+      _animationController.reverse();
+    });
   }
 
   Future<void> _openGoogleMaps() async {
@@ -66,29 +86,22 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
   }
 
   @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.cafe.name),
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 8.0),
-            child: IconButton(
-              icon: Icon(_isFavorite ? Icons.favorite : Icons.favorite_border),
-              color: _isFavorite
-                  ? ProjectColors.red_color
-                  : ProjectColors.buttonColor,
-              onPressed: _toggleFavorite,
-              iconSize: 35,
-            ),
-          ),
-        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
                 Center(
@@ -103,7 +116,7 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
                         if (loadingProgress == null) {
                           return child;
                         } else {
-                          return Center(
+                          return const Center(
                             child: CustomLoadingWidget(),
                           );
                         }
@@ -136,7 +149,7 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
                 }
 
                 if (!snapshot.hasData) {
-                  return Center(child: CustomLoadingWidget());
+                  return const Center(child: CustomLoadingWidget());
                 }
 
                 List<String> categories = snapshot.data!;
@@ -178,19 +191,18 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
                             vertical: 8.0, horizontal: 16.0),
                         child: Card(
                           elevation: 5,
-                          color: Colors.white, // Kart rengi beyaz yapıldı
+                          color: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12.0),
                           ),
-                          child: Container(
-                            height: 135, // Kart yüksekliği 200 olarak ayarlandı
+                          child: SizedBox(
+                            height: 135,
                             child: Stack(
                               children: [
                                 Positioned.fill(
                                   child: Image.asset(
                                     'assets/images/ic_card_bg.png',
-                                    fit: BoxFit
-                                        .contain, // Resim sığacak şekilde ayarlandı
+                                    fit: BoxFit.contain,
                                   ),
                                 ),
                                 Center(
@@ -198,7 +210,7 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
                                     padding: const EdgeInsets.all(16.0),
                                     child: Text(
                                       _getCategoryName(category),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.bold,
                                         color: ProjectColors.project_gray,
@@ -219,6 +231,39 @@ class _CafeDetailScreenState extends State<CafeDetailScreen> {
             ),
           ),
         ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: AnimatedBuilder(
+        animation: _animationController,
+        builder: (context, child) {
+          return Transform.scale(
+            scale: _animation.value,
+            child: FloatingActionButton(
+              backgroundColor: _isFavorite
+                  ? ProjectColors.red_color
+                  : ProjectColors.buttonColor,
+              onPressed: _toggleFavorite,
+              tooltip: _isFavorite ? 'Favorilerden çıkar' : 'Favorilere ekle',
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50), // Yuvarlak kenarlar
+              ),
+              child: Icon(
+                size: 35,
+                _isFavorite ? Icons.favorite : Icons.favorite_border,
+                color: _isFavorite
+                    ? ProjectColors.whiteColor
+                    : ProjectColors.whiteColor,
+              ),
+            ),
+          );
+        },
+      ),
+      bottomNavigationBar: const BottomAppBar(
+        // notchMargin: VisualDensity.maximumDensity,
+        // notchMargin: Checkbox.width,
+        height: 40,
+        color: ProjectColors.project_yellow,
+        shape: CircularNotchedRectangle(),
       ),
     );
   }
