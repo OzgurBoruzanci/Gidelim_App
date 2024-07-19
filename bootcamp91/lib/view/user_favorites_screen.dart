@@ -49,6 +49,7 @@ class _UserFavoritesScreenState extends State<UserFavoritesScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Favori Kafelerim'),
+        automaticallyImplyLeading: false,
         actions: [
           PopupMenuButton<String>(
             onSelected: (value) {

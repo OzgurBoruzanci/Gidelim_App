@@ -1,7 +1,9 @@
+import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/services/auth_service.dart';
 import 'package:bootcamp91/product/project_texts.dart';
 import 'package:bootcamp91/view/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -13,15 +15,21 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _passwordAgainController =
+      TextEditingController();
   final TextEditingController _namedController = TextEditingController();
 
   final AuthService _authService = AuthService(); // AuthService objesi
+
+  bool _passwordVisible = false;
+  bool _passwordAgainVisible = false;
 
   void _register() {
     //Servis ile kayıt işlemi metodu.
     _authService.register(
       email: _emailController.text,
       password: _passwordController.text,
+      passwordAgain: _passwordAgainController.text,
       displayName: _namedController.text,
       context: context,
     );
@@ -57,6 +65,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         labelText: ProjectTexts().name_surname,
                       ),
                       keyboardType: TextInputType.name,
+                      inputFormatters: [
+                        TextInputFormatter.withFunction(
+                          (oldValue, newValue) {
+                            String newText = newValue.text.toLowerCase();
+                            newText = newText.replaceAllMapped(
+                                RegExp(r'(^\w)|(\s\w)'), (Match match) {
+                              return match.group(0)!.toUpperCase();
+                            });
+                            return newValue.copyWith(
+                                text: newText,
+                                selection: TextSelection(
+                                    baseOffset: newText.length,
+                                    extentOffset: newText.length));
+                          },
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 16),
                     TextField(
@@ -71,8 +95,46 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       controller: _passwordController,
                       decoration: InputDecoration(
                         labelText: ProjectTexts().password,
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _passwordVisible
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: _passwordVisible
+                                ? ProjectColors.project_yellow
+                                : ProjectColors.buttonColor,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _passwordVisible = !_passwordVisible;
+                            });
+                          },
+                        ),
                       ),
-                      obscureText: true,
+                      obscureText: !_passwordVisible,
+                    ),
+                    const SizedBox(height: 16),
+                    TextField(
+                      controller: _passwordAgainController,
+                      decoration: InputDecoration(
+                        labelText: ProjectTexts().passwordAgain,
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _passwordAgainVisible
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: _passwordAgainVisible
+                                ? ProjectColors.project_yellow
+                                : ProjectColors.buttonColor,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _passwordAgainVisible = !_passwordAgainVisible;
+                            });
+                          },
+                        ),
+                      ),
+                      obscureText: !_passwordAgainVisible,
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton(

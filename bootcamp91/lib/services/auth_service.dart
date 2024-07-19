@@ -70,6 +70,7 @@ class AuthService {
   Future<void> register({
     required String email,
     required String password,
+    required String passwordAgain,
     required String displayName,
     required BuildContext context,
   }) async {
@@ -78,8 +79,17 @@ class AuthService {
       _showSnackBar(context, 'Ad ve soyad boş bırakılamaz.', Colors.red);
       return;
     }
+    if (email.isEmpty) {
+      _showSnackBar(context, 'E-posta boş bırakılamaz.', Colors.red);
+      return;
+    }
     if (password.isEmpty) {
       _showSnackBar(context, 'Parola boş bırakılamaz.', Colors.red);
+      return;
+    }
+    if (password != passwordAgain) {
+      _showSnackBar(
+          context, 'Parolalar uyuşmuyor, kontrol ediniz.', Colors.red);
       return;
     }
 

@@ -1,3 +1,4 @@
+import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/product/project_texts.dart';
 import 'package:bootcamp91/services/auth_service.dart';
 import 'package:bootcamp91/view/regsiter_screen.dart';
@@ -14,6 +15,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final AuthService _authService = AuthService();
+
+  bool _passwordVisible = false;
 
   Future<void> _login() async {
     try {
@@ -63,8 +66,22 @@ class _LoginScreenState extends State<LoginScreen> {
                       controller: _passwordController,
                       decoration: InputDecoration(
                         labelText: ProjectTexts().password,
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                              _passwordVisible
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: _passwordVisible
+                                  ? ProjectColors.project_yellow
+                                  : ProjectColors.buttonColor),
+                          onPressed: () {
+                            setState(() {
+                              _passwordVisible = !_passwordVisible;
+                            });
+                          },
+                        ),
                       ),
-                      obscureText: true,
+                      obscureText: !_passwordVisible,
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton(
