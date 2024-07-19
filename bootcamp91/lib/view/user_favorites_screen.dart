@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:bootcamp91/services/cafe_service.dart';
 import 'package:bootcamp91/view/cafe_details_screen.dart';
+import 'package:bootcamp91/product/custom_drawer.dart'; // CustomDrawer'ı import ettik
 import 'package:bootcamp91/product/custom_loading_widget.dart';
-import 'package:bootcamp91/services/auth_service.dart';
+// import 'package:bootcamp91/services/auth_service.dart';
 
 class UserFavoritesScreen extends StatefulWidget {
   final String userUid;
@@ -14,9 +15,11 @@ class UserFavoritesScreen extends StatefulWidget {
 }
 
 class _UserFavoritesScreenState extends State<UserFavoritesScreen> {
-  final AuthService _authService = AuthService();
+  // final AuthService _authService = AuthService();
   TextEditingController _searchController = TextEditingController();
   String _searchText = '';
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -47,32 +50,18 @@ class _UserFavoritesScreenState extends State<UserFavoritesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text('Favori Kafelerim'),
         automaticallyImplyLeading: false,
         actions: [
-          PopupMenuButton<String>(
-            onSelected: (value) {
-              if (value == 'logout') {
-                _authService.signOut(context);
-              }
-            },
-            itemBuilder: (BuildContext context) {
-              return [
-                const PopupMenuItem<String>(
-                  value: 'logout',
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.logout,
-                        color: Colors.black,
-                      ),
-                      SizedBox(width: 8.0),
-                      Text('Çıkış Yap'),
-                    ],
-                  ),
-                ),
-              ];
+          IconButton(
+            icon: Icon(
+              Icons.menu,
+              size: 30,
+            ),
+            onPressed: () {
+              _scaffoldKey.currentState?.openEndDrawer(); // Sağdan Drawer'ı aç
             },
           ),
         ],
@@ -97,6 +86,7 @@ class _UserFavoritesScreenState extends State<UserFavoritesScreen> {
           ),
         ),
       ),
+      endDrawer: CustomDrawer(), // Sağdan açılan Drawer kullanıldı
       body: StreamBuilder<List<String>>(
         stream: CafeService().getUserFavorites(widget.userUid),
         builder: (context, snapshot) {

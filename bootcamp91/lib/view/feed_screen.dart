@@ -1,4 +1,5 @@
 import 'package:bootcamp91/view/cafe_details_screen.dart';
+import 'package:bootcamp91/product/custom_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:bootcamp91/product/project_texts.dart';
 import 'package:bootcamp91/services/auth_service.dart';
@@ -17,6 +18,8 @@ class _FeedScreenState extends State<FeedScreen> {
   final CafeService _cafeService = CafeService();
   TextEditingController _searchController = TextEditingController();
   String _searchText = '';
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -47,34 +50,20 @@ class _FeedScreenState extends State<FeedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight + 70),
         child: AppBar(
           title: Text(ProjectTexts().projectName),
           automaticallyImplyLeading: false,
           actions: [
-            PopupMenuButton<String>(
-              onSelected: (value) {
-                if (value == 'logout') {
-                  _authService.signOut(context);
-                }
-              },
-              itemBuilder: (BuildContext context) {
-                return [
-                  const PopupMenuItem<String>(
-                    value: 'logout',
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.logout,
-                          color: Colors.black,
-                        ),
-                        SizedBox(width: 8.0),
-                        Text('Çıkış Yap'),
-                      ],
-                    ),
-                  ),
-                ];
+            IconButton(
+              icon: Icon(
+                Icons.menu,
+                size: 30,
+              ),
+              onPressed: () {
+                _scaffoldKey.currentState?.openEndDrawer();
               },
             ),
           ],
@@ -100,6 +89,7 @@ class _FeedScreenState extends State<FeedScreen> {
           ),
         ),
       ),
+      endDrawer: CustomDrawer(), // CustomDrawer kullanıldı
       body: StreamBuilder<List<Cafe>>(
         stream: _cafeService.getCafes(),
         builder: (context, snapshot) {
@@ -162,7 +152,24 @@ class _FeedScreenState extends State<FeedScreen> {
                         children: [
                           Expanded(
                             child: Center(
-                              child: Image.network(cafe.logoUrl),
+                              child: Image.network(
+                                cafe.logoUrl,
+                                loadingBuilder: (context, child, progress) {
+                                  if (progress == null) {
+                                    return child; // Görsel tamamen yüklendi
+                                  } else {
+                                    return Center(
+                                      child:
+                                          CustomLoadingWidget(), // Yükleniyor göstergesi
+                                    );
+                                  }
+                                },
+                                errorBuilder: (context, error, stackTrace) {
+                                  return Center(
+                                    child: Text('Görsel yüklenemedi'),
+                                  );
+                                },
+                              ),
                             ),
                           ),
                           const SizedBox(height: 8.0),
