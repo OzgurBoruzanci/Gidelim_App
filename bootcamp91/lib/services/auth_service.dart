@@ -1,4 +1,4 @@
-import 'package:bootcamp91/view/feed_screen.dart';
+import 'package:bootcamp91/view/main_screen.dart';
 import 'package:bootcamp91/view/welcome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +33,7 @@ class AuthService {
 
       if (user != null) {
         _showSnackBar(context, 'Hoş geldin ${user.displayName}!', Colors.green);
-        _navigateToScreen(context, const FeedScreen());
+        _navigateToScreen(context, MainScreen(userUid: user.uid));
       }
       return user;
     } on FirebaseAuthException catch (e) {
@@ -89,11 +89,15 @@ class AuthService {
         email: email,
         password: password,
       );
-      await userCredential.user!.updateProfile(displayName: displayName);
+      User? user = userCredential.user;
+      if (user != null) {
+        await user.updateProfile(displayName: displayName);
 
-      _showSnackBar(context, 'Kaydın oluşturuldu $displayName!', Colors.green);
+        _showSnackBar(
+            context, 'Kaydın oluşturuldu $displayName!', Colors.green);
 
-      _navigateToScreen(context, const FeedScreen());
+        _navigateToScreen(context, MainScreen(userUid: user.uid));
+      }
     } on FirebaseAuthException catch (e) {
       String message = _getFirebaseAuthErrorMessage(e.code);
       _showSnackBar(context, message, Colors.red);
