@@ -149,6 +149,8 @@ class CategoryItemsScreen extends StatelessWidget {
         return 'Tatlılar';
       case 'foods':
         return 'Yiyecekler';
+      case 'teas':
+        return 'ÇAYLAR';
       default:
         return 'Bilinmeyen Kategori';
     }

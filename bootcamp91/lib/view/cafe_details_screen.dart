@@ -278,6 +278,8 @@ class _CafeDetailScreenState extends State<CafeDetailScreen>
         return 'TATLILAR';
       case 'foods':
         return 'YİYECEKLER';
+      case 'teas':
+        return 'ÇAYLAR';
       default:
         return 'Bilinmeyen Kategori';
     }
