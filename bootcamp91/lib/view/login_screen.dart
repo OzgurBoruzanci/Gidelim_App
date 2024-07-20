@@ -1,6 +1,7 @@
 import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/product/project_texts.dart';
 import 'package:bootcamp91/services/auth_service.dart';
+import 'package:bootcamp91/view/forgat_paswword_screen.dart';
 import 'package:bootcamp91/view/regsiter_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -114,6 +115,33 @@ class _LoginScreenState extends State<LoginScreen> {
                         );
                       },
                       child: Text(ProjectTexts().loginTextButton),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) =>
+                                    const ForgotPasswordScreen(),
+                            transitionsBuilder: (context, animation,
+                                secondaryAnimation, child) {
+                              var begin = const Offset(1.0, 0.0);
+                              var end = Offset.zero;
+                              var curve = Curves.ease;
+
+                              var tween = Tween(begin: begin, end: end)
+                                  .chain(CurveTween(curve: curve));
+
+                              return SlideTransition(
+                                position: animation.drive(tween),
+                                child: child,
+                              );
+                            },
+                          ),
+                        );
+                      },
+                      child: Text('Şifremi unuttum'),
                     ),
                   ],
                 ),

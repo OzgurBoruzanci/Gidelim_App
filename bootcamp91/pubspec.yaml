@@ -71,6 +71,7 @@ flutter:
   - assets/images/ic_register.png
   - assets/images/ic_login_screen.png   
   - assets/images/ic_card_bg.png 
+  - assets/images/forgot_password.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

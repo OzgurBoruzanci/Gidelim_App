@@ -1,3 +1,4 @@
+import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/view/login_screen.dart';
 import 'package:bootcamp91/view/main_screen.dart';
 import 'package:bootcamp91/view/welcome_screen.dart';
@@ -116,7 +117,7 @@ class AuthService {
 
         _showSnackBar(
             context,
-            'Kaydın oluşturuldu $displayName! Lütfen e-posta adresinizi doğrulayın.',
+            'Kaydın oluşturuldu $displayName! Size bir doğrulama e-postası gönderdik. \n Lütfen e-posta adresinizi doğrulayın. ',
             Colors.green);
 
         _navigateToScreen(context, const LoginScreen());
@@ -177,5 +178,29 @@ class AuthService {
         },
       ),
     );
+  }
+
+  Future<void> sendPasswordResetEmail(
+      BuildContext context, String email) async {
+    if (email.isEmpty) {
+      _showSnackBar(context, 'Lütfen E-posta adresinizi giriniz.',
+          ProjectColors.red_color);
+      return; // E-posta adresi boş olduğunda fonksiyonu sonlandır
+    }
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+      if (email.isEmpty) {
+        _showSnackBar(context, 'Lütfen E-posta adresinizi giriniz.',
+            ProjectColors.red_color);
+        return; // E-posta adresi boş olduğunda fonksiyonu sonlandır
+      }
+      _showSnackBar(context, 'Şifre sıfırlama e-postası gönderildi.',
+          ProjectColors.green_color);
+    } catch (e) {
+      _showSnackBar(
+          context,
+          'Bir hata oluştu: \nGeçerli bir e-posta giriniz. \n${e.toString()}',
+          ProjectColors.red_color);
+    }
   }
 }
