@@ -1,3 +1,4 @@
+import 'package:bootcamp91/view/login_screen.dart';
 import 'package:bootcamp91/view/main_screen.dart';
 import 'package:bootcamp91/view/welcome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -32,8 +33,17 @@ class AuthService {
       User? user = userCredential.user;
 
       if (user != null) {
-        _showSnackBar(context, 'Hoş geldin ${user.displayName}!', Colors.green);
-        _navigateToScreen(context, MainScreen(userUid: user.uid));
+        if (user.emailVerified) {
+          _showSnackBar(
+              context, 'Hoş geldin ${user.displayName}!', Colors.green);
+          _navigateToScreen(context, MainScreen(userUid: user.uid));
+        } else {
+          _showSnackBar(
+              context,
+              'Hesap Doğrulanmamış! \nLütfen e-posta adresinizi kontrol edip hesabınızı doğrulayın.',
+              Colors.red);
+          await _firebaseAuth.signOut();
+        }
       }
       return user;
     } on FirebaseAuthException catch (e) {
@@ -102,11 +112,14 @@ class AuthService {
       User? user = userCredential.user;
       if (user != null) {
         await user.updateProfile(displayName: displayName);
+        await user.sendEmailVerification();
 
         _showSnackBar(
-            context, 'Kaydın oluşturuldu $displayName!', Colors.green);
+            context,
+            'Kaydın oluşturuldu $displayName! Lütfen e-posta adresinizi doğrulayın.',
+            Colors.green);
 
-        _navigateToScreen(context, MainScreen(userUid: user.uid));
+        _navigateToScreen(context, const LoginScreen());
       }
     } on FirebaseAuthException catch (e) {
       String message = _getFirebaseAuthErrorMessage(e.code);

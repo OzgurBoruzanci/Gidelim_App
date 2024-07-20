@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/services/auth_service.dart';
 import 'package:bootcamp91/product/project_texts.dart';
 import 'package:bootcamp91/view/login_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -66,20 +66,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       keyboardType: TextInputType.name,
                       inputFormatters: [
-                        TextInputFormatter.withFunction(
-                          (oldValue, newValue) {
-                            String newText = newValue.text.toLowerCase();
-                            newText = newText.replaceAllMapped(
-                                RegExp(r'(^\w)|(\s\w)'), (Match match) {
-                              return match.group(0)!.toUpperCase();
-                            });
-                            return newValue.copyWith(
-                                text: newText,
-                                selection: TextSelection(
-                                    baseOffset: newText.length,
-                                    extentOffset: newText.length));
-                          },
-                        ),
+                        CapitalizeTextFormatter(),
                       ],
                     ),
                     const SizedBox(height: 16),
@@ -176,5 +163,41 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
       ),
     );
+  }
+}
+
+class CapitalizeTextFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    // Eğer metin değişmemişse eski değeri döndür
+    if (newValue.text == oldValue.text) {
+      return newValue;
+    }
+
+    // Yeni metni al
+    String newText = newValue.text;
+
+    // Metni büyük harflerle formatla
+    newText = newText.toLowerCase();
+    newText = _capitalizeEachWord(newText);
+
+    // Yeni metin ve seçim aralığını oluştur
+    return newValue.copyWith(
+      text: newText,
+      selection: TextSelection.collapsed(offset: newText.length),
+    );
+  }
+
+  String _capitalizeEachWord(String text) {
+    return text.split(' ').map((word) {
+      if (word.isNotEmpty) {
+        // Türkçe karakterler de desteklenir
+        return word[0].toUpperCase() + word.substring(1);
+      }
+      return word;
+    }).join(' ');
   }
 }
