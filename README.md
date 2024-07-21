@@ -32,7 +32,8 @@ Flutter Takım 91
  ### Puan tamamlama mantığı
 Toplamda proje boyunca tamamlanması gereken 350 puanlık backlog bulunmaktadır. İlk sprint 100, ikinci sprint 150 ve son sprintte 100 puanı hedeflemekteyiz.
 
-Daily Scrum: Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketlerle ve discord üzerinden toplantılar yaparak gerçekleştirdik.Daily Scrum toplantısı örneği jpeg veya word olarak Readme'de tarafımızdan paylaşılmaktadır
+## Daily Scrum:
+Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketlerle ve discord üzerinden toplantılar yaparak gerçekleştirdik.Daily Scrum toplantısı örneği jpeg veya word olarak Readme'de tarafımızdan paylaşılmaktadır
 
 
 
@@ -80,7 +81,8 @@ Daha daha sık toplantılar yapılmasına karar verildi.Görev dağılımının 
  ### Puan tamamlama mantığı
  Toplamda proje boyunca tamamlanması gereken 350 puanlık backlog bulunmaktadır. İlk sprint 100, ikinci sprint 150 ve son sprintte 100 puanı hedeflemekteyiz. İkinci sprintte 50 puan tasarım, 50 puan kodlama ve 50 puan backlog yönetimi olarak bölüştürülmüştür.
 
- Daily Scrum: Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketlerle ve çoğunlukla discord üzerinden toplantılar yaparak gerçekleştirdik.Daily Scrum toplantısı örneği jpeg veya word olarak Readme'de tarafımızdan paylaşılmaktadır
+ ## Daily Scrum: 
+ Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketlerle ve çoğunlukla discord üzerinden toplantılar yaparak gerçekleştirdik.Daily Scrum toplantısı örneği jpeg veya word olarak Readme'de tarafımızdan paylaşılmaktadır
 
 # Sprint Review:
  Uygulamamız için modern ve kullanıcı dostu bir UI teması ve karşılama ekranları tasarlandı. Firebase ile entegrasyon sağlanarak Kayıt Ol ve Giriş Yap ekranları oluşturuldu. Anasayfa, Kafeler ve Favoriler ekranlarını içeriyor ve alt menü ile bu ekranlar arasında geçiş sağlandı. Firestore Database'den kafelerin isim ve logoları çekilerek listelendi. Kafe detay sayfasında, kullanıcı tıkladığı kafenin detaylarını, en yakın konumlarını ve menü kategorilerini görebiliyor. Seçilen kafeyi favorilere ekleme butonu eklendi. Ürünler sayfasında, seçilen kategoriye ait ürünler listelendi. Favoriler sayfasında favorilere eklenen kafelerin listesi gösterildi. Sol menüye Çıkış Yap butonu  eklenerek uygulama özelliklerini içeren hedeflerimizi ana hatlarıyla tamamladık.
