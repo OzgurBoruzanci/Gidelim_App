@@ -110,7 +110,8 @@ Daha daha sık toplantılar yapılmasına karar verildi.Görev dağılımının 
     <summary><h2>Sprint board screenshots</h2></summary>
     
   
-![Sprint board ss](https://github.com/user-attachments/assets/8d02a34b-7eef-473f-bce4-190da52931ef)
+![Sprint board ss](https://github.com/user-attachments/assets/62f0a5ba-3838-48f5-bfa6-b9aa317579d0)
+
 
 </details>
 </body>
