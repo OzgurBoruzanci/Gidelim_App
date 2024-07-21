@@ -52,3 +52,5 @@ class _HomeScreen extends StatelessWidget {
     return user;
   }
 }
+
+// Forked project and created new feature branch for new features. 
