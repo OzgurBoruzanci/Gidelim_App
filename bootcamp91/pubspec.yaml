@@ -39,4 +39,4 @@ flutter:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/images/app_icon.png" # İkon dosyanızın yolunu belirtin
+  image_path: "assets/app_icon/app_icon.png"
