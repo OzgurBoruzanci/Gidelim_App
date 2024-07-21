@@ -66,7 +66,7 @@ Daha daha sık toplantılar yapılmasına karar verildi.Görev dağılımının 
   <head></head>
   <body>
     <details>
-    <summary><h2>Daily Scrum Images</h2></summary>
+    <summary><h2>Sprint board screenshots</h2></summary>
     
   
 ![daily scrum](https://github.com/OzgurBoruzanci/OUA_Bootcamp_Flutter_91/assets/154309718/5fd6fb4a-b01a-4f43-b349-2ebdd62c13dd)
@@ -74,9 +74,46 @@ Daha daha sık toplantılar yapılmasına karar verildi.Görev dağılımının 
 </body>
 </html>
 
+ # Sprint 2  
+ ## Sprint içinde tamamlanması tahmin edilen puan:
+  150 puan
+ ### Puan tamamlama mantığı
+ Toplamda proje boyunca tamamlanması gereken 350 puanlık backlog bulunmaktadır. İlk sprint 100, ikinci sprint 150 ve son sprintte 100 puanı hedeflemekteyiz. İkinci sprintte 50 puan tasarım, 50 puan kodlama ve 50 puan backlog yönetimi olarak bölüştürülmüştür.
+
+ Daily Scrum: Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketlerle ve çoğunlukla discord üzerinden toplantılar yaparak gerçekleştirdik.Daily Scrum toplantısı örneği jpeg veya word olarak Readme'de tarafımızdan paylaşılmaktadır
+
+# Sprint Review:
+ Uygulamamız için modern ve kullanıcı dostu bir UI teması ve karşılama ekranları tasarlandı. Firebase ile entegrasyon sağlanarak Kayıt Ol ve Giriş Yap ekranları oluşturuldu. Anasayfa, Kafeler ve Favoriler ekranlarını içeriyor ve alt menü ile bu ekranlar arasında geçiş sağlandı. Firestore Database'den kafelerin isim ve logoları çekilerek listelendi. Kafe detay sayfasında, kullanıcı tıkladığı kafenin detaylarını, en yakın konumlarını ve menü kategorilerini görebiliyor. Seçilen kafeyi favorilere ekleme butonu eklendi. Ürünler sayfasında, seçilen kategoriye ait ürünler listelendi. Favoriler sayfasında favorilere eklenen kafelerin listesi gösterildi. Sol menüye Çıkış Yap butonu  eklenerek uygulama özelliklerini içeren hedeflerimizi ana hatlarıyla tamamladık.
+
+# Sprint Retrospective:
+ Bu sprintte ekip arkadaşlarımızla daha sık toplantılar yapmaya özen gösterek yaptığımız işlerde de fikir ayrılığını önelemek açısından birbirimizden geri bildirim alarak ve geri bildirim vererek kararlar netleştirildi.Hedeflerin çoğuna ulaştık ancak veri tabanına ürünlerin ve kategorilerin girilmesi %100 tamamlanmadı, diğer sprinte bırakıldı.
+
+
+<html>
+  <head></head>
+  <body>
+    <details>
+    <summary><h2>Project Images</h2></summary> 
   
+      
+![Project images](https://github.com/user-attachments/assets/635f06fb-fb7d-4f94-893f-82b7cb4e9949)
 
+</details>
+</body>
+</html>
+ 
+  <html>
+  <head></head>
+  <body>
+    <details>
+    <summary><h2>Sprint board screenshots</h2></summary>
+    
+  
+![Sprint board ss](https://github.com/user-attachments/assets/8d02a34b-7eef-473f-bce4-190da52931ef)
 
+</details>
+</body>
+</html>
 
 
  
