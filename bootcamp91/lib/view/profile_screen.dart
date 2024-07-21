@@ -93,7 +93,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 'assets/images/avatars/default_avatar.png'),
                         backgroundColor: Colors.grey[200],
                       ),
-                      SizedBox(height: 2.0),
+                      const SizedBox(height: 2.0),
                       TextButton(
                         onPressed: _showAvatarSelectionBottomSheet,
                         child: Text(
@@ -104,7 +104,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                         ),
                       ),
-                      SizedBox(height: 16.0),
+                      const SizedBox(height: 16.0),
                       Text(
                         user.displayName ?? "Kullanıcı",
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
@@ -112,7 +112,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               color: ProjectColors.textColor,
                             ),
                       ),
-                      SizedBox(height: 2.0),
+                      const SizedBox(height: 2.0),
                       Text(
                         _userEmail ?? "E-posta bulunamadı",
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
