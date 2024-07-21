@@ -96,7 +96,8 @@ Daha daha sık toplantılar yapılmasına karar verildi.Görev dağılımının 
     <summary><h2>Project Images</h2></summary> 
   
       
-![Project images](https://github.com/user-attachments/assets/635f06fb-fb7d-4f94-893f-82b7cb4e9949)
+![Project images](https://github.com/user-attachments/assets/6a4d8186-a51a-4233-bbbd-ae057fff0bc6)
+
 
 </details>
 </body>
