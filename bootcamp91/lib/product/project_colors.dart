@@ -12,4 +12,5 @@ class ProjectColors {
   static const default_color = Color.fromARGB(244, 0, 0, 0);
   static const red_color = Colors.pink;
   static const green_color = Colors.green;
+  static const blue_color = Colors.blueAccent;
 }
