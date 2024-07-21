@@ -26,22 +26,22 @@ Flutter Takım 91
 - Deneyimlerini paylaşmak isteyenler
 
  # Sprint 1
- ## Sprint içinde tamamlanması tahmin edilen puan: 
+ ## Sprint içinde tamamlanması tahmin edilen puan 
  100 puan
  
  ### Puan tamamlama mantığı
 Toplamda proje boyunca tamamlanması gereken 350 puanlık backlog bulunmaktadır. İlk sprint 100, ikinci sprint 150 ve son sprintte 100 puanı hedeflemekteyiz.
 
-## Daily Scrum:
+## Daily Scrum
 Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketlerle ve discord üzerinden toplantılar yaparak gerçekleştirdik.Daily Scrum toplantısı örneği jpeg veya word olarak Readme'de tarafımızdan paylaşılmaktadır
 
 
 
 
-# Sprint Review:  
+# Sprint Review 
 Başlangıç,hoşgeldin,giriş ve kaydolma ekranları ve ana ekran oluşturuldu.Figma tasarımları bitti.İsim ve temaya karar verildi, ikinci sprint için görevler belirlendi.Görevler dqağılımı yapıldı.
 
-# Sprint Retrospective:
+# Sprint Retrospective
 Daha daha sık toplantılar yapılmasına karar verildi.Görev dağılımının esnek olmasına karar verildi. Harita özelliğini ekleyip çıkarma konusu ikinci sprinte bırakıldı.
 
 
@@ -76,18 +76,18 @@ Daha daha sık toplantılar yapılmasına karar verildi.Görev dağılımının 
 </html>
 
  # Sprint 2  
- ## Sprint içinde tamamlanması tahmin edilen puan:
+ ## Sprint içinde tamamlanması tahmin edilen puan
   150 puan
  ### Puan tamamlama mantığı
  Toplamda proje boyunca tamamlanması gereken 350 puanlık backlog bulunmaktadır. İlk sprint 100, ikinci sprint 150 ve son sprintte 100 puanı hedeflemekteyiz. İkinci sprintte 50 puan tasarım, 50 puan kodlama ve 50 puan backlog yönetimi olarak bölüştürülmüştür.
 
- ## Daily Scrum: 
+ ## Daily Scrum 
  Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketlerle ve çoğunlukla discord üzerinden toplantılar yaparak gerçekleştirdik.Daily Scrum toplantısı örneği jpeg veya word olarak Readme'de tarafımızdan paylaşılmaktadır
 
-# Sprint Review:
+# Sprint Review
  Uygulamamız için modern ve kullanıcı dostu bir UI teması ve karşılama ekranları tasarlandı. Firebase ile entegrasyon sağlanarak Kayıt Ol ve Giriş Yap ekranları oluşturuldu. Anasayfa, Kafeler ve Favoriler ekranlarını içeriyor ve alt menü ile bu ekranlar arasında geçiş sağlandı. Firestore Database'den kafelerin isim ve logoları çekilerek listelendi. Kafe detay sayfasında, kullanıcı tıkladığı kafenin detaylarını, en yakın konumlarını ve menü kategorilerini görebiliyor. Seçilen kafeyi favorilere ekleme butonu eklendi. Ürünler sayfasında, seçilen kategoriye ait ürünler listelendi. Favoriler sayfasında favorilere eklenen kafelerin listesi gösterildi. Sol menüye Çıkış Yap butonu  eklenerek uygulama özelliklerini içeren hedeflerimizi ana hatlarıyla tamamladık.
 
-# Sprint Retrospective:
+# Sprint Retrospective
  Bu sprintte ekip arkadaşlarımızla daha sık toplantılar yapmaya özen gösterek yaptığımız işlerde de fikir ayrılığını önelemek açısından birbirimizden geri bildirim alarak ve geri bildirim vererek kararlar netleştirildi.Hedeflerin çoğuna ulaştık ancak veri tabanına ürünlerin ve kategorilerin girilmesi %100 tamamlanmadı, diğer sprinte bırakıldı.
 
 
