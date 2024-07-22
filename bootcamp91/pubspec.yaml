@@ -18,6 +18,8 @@ dependencies:
   url_launcher: ^6.3.0
   loading_animation_widget: ^1.2.1
   fluttertoast: ^8.2.6
+  intl: ^0.19.0
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:
