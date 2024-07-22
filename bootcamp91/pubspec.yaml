@@ -47,6 +47,7 @@ flutter:
     - assets/images/avatars/avatar10.png
     - assets/images/avatars/avatar11.png
     - assets/images/avatars/avatar12.png
+    - assets/images/ic_change_password.png
 
 flutter_icons:
   android: true
