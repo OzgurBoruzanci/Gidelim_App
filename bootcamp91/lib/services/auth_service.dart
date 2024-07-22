@@ -203,4 +203,48 @@ class AuthService {
           ProjectColors.red_color);
     }
   }
+
+  Future<void> changePassword({
+    required String oldPassword,
+    required String newPassword,
+    required String newPasswordAgain,
+    required BuildContext context,
+  }) async {
+    if (newPassword != newPasswordAgain) {
+      _showSnackBar(context, 'Yeni parolalar uyuşmuyor!', Colors.red);
+      return;
+    }
+    if (oldPassword.isEmpty ||
+        newPassword.isEmpty ||
+        newPasswordAgain.isEmpty) {
+      _showSnackBar(context, 'Lütfen bilgileri eksiksiz giriniz!', Colors.red);
+      return;
+    }
+
+    try {
+      User? user = _firebaseAuth.currentUser;
+      if (user == null) {
+        _showSnackBar(context, 'Kullanıcı bulunamadı!', Colors.red);
+        return;
+      }
+
+      String email = user.email!;
+
+      // Kullanıcı yeniden kimlik doğrulaması yapmalı
+      AuthCredential credential = EmailAuthProvider.credential(
+        email: email,
+        password: oldPassword,
+      );
+
+      await user.reauthenticateWithCredential(credential);
+      await user.updatePassword(newPassword);
+
+      _showSnackBar(context, 'Parola başarıyla güncellendi!', Colors.green);
+      Navigator.pop(context); // İşlem başarılı olursa geri dön
+    } on FirebaseAuthException catch (e) {
+      _showSnackBar(context, 'Hata: ${e.message}', Colors.red);
+    } catch (e) {
+      _showSnackBar(context, 'Bilinmeyen bir hata oluştu: $e', Colors.red);
+    }
+  }
 }
