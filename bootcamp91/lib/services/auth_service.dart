@@ -158,6 +158,14 @@ class AuthService {
     );
   }
 
+  Future<String> getUserDisplayName() async {
+    User? user = _firebaseAuth.currentUser;
+    if (user != null) {
+      return user.displayName ?? 'Kullanıcı Adı Belirtilmemiş';
+    }
+    return 'Kullanıcı Adı Belirtilmemiş';
+  }
+
   void _navigateToScreen(BuildContext context, Widget screen) {
     Navigator.pushReplacement(
       context,

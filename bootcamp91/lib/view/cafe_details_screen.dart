@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/services/cafe_service.dart';
 import 'package:bootcamp91/product/custom_loading_widget.dart';
+import 'package:bootcamp91/view/review_screen.dart'; // Yorum ekranı için gerekli import
 
 class CafeDetailScreen extends StatefulWidget {
   final Cafe cafe;
@@ -137,6 +138,26 @@ class _CafeDetailScreenState extends State<CafeDetailScreen>
                   ),
                   child: Text('En Yakın ${widget.cafe.name}'),
                 ),
+                const SizedBox(height: 8.0),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ReviewScreen(cafe: widget.cafe),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: ProjectColors.buttonColor,
+                    foregroundColor: ProjectColors.whiteTextColor,
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
+                  child: Text('Yorumlar'),
+                ),
               ],
             ),
           ),
@@ -250,17 +271,13 @@ class _CafeDetailScreenState extends State<CafeDetailScreen>
               child: Icon(
                 size: 35,
                 _isFavorite ? Icons.favorite : Icons.favorite_border,
-                color: _isFavorite
-                    ? ProjectColors.whiteColor
-                    : ProjectColors.whiteColor,
+                color: ProjectColors.whiteColor,
               ),
             ),
           );
         },
       ),
       bottomNavigationBar: const BottomAppBar(
-        // notchMargin: VisualDensity.maximumDensity,
-        // notchMargin: Checkbox.width,
         height: 40,
         color: ProjectColors.project_yellow,
         shape: CircularNotchedRectangle(),
