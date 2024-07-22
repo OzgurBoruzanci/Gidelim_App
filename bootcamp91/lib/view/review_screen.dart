@@ -11,6 +11,7 @@ class ReviewScreen extends StatefulWidget {
   const ReviewScreen({super.key, required this.cafe});
 
   @override
+  // ignore: library_private_types_in_public_api
   _ReviewScreenState createState() => _ReviewScreenState();
 }
 
@@ -62,7 +63,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 : 'Yıldız ile puan veriniz.',
           ),
           backgroundColor: Colors.red,
-          duration: Duration(seconds: 2),
+          duration: const Duration(seconds: 2),
         ),
       );
     }
@@ -74,7 +75,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
       builder: (context) {
         return AlertDialog(
           backgroundColor: ProjectColors.firstColor,
-          contentPadding: EdgeInsets.all(16.0),
+          contentPadding: const EdgeInsets.all(16.0),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.0),
           ),
@@ -87,7 +88,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                   onPressed: () {
                     Navigator.pop(context); // Kapat dialog
                   },
-                  child: Text(
+                  child: const Text(
                     'Vazgeç',
                     style: TextStyle(
                       fontSize: 20,
@@ -97,10 +98,10 @@ class _ReviewScreenState extends State<ReviewScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               TextField(
                 controller: _reviewController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Yorumunuzu yazın',
                   border: OutlineInputBorder(),
                 ),
@@ -108,7 +109,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 maxLines: 5, // Yorum metni uzunluğuna göre büyüsün
                 expands: false, // Varsayılan boyutta tut
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               RatingBar.builder(
                 unratedColor: const Color.fromARGB(244, 169, 168, 168),
                 initialRating: _rating,
@@ -116,8 +117,8 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 direction: Axis.horizontal,
                 allowHalfRating: false,
                 itemCount: 5,
-                itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                itemBuilder: (context, _) => Icon(
+                itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                itemBuilder: (context, _) => const Icon(
                   Icons.star,
                   color: Colors.amber,
                 ),
@@ -127,7 +128,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                   });
                 },
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context); // Kapat dialog
@@ -151,11 +152,11 @@ class _ReviewScreenState extends State<ReviewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(' Yorumlar'), //${widget.cafe.name}
+        title: const Text(' Yorumlar'), //${widget.cafe.name}
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(50.0), // Alt kısım yüksekliği
+          preferredSize: const Size.fromHeight(50.0), // Alt kısım yüksekliği
           child: Container(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             color: ProjectColors.whiteColor,
             child: Center(
               child: Row(
@@ -163,24 +164,24 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 children: [
                   Text(
                     widget.cafe.name,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: ProjectColors.blue_color,
                     ),
                   ),
-                  SizedBox(width: 16.0),
+                  const SizedBox(width: 16.0),
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.star,
                         color: Colors.amber,
                         size: 20,
                       ),
-                      SizedBox(width: 4),
+                      const SizedBox(width: 4),
                       Text(
                         _averageRating.toStringAsFixed(1),
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                           color: ProjectColors.blue_color,
                         ),
@@ -229,11 +230,11 @@ class _ReviewScreenState extends State<ReviewScreen> {
                               Text(review.comment),
                               Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.star,
                                     color: Colors.amber,
                                   ),
-                                  SizedBox(width: 4),
+                                  const SizedBox(width: 4),
                                   Text(review.rating.toStringAsFixed(1)),
                                 ],
                               ),
