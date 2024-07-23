@@ -1,3 +1,4 @@
+import 'package:bootcamp91/product/custom_drawer.dart';
 import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/services/cafe_service.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +7,10 @@ import 'package:bootcamp91/product/custom_loading_widget.dart'; // Özelleştiri
 class CategoryItemsScreen extends StatelessWidget {
   final Cafe cafe;
   final String category;
+  final GlobalKey<ScaffoldState> _scaffoldKey =
+      GlobalKey<ScaffoldState>(); // ScaffoldKey
 
-  const CategoryItemsScreen({
+  CategoryItemsScreen({
     super.key,
     required this.cafe,
     required this.category,
@@ -16,9 +19,22 @@ class CategoryItemsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey, // ScaffoldKey atandı
       appBar: AppBar(
         title: Text(_getCategoryName(category)),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.menu,
+              size: 30,
+            ),
+            onPressed: () {
+              _scaffoldKey.currentState?.openEndDrawer();
+            },
+          ),
+        ],
       ),
+      endDrawer: CustomDrawer(), // CustomDrawer eklendi
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -33,13 +49,6 @@ class CategoryItemsScreen extends StatelessWidget {
                     height: 100, // Logo yüksekliği
                   ),
                 ),
-                // SizedBox(height: 8.0),
-                // Center(
-                //   child: Text(
-                //     cafe.name,
-                //     style: Theme.of(context).textTheme.bodyLarge,
-                //   ),
-                // ),
               ],
             ),
           ),

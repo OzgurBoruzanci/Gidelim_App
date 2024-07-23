@@ -4,6 +4,9 @@ import 'package:bootcamp91/product/project_colors.dart';
 import 'package:intl/intl.dart'; // Tarih formatlamak için
 import 'package:flutter_rating_bar/flutter_rating_bar.dart'; // RatingBar için
 import 'package:bootcamp91/services/auth_service.dart'; // AuthService'i ekledik
+import 'package:bootcamp91/services/avatar_service.dart'; // AvatarService'i ekledik
+import 'package:bootcamp91/product/custom_loading_widget.dart'; // Özelleştirilmiş yükleme widget'ını import ettik
+import 'package:bootcamp91/product/custom_drawer.dart'; // CustomDrawer'ı import ettik
 
 class ReviewScreen extends StatefulWidget {
   final Cafe cafe;
@@ -11,16 +14,19 @@ class ReviewScreen extends StatefulWidget {
   const ReviewScreen({super.key, required this.cafe});
 
   @override
-  // ignore: library_private_types_in_public_api
   _ReviewScreenState createState() => _ReviewScreenState();
 }
 
 class _ReviewScreenState extends State<ReviewScreen> {
   final CafeService _cafeService = CafeService();
   final AuthService _authService = AuthService(); // AuthService örneği
+  final AvatarService _avatarService = AvatarService(); // AvatarService örneği
   final TextEditingController _reviewController = TextEditingController();
   double _rating = 0.0; // Yıldız puanı
   double _averageRating = 0.0; // Ortalama puan
+
+  final GlobalKey<ScaffoldState> _scaffoldKey =
+      GlobalKey<ScaffoldState>(); // ScaffoldKey
 
   @override
   void initState() {
@@ -151,16 +157,19 @@ class _ReviewScreenState extends State<ReviewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey, // ScaffoldKey atandı
       appBar: AppBar(
-        title: const Text(' Yorumlar'), //${widget.cafe.name}
+        title: const Text('Yorumlar'), //${widget.cafe.name}
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(50.0), // Alt kısım yüksekliği
           child: Container(
             padding: const EdgeInsets.all(8.0),
             color: ProjectColors.whiteColor,
             child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                spacing: 16.0, // Widget'lar arasındaki boşluk
                 children: [
                   Text(
                     widget.cafe.name,
@@ -170,8 +179,8 @@ class _ReviewScreenState extends State<ReviewScreen> {
                       color: ProjectColors.blue_color,
                     ),
                   ),
-                  const SizedBox(width: 16.0),
                   Row(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       const Icon(
                         Icons.star,
@@ -193,7 +202,17 @@ class _ReviewScreenState extends State<ReviewScreen> {
             ),
           ),
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.menu, size: 30),
+            onPressed: () {
+              _scaffoldKey.currentState
+                  ?.openEndDrawer(); // Sağ tarafta drawer'ı aç
+            },
+          ),
+        ],
       ),
+      endDrawer: CustomDrawer(), // Sağ tarafa drawer ekledik
       body: Column(
         children: [
           Expanded(
@@ -205,7 +224,10 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 }
 
                 if (!snapshot.hasData) {
-                  return const Center(child: CircularProgressIndicator());
+                  return const Center(
+                    // Özelleştirilmiş yükleme widget'ını kullan
+                    child: CustomLoadingWidget(),
+                  );
                 }
 
                 List<Review> reviews = snapshot.data!;
@@ -214,39 +236,88 @@ class _ReviewScreenState extends State<ReviewScreen> {
                   itemCount: reviews.length,
                   itemBuilder: (context, index) {
                     final review = reviews[index];
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Card(
-                        elevation: 5,
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: ListTile(
-                          title: Text(review.userName),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(review.comment),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.star,
-                                    color: Colors.amber,
-                                  ),
-                                  const SizedBox(width: 4),
-                                  Text(review.rating.toStringAsFixed(1)),
-                                ],
+                    return FutureBuilder<Map<String, dynamic>?>(
+                      future: _avatarService.getUserData(),
+                      builder: (context, avatarSnapshot) {
+                        if (avatarSnapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        }
+
+                        if (avatarSnapshot.hasData) {
+                          final userData = avatarSnapshot.data;
+                          final avatarAsset = userData?['avatarAsset'] ??
+                              'assets/images/avatars/default_avatar.png'; // Varsayılan avatar
+
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Card(
+                              elevation: 5,
+                              color: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12.0),
                               ),
-                              Text(
-                                DateFormat('dd/MM/yyyy')
-                                    .format(review.timestamp.toDate()),
-                                // Tarihi formatla
+                              child: ListTile(
+                                leading: CircleAvatar(
+                                  radius: 24,
+                                  backgroundImage:
+                                      AssetImage(avatarAsset), // Avatarı göster
+                                  backgroundColor: Colors.grey[200],
+                                ),
+                                title: Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        review.userName,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                subtitle: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const SizedBox(height: 8),
+                                    Text(review.comment),
+                                    const SizedBox(height: 8),
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.star,
+                                          color: Colors.amber,
+                                          size: 20,
+                                        ),
+                                        const SizedBox(width: 4),
+                                        Text(
+                                          review.rating.toStringAsFixed(1),
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      DateFormat('dd MMM yyyy').format(review
+                                          .timestamp
+                                          .toDate()), // Tarih formatlama
+                                      style: const TextStyle(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ],
-                          ),
-                        ),
-                      ),
+                            ),
+                          );
+                        } else {
+                          return const Center(
+                              child: Text('Avatar yüklenemedi.'));
+                        }
+                      },
                     );
                   },
                 );
