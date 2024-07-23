@@ -1,11 +1,66 @@
+<html>
+<head></head>
+<body>
 
-# Takım İsmi
-Flutter Takım 91
+
+  ![gidelim](bootcamp91/readme-images/gidelim.png)
+<br> <br>
+<hr>
+
+
+# Takım İsmi: Flutter Takım 91
+
 # Takım Üyeleri
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Title</th>
+      <th>GitHub</th>
+    </tr>
+    <tr>
+      <td>Sema Erakbıyık</td>
+      <td>Scrum Master</td>
+      <td>
+        <a href="https://github.com/serakbiyik" target="_blank"><img src="bootcamp91/images-readme/ic_github.png" width="20" height="20"/></a>
+      </td>
+    </tr>
+    <tr>
+      <td>Özgür Boruzancı</td>
+      <td>Product Owner</td>
+      <td>
+        <a href="https://github.com/OzgurBoruzanci"><img src="" width="20" height="20"/></a>
+      </td>
+    </tr>
+    <tr>
+      <td>Özcan Bayram</td>
+      <td>Developer</td>
+      <td>
+        <a href="https://github.com/ozcanbayram" target="_blank"><img src="" width="20" height="20"/></a>
+      </td>
+    </tr>
+    <tr>
+      <td>Sabutay Batuhan Sandalcı</td>
+      <td>Developer</td>
+      <td>
+        <a href=""><img src="" width="20" height="20"/></a>
+      </td>
+    </tr>
+    <tr>
+      <td>Yasemin Yılmaz</td>
+      <td>Developer</td>
+      <td>
+        <a href=""><img src="" width="20" height="20"/></a>
+      </td>
+  </tr>
+  </table>
+
+
+
 - Sema Erakbıyık: Scrum Master
 - Özgür Boruzancı: Product Owner
 - Sabutay Batuhan Sandalcı: Developer
-- Özcan Bayram: Developer
+- Özcan Bayram: Developer 
 - Yasemin Yılmaz: Developer
 
   # Ürün İle İlgili Bilgiler
@@ -122,3 +177,10 @@ Daha daha sık toplantılar yapılmasına karar verildi.Görev dağılımının 
 
 
  
+
+
+
+
+
+</body>
+</html>
