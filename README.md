@@ -10,7 +10,7 @@
 
 # Takım İsmi: Flutter Takım 91
 
-# Takım Üyeleri
+### Takım Üyeleri
 
   <table>
     <tr>
@@ -55,14 +55,18 @@
   </tr>
   </table>
 
-  # Ürün İle İlgili Bilgiler
+  <hr>
+
+  <details>
+  <summary> <h1> Ürün İle İlgili Bilgiler </h1></summary>
+    
   ## Ürün İsmi: GİDELİM
   ### Ürün Açıklaması
   GİDELİM app sayesinde gitmeyi planladığınız kafelerin menülerine  önceden erişim sağlayarak kendinize en uygun tercihi başarıyla gerçekleştirebilirsiniz aynı zamanda bulunduğunuz konumun yakınındaki kafeleri harita üzerinde listeleyerek size yeni deneyimler sunar. Yapay zeka asistanı kullanan gidelim app sizin daha önceki ziyaretlerinizi göz önünde bulundurarak öneriler yapar bu sayede nereye gidelim sorusu da ortadan kalkar. Uygulama içindeki ‘gidelim social’ size arkadaşlarınızla ya da ortak zevklerinizin olduğu insalarla bağlantı kurmanızı, fotoğraf ve video paylaşarak kafe yorumlama ve öneride bulunma imkanı sunar.
 
   ### Ürün Özellikleri
 - Zengin Menü seçeneği
-- Kullanıcının bulunduğu konuma en yakın restoran önerisi sunması
+- Kullanıcının bulunduğu konuma en yakın kafe önerisi sunması
 - Yapay zeka asistanı desteğiyle kullanıcı tercihlerine göre öneri sunması
 - gidelim social sayesinde daha fazla insanla deneyim ve öneri paylaşma fırsatı
 
@@ -72,10 +76,15 @@
 - Gidecekleri mekan konusunda kararsız olanlar
 - Deneyimlerini paylaşmak isteyenler
 
+</details>
+
+<hr>
+
 <details>
-<summary><h2>Sprint 1</h2></summary>
- ## Sprint içinde tamamlanması tahmin edilen puan
- 100 puan
+<summary><h1>Sprint 1</h1></summary>
+  
+ # Sprint içinde tamamlanması hedeflenen puan
+ ## 100 puan
 
  ### Puan tamamlama mantığı
 Toplamda proje boyunca tamamlanması gereken 350 puanlık backlog bulunmaktadır. İlk sprint 100, ikinci sprint 150 ve son sprintte 100 puanı hedeflemekteyiz.
@@ -91,20 +100,8 @@ Başlangıç,hoşgeldin,giriş ve kaydolma ekranları ve ana ekran oluşturuldu.
 
 # Sprint Retrospective
 Daha daha sık toplantılar yapılmasına karar verildi.Görev dağılımının esnek olmasına karar verildi. Harita özelliğini ekleyip çıkarma konusu ikinci sprinte bırakıldı.
-
-
-
-
-
-
-
-
-<html>
-  <head></head>
-  <body>
     <details>
-    <summary><h2>Project Images</h2></summary>
-
+    <summary><h3>Project Images</h3></summary>
 
 ![Proje görselleri](https://github.com/OzgurBoruzanci/OUA_Bootcamp_Flutter_91/assets/154309718/5e124555-4653-4793-bd78-5a0e51346bbf)
 </details>
@@ -125,9 +122,15 @@ Daha daha sık toplantılar yapılmasına karar verildi.Görev dağılımının 
 
 </details>
 
- # Sprint 2
- ## Sprint içinde tamamlanması tahmin edilen puan
-  150 puan
+
+<hr>
+
+<details>
+<summary><h1>Sprint 2</h1></summary>
+  
+ # Sprint içinde tamamlanması hedeflenen puan
+ ## 100 puan
+  
  ### Puan tamamlama mantığı
  Toplamda proje boyunca tamamlanması gereken 350 puanlık backlog bulunmaktadır. İlk sprint 100, ikinci sprint 150 ve son sprintte 100 puanı hedeflemekteyiz. İkinci sprintte 50 puan tasarım, 50 puan kodlama ve 50 puan backlog yönetimi olarak bölüştürülmüştür.
 
@@ -167,10 +170,11 @@ Daha daha sık toplantılar yapılmasına karar verildi.Görev dağılımının 
 
 
 </details>
-</body>
-</html>
 
 
+</details>
+
+<hr>
 
 
 
