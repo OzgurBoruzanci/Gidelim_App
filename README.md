@@ -22,28 +22,28 @@
       <td>Sema Erakbıyık</td>
       <td>Scrum Master</td>
       <td>
-        <a href="https://github.com/serakbiyik" target="_blank"><img src="bootcamp91/images-readme/ic_github.png" width="20" height="20"/></a>
+        <a href="https://github.com/serakbiyik" target="_blank"><img src="bootcamp91/readme-images/ic_github.png" width="20" height="20"/></a>
       </td>
     </tr>
     <tr>
       <td>Özgür Boruzancı</td>
       <td>Product Owner</td>
       <td>
-        <a href="https://github.com/OzgurBoruzanci"><img src="" width="20" height="20"/></a>
+        <a href="https://github.com/OzgurBoruzanci"><img src="bootcamp91/readme-images/ic_github.png" width="20" height="20"/></a>
       </td>
     </tr>
     <tr>
       <td>Özcan Bayram</td>
       <td>Developer</td>
       <td>
-        <a href="https://github.com/ozcanbayram" target="_blank"><img src="" width="20" height="20"/></a>
+        <a href="https://github.com/ozcanbayram" target="_blank"><img src="bootcamp91/readme-images/ic_github.png" width="20" height="20"/></a>
       </td>
     </tr>
     <tr>
       <td>Sabutay Batuhan Sandalcı</td>
       <td>Developer</td>
       <td>
-        <a href=""><img src="" width="20" height="20"/></a>
+        <a href="https://github.com/SabutayBSandalci"><img src="bootcamp91/readme-images/ic_github.png" width="20" height="20"/></a>
       </td>
     </tr>
     <tr>
@@ -55,18 +55,11 @@
   </tr>
   </table>
 
-<!-- 
-- Sema Erakbıyık: Scrum Master
-- Özgür Boruzancı: Product Owner
-- Sabutay Batuhan Sandalcı: Developer
-- Özcan Bayram: Developer
-- Yasemin Yılmaz: Developer -->
-
   # Ürün İle İlgili Bilgiler
-  ## Ürün İsmi
-  GİDELİM
+  ## Ürün İsmi: GİDELİM
   ### Ürün Açıklaması
-  GİDELİM app sayesinde gitmeyi planladığınız restoranların menülerine  önceden erişim sağlayarak kendinize en uygun tercihi başarıyla gerçekleştirebilirsiniz aynı zamanda bulunduğunuz konumun yakınındaki restoranları harita üzerinde listeleyerek size yeni deneyimler sunar. Yapay zeka asistanı kullanan gidelim app sizin daha önceki ziyaretlerinizi göz önünde bulundurarak öneriler yapar bu sayede nereye gidelim sorusu da ortadan kalkar. Uygulama içindeki ‘gidelim social’ size arkadaşlarınızla ya da ortak zevklerinizin olduğu insalarla bağlantı kurmanızı, fotoğraf ve video paylaşarak restoran yorumlama ve öneride bulunma imkanı sunar.
+  GİDELİM app sayesinde gitmeyi planladığınız kafelerin menülerine  önceden erişim sağlayarak kendinize en uygun tercihi başarıyla gerçekleştirebilirsiniz aynı zamanda bulunduğunuz konumun yakınındaki kafeleri harita üzerinde listeleyerek size yeni deneyimler sunar. Yapay zeka asistanı kullanan gidelim app sizin daha önceki ziyaretlerinizi göz önünde bulundurarak öneriler yapar bu sayede nereye gidelim sorusu da ortadan kalkar. Uygulama içindeki ‘gidelim social’ size arkadaşlarınızla ya da ortak zevklerinizin olduğu insalarla bağlantı kurmanızı, fotoğraf ve video paylaşarak kafe yorumlama ve öneride bulunma imkanı sunar.
+
   ### Ürün Özellikleri
 - Zengin Menü seçeneği
 - Kullanıcının bulunduğu konuma en yakın restoran önerisi sunması
@@ -79,7 +72,8 @@
 - Gidecekleri mekan konusunda kararsız olanlar
 - Deneyimlerini paylaşmak isteyenler
 
- # Sprint 1
+<details>
+<summary><h2>Sprint 1</h2></summary>
  ## Sprint içinde tamamlanması tahmin edilen puan
  100 puan
 
@@ -128,6 +122,8 @@ Daha daha sık toplantılar yapılmasına karar verildi.Görev dağılımının 
 </details>
 </body>
 </html>
+
+</details>
 
  # Sprint 2
  ## Sprint içinde tamamlanması tahmin edilen puan
