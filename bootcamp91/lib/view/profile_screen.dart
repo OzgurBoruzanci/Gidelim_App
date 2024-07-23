@@ -1,3 +1,4 @@
+import 'package:bootcamp91/product/custom_drawer.dart';
 import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/services/avatar_service.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final AvatarService _avatarService = AvatarService();
   String? _avatarAsset;
   String? _userEmail;
+  final GlobalKey<ScaffoldState> _scaffoldKey =
+      GlobalKey<ScaffoldState>(); // ScaffoldKey
 
   @override
   void initState() {
@@ -70,12 +73,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final user = _firebaseAuth.currentUser;
 
     return Scaffold(
+      key: _scaffoldKey, // ScaffoldKey atandı
       appBar: AppBar(
         title: const Text('Profil'),
         centerTitle: true,
         backgroundColor: ProjectColors.project_yellow,
         elevation: 0,
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.menu,
+              size: 30,
+            ),
+            onPressed: () {
+              _scaffoldKey.currentState?.openEndDrawer();
+            },
+          ),
+        ],
       ),
+      endDrawer: CustomDrawer(), // CustomDrawer eklendi
       body: user == null
           ? Center(
               child: Text(

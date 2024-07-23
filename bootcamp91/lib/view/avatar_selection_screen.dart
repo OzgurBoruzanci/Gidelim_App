@@ -7,18 +7,18 @@ class AvatarSelectionScreen extends StatelessWidget {
   AvatarSelectionScreen({super.key, required this.onAvatarSelected});
 
   final List<String> avatars = [
-    'assets/images/avatars/avatar1.png',
     'assets/images/avatars/avatar2.png',
     'assets/images/avatars/avatar3.png',
-    'assets/images/avatars/avatar4.png',
-    'assets/images/avatars/avatar5.png',
     'assets/images/avatars/avatar6.png',
     'assets/images/avatars/avatar7.png',
-    'assets/images/avatars/avatar8.png',
-    'assets/images/avatars/avatar9.png',
-    'assets/images/avatars/avatar10.png',
-    'assets/images/avatars/avatar11.png',
     'assets/images/avatars/avatar12.png',
+    'assets/images/avatars/avatar9.png',
+    'assets/images/avatars/avatar1.png',
+    'assets/images/avatars/avatar4.png',
+    'assets/images/avatars/avatar5.png',
+    'assets/images/avatars/avatar8.png',
+    'assets/images/avatars/avatar11.png',
+    'assets/images/avatars/avatar10.png',
   ];
 
   @override

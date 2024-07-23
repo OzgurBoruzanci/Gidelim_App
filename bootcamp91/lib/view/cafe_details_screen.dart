@@ -1,3 +1,4 @@
+import 'package:bootcamp91/product/custom_drawer.dart';
 import 'package:bootcamp91/view/categoru_items_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -25,6 +26,8 @@ class _CafeDetailScreenState extends State<CafeDetailScreen>
   final CafeService _cafeService = CafeService();
   late AnimationController _animationController;
   late Animation<double> _animation;
+  final GlobalKey<ScaffoldState> _scaffoldKey =
+      GlobalKey<ScaffoldState>(); // ScaffoldKey
 
   @override
   void initState() {
@@ -95,9 +98,22 @@ class _CafeDetailScreenState extends State<CafeDetailScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey, // ScaffoldKey atandı
       appBar: AppBar(
         title: Text(widget.cafe.name),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.menu,
+              size: 30,
+            ),
+            onPressed: () {
+              _scaffoldKey.currentState?.openEndDrawer();
+            },
+          ),
+        ],
       ),
+      endDrawer: CustomDrawer(), // CustomDrawer eklendi
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -143,8 +159,22 @@ class _CafeDetailScreenState extends State<CafeDetailScreen>
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => ReviewScreen(cafe: widget.cafe),
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) {
+                          // Sayfa geçişi animasyonu
+                          const begin = Offset(1.0, 0.0); // Sağdan sola kayma
+                          const end = Offset.zero; // Son konum
+                          const curve = Curves.easeInOut; // Animasyonun eğrisi
+
+                          var tween = Tween(begin: begin, end: end);
+                          var offsetAnimation = animation
+                              .drive(tween.chain(CurveTween(curve: curve)));
+
+                          return SlideTransition(
+                            position: offsetAnimation,
+                            child: ReviewScreen(cafe: widget.cafe),
+                          );
+                        },
                       ),
                     );
                   },
@@ -295,10 +325,14 @@ class _CafeDetailScreenState extends State<CafeDetailScreen>
         return 'TATLILAR';
       case 'foods':
         return 'YİYECEKLER';
-      case 'teas':
-        return 'ÇAYLAR';
+      case 'coffees':
+        return 'KAHVELER';
+      case 'cakes':
+        return 'PASTALAR';
+      case 'cookies':
+        return 'KURABİYELER';
       default:
-        return 'Bilinmeyen Kategori';
+        return 'Kategori';
     }
   }
 }

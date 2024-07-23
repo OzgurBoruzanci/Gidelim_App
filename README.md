@@ -50,7 +50,7 @@
       <td>Yasemin Yılmaz</td>
       <td>Developer</td>
       <td>
-        <a href=""><img src="" width="20" height="20"/></a>
+        <a href=""><img src="bootcamp91/readme-images/ic_github.png" width="20" height="20"/></a>
       </td>
   </tr>
   </table>

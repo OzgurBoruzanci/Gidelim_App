@@ -195,5 +195,4 @@ class Review {
           data['timestamp'] as Timestamp, // Firestore Timestamp olarak al
     );
   }
-  
 }
