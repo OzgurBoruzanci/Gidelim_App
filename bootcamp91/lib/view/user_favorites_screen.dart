@@ -135,63 +135,127 @@ class _UserFavoritesScreenState extends State<UserFavoritesScreen> {
                     return Container(); // Eşleşmiyorsa boş bir Container döndür
                   }
 
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder:
-                              (context, animation, secondaryAnimation) =>
-                                  CafeDetailScreen(
-                            cafe: cafe,
-                            userUid: widget.userUid,
+                  return FutureBuilder<double>(
+                    future: CafeService().getAverageRating(cafe.id),
+                    builder: (context, ratingSnapshot) {
+                      double averageRating = ratingSnapshot.data ?? 0.0;
+
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            PageRouteBuilder(
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) =>
+                                      CafeDetailScreen(
+                                cafe: cafe,
+                                userUid: widget.userUid,
+                              ),
+                              transitionsBuilder: (context, animation,
+                                  secondaryAnimation, child) {
+                                const begin = Offset(1.0, 0.0);
+                                const end = Offset.zero;
+                                const curve = Curves.ease;
+
+                                var tween = Tween(begin: begin, end: end)
+                                    .chain(CurveTween(curve: curve));
+                                var offsetAnimation = animation.drive(tween);
+
+                                return SlideTransition(
+                                  position: offsetAnimation,
+                                  child: child,
+                                );
+                              },
+                            ),
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Card(
+                            color: Colors.white,
+                            elevation: 5,
+                            margin: const EdgeInsets.all(0.0),
+                            child: Stack(
+                              children: [
+                                Container(
+                                  height: 150,
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Expanded(
+                                        child: Center(
+                                          child: Image.network(
+                                            cafe.logoUrl,
+                                            loadingBuilder:
+                                                (context, child, progress) {
+                                              if (progress == null) {
+                                                return child; // Görsel tamamen yüklendi
+                                              } else {
+                                                return Center(
+                                                  child:
+                                                      CustomLoadingWidget(), // Yükleniyor göstergesi
+                                                );
+                                              }
+                                            },
+                                            errorBuilder:
+                                                (context, error, stackTrace) {
+                                              return Center(
+                                                child:
+                                                    Text('Görsel yüklenemedi'),
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 8.0),
+                                      Text(
+                                        cafe.name,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge,
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Positioned(
+                                  bottom: 10,
+                                  right: 10,
+                                  child: ratingSnapshot.connectionState ==
+                                          ConnectionState.done
+                                      ? Container(
+                                          padding: const EdgeInsets.all(8.0),
+                                          color: Colors.white.withOpacity(0.8),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Icon(
+                                                Icons.star,
+                                                color: Colors.amber,
+                                                size: 20,
+                                              ),
+                                              const SizedBox(width: 4),
+                                              Text(
+                                                averageRating
+                                                    .toStringAsFixed(1),
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 16,
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      : CustomLoadingWidget(), // Puan yüklenmiyorsa göster
+                                ),
+                              ],
+                            ),
                           ),
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) {
-                            const begin = Offset(1.0, 0.0);
-                            const end = Offset.zero;
-                            const curve = Curves.ease;
-
-                            var tween = Tween(begin: begin, end: end)
-                                .chain(CurveTween(curve: curve));
-                            var offsetAnimation = animation.drive(tween);
-
-                            return SlideTransition(
-                              position: offsetAnimation,
-                              child: child,
-                            );
-                          },
                         ),
                       );
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Card(
-                        color: Colors.white,
-                        elevation: 5,
-                        margin: const EdgeInsets.all(0.0),
-                        child: Container(
-                          height: 150,
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: Center(
-                                  child: Image.network(cafe.logoUrl),
-                                ),
-                              ),
-                              const SizedBox(height: 8.0),
-                              Text(
-                                cafe.name,
-                                style: Theme.of(context).textTheme.bodyLarge,
-                                textAlign: TextAlign.center,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
                   );
                 },
               );

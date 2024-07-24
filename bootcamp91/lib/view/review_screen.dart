@@ -258,12 +258,12 @@ class _ReviewScreenState extends State<ReviewScreen> {
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
                               child: ListTile(
-                                leading: CircleAvatar(
-                                  radius: 24,
-                                  backgroundImage:
-                                      AssetImage(avatarAsset), // Avatarı göster
-                                  backgroundColor: Colors.grey[200],
-                                ),
+                                // leading: CircleAvatar(
+                                //   radius: 24,
+                                //   backgroundImage:
+                                //       AssetImage(avatarAsset), // Avatarı göster
+                                //   backgroundColor: Colors.grey[200],
+                                // ),
                                 title: Row(
                                   children: [
                                     Expanded(

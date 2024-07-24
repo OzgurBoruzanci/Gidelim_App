@@ -103,7 +103,7 @@ class _CafeDetailScreenState extends State<CafeDetailScreen>
         title: Text(widget.cafe.name),
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.menu,
               size: 30,
             ),
@@ -186,7 +186,7 @@ class _CafeDetailScreenState extends State<CafeDetailScreen>
                       borderRadius: BorderRadius.circular(5),
                     ),
                   ),
-                  child: Text('Yorumlar'),
+                  child: const Text('Yorumlar'),
                 ),
               ],
             ),
@@ -331,6 +331,8 @@ class _CafeDetailScreenState extends State<CafeDetailScreen>
         return 'PASTALAR';
       case 'cookies':
         return 'KURABİYELER';
+      case 'teas':
+        return 'ÇAYLAR';
       default:
         return 'Kategori';
     }
