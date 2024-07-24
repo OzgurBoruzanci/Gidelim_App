@@ -67,7 +67,7 @@ class _FeedScreenState extends State<FeedScreen> {
           automaticallyImplyLeading: false,
           actions: [
             IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.menu,
                 size: 30,
               ),
@@ -119,7 +119,7 @@ class _FeedScreenState extends State<FeedScreen> {
                 return const Center(child: Text('Bir hata oluştu'));
               }
               if (!snapshot.hasData) {
-                return Center(
+                return const Center(
                   child:
                       CustomLoadingWidget(), // CustomLoadingWidget kullanıldı
                 );
@@ -191,7 +191,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                               if (progress == null) {
                                                 return child; // Görsel tamamen yüklendi
                                               } else {
-                                                return Center(
+                                                return const Center(
                                                   child:
                                                       CustomLoadingWidget(), // Yükleniyor göstergesi
                                                 );
@@ -199,7 +199,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                             },
                                             errorBuilder:
                                                 (context, error, stackTrace) {
-                                              return Center(
+                                              return const Center(
                                                 child:
                                                     Text('Görsel yüklenemedi'),
                                               );
@@ -229,7 +229,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
-                                              Icon(
+                                              const Icon(
                                                 Icons.star,
                                                 color: Colors.amber,
                                                 size: 20,
@@ -247,7 +247,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                             ],
                                           ),
                                         )
-                                      : CustomLoadingWidget(), // Puan yüklenmiyorsa göster
+                                      : const CustomLoadingWidget(), // Puan yüklenmiyorsa göster
                                 ),
                               ],
                             ),
