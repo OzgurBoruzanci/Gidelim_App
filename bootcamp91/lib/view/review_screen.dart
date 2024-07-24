@@ -4,7 +4,6 @@ import 'package:bootcamp91/product/project_colors.dart';
 import 'package:intl/intl.dart'; // Tarih formatlamak için
 import 'package:flutter_rating_bar/flutter_rating_bar.dart'; // RatingBar için
 import 'package:bootcamp91/services/auth_service.dart'; // AuthService'i ekledik
-import 'package:bootcamp91/services/avatar_service.dart'; // AvatarService'i ekledik
 import 'package:bootcamp91/product/custom_loading_widget.dart'; // Özelleştirilmiş yükleme widget'ını import ettik
 import 'package:bootcamp91/product/custom_drawer.dart'; // CustomDrawer'ı import ettik
 
@@ -20,7 +19,6 @@ class ReviewScreen extends StatefulWidget {
 class _ReviewScreenState extends State<ReviewScreen> {
   final CafeService _cafeService = CafeService();
   final AuthService _authService = AuthService(); // AuthService örneği
-  final AvatarService _avatarService = AvatarService(); // AvatarService örneği
   final TextEditingController _reviewController = TextEditingController();
   double _rating = 0.0; // Yıldız puanı
   double _averageRating = 0.0; // Ortalama puan
@@ -236,87 +234,61 @@ class _ReviewScreenState extends State<ReviewScreen> {
                   itemCount: reviews.length,
                   itemBuilder: (context, index) {
                     final review = reviews[index];
-                    return FutureBuilder<Map<String, dynamic>?>(
-                      future: _avatarService.getUserData(),
-                      builder: (context, avatarSnapshot) {
-                        if (avatarSnapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const Center(child: CustomLoadingWidget());
-                        }
-
-                        if (avatarSnapshot.hasData) {
-                          final userData = avatarSnapshot.data;
-                          final avatarAsset = userData?['avatarAsset'] ??
-                              'assets/images/avatars/default_avatar.png'; // Varsayılan avatar
-
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Card(
-                              elevation: 5,
-                              color: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              child: ListTile(
-                                // leading: CircleAvatar(
-                                //   radius: 24,
-                                //   backgroundImage:
-                                //       AssetImage(avatarAsset), // Avatarı göster
-                                //   backgroundColor: Colors.grey[200],
-                                // ),
-                                title: Row(
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        review.userName,
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                subtitle: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const SizedBox(height: 8),
-                                    Text(review.comment),
-                                    const SizedBox(height: 8),
-                                    Row(
-                                      children: [
-                                        const Icon(
-                                          Icons.star,
-                                          color: Colors.amber,
-                                          size: 20,
-                                        ),
-                                        const SizedBox(width: 4),
-                                        Text(
-                                          review.rating.toStringAsFixed(1),
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 8),
-                                    Text(
-                                      DateFormat('dd MMM yyyy').format(review
-                                          .timestamp
-                                          .toDate()), // Tarih formatlama
-                                      style: const TextStyle(
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                  ],
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Card(
+                        elevation: 5,
+                        color: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        child: ListTile(
+                          title: Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  review.userName,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
-                            ),
-                          );
-                        } else {
-                          return const Center(
-                              child: Text('Avatar yüklenemedi.'));
-                        }
-                      },
+                            ],
+                          ),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(height: 8),
+                              Text(review.comment),
+                              const SizedBox(height: 8),
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.star,
+                                    color: Colors.amber,
+                                    size: 20,
+                                  ),
+                                  const SizedBox(width: 4),
+                                  Text(
+                                    review.rating.toStringAsFixed(1),
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                DateFormat('dd MMM yyyy').format(review
+                                    .timestamp
+                                    .toDate()), // Tarih formatlama
+                                style: const TextStyle(
+                                    color: Colors.grey, fontSize: 15),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     );
                   },
                 );
