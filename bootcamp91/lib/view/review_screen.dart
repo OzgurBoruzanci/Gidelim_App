@@ -241,8 +241,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                       builder: (context, avatarSnapshot) {
                         if (avatarSnapshot.connectionState ==
                             ConnectionState.waiting) {
-                          return const Center(
-                              child: CircularProgressIndicator());
+                          return const Center(child: CustomLoadingWidget());
                         }
 
                         if (avatarSnapshot.hasData) {

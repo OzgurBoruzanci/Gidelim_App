@@ -92,66 +92,68 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ],
       ),
       endDrawer: CustomDrawer(), // CustomDrawer eklendi
-      body: user == null
-          ? Center(
-              child: Text(
-                'Kullanıcı bulunamadı.',
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Colors.redAccent,
-                      fontSize: 18,
+      body: SingleChildScrollView(
+        child: user == null
+            ? Center(
+                child: Text(
+                  'Kullanıcı bulunamadı.',
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Colors.redAccent,
+                        fontSize: 18,
+                      ),
+                ),
+              )
+            : Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    CircleAvatar(
+                      radius: 50,
+                      backgroundImage: _avatarAsset != null
+                          ? AssetImage(_avatarAsset!)
+                          : const AssetImage(
+                              'assets/images/avatars/default_avatar.png'),
+                      backgroundColor: Colors.grey[200],
                     ),
-              ),
-            )
-          : Padding(
-              padding: const EdgeInsets.all(32.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  CircleAvatar(
-                    radius: 50,
-                    backgroundImage: _avatarAsset != null
-                        ? AssetImage(_avatarAsset!)
-                        : const AssetImage(
-                            'assets/images/avatars/default_avatar.png'),
-                    backgroundColor: Colors.grey[200],
-                  ),
-                  const SizedBox(height: 2.0),
-                  TextButton(
-                    onPressed: _showAvatarSelectionBottomSheet,
-                    child: Text(
-                      'Avatarı Değiştir',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: ProjectColors.blue_color,
+                    const SizedBox(height: 2.0),
+                    TextButton(
+                      onPressed: _showAvatarSelectionBottomSheet,
+                      child: Text(
+                        'Avatarı Değiştir',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: ProjectColors.blue_color,
+                            ),
+                      ),
+                    ),
+                    const SizedBox(height: 16.0),
+                    Text(
+                      user.displayName ?? "Kullanıcı",
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: ProjectColors.textColor,
                           ),
                     ),
-                  ),
-                  const SizedBox(height: 16.0),
-                  Text(
-                    user.displayName ?? "Kullanıcı",
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: ProjectColors.textColor,
-                        ),
-                  ),
-                  const SizedBox(height: 2.0),
-                  Text(
-                    _userEmail ?? "E-posta bulunamadı",
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Colors.grey[700],
-                        ),
-                  ),
-                  const SizedBox(height: 16.0),
-                  ElevatedButton(
-                    onPressed: _navigateToChangePasswordScreen,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: ProjectColors.buttonColor,
+                    const SizedBox(height: 2.0),
+                    Text(
+                      _userEmail ?? "E-posta bulunamadı",
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: Colors.grey[700],
+                          ),
                     ),
-                    child: const Text('Parolayı Değiştir'),
-                  ),
-                ],
+                    const SizedBox(height: 16.0),
+                    ElevatedButton(
+                      onPressed: _navigateToChangePasswordScreen,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: ProjectColors.buttonColor,
+                      ),
+                      child: const Text('Parolayı Değiştir'),
+                    ),
+                  ],
+                ),
               ),
-            ),
+      ),
     );
   }
 }
