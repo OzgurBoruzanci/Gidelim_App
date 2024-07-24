@@ -4,10 +4,13 @@ import 'package:bootcamp91/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:bootcamp91/services/avatar_service.dart'; // AvatarService'i import ettik
 import 'package:bootcamp91/view/profile_screen.dart'; // ProfileScreen'i import ettik
+import 'package:url_launcher/url_launcher.dart'; // launch_url paketini import ettik
 
 class CustomDrawer extends StatelessWidget {
   final AuthService _authService = AuthService();
-  final AvatarService _avatarService = AvatarService(); // AvatarService örneği
+  final AvatarService _avatarService = AvatarService();
+
+  CustomDrawer({super.key}); // AvatarService örneği
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +26,7 @@ class CustomDrawer extends StatelessWidget {
               'assets/images/avatars/default_avatar.png'; // Varsayılan avatar
           String userName = 'Kullanıcı';
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasData) {
             final userData = snapshot.data;
             avatarAsset =
@@ -46,18 +49,18 @@ class CustomDrawer extends StatelessWidget {
                           AssetImage(avatarAsset), // Burada nullable olmamalı
                       backgroundColor: Colors.grey[200],
                     ),
-                    SizedBox(width: 16.0),
+                    const SizedBox(width: 16.0),
                     Expanded(
                       child: Text(
                         userName,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: ProjectColors.whiteTextColor,
                             fontSize: 24,
                             fontWeight: FontWeight.bold),
                       ),
                     ),
                     IconButton(
-                      icon: Icon(Icons.close, color: Colors.white),
+                      icon: const Icon(Icons.close, color: Colors.white),
                       onPressed: () {
                         Navigator.of(context).pop(); // Drawer'ı kapatmak için
                       },
@@ -66,18 +69,18 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ),
               ListTile(
-                leading: Icon(
+                leading: const Icon(
                   Icons.person,
                   size: 30,
                 ),
-                title: Text('Profil'),
+                title: const Text('Profil'),
                 onTap: () {
                   Navigator.of(context).push(PageRouteBuilder(
                     pageBuilder: (context, animation, secondaryAnimation) =>
-                        ProfileScreen(),
+                        const ProfileScreen(),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
-                      var begin = Offset(1.0, 0.0);
+                      var begin = const Offset(1.0, 0.0);
                       var end = Offset.zero;
                       var curve = Curves.easeInOut;
 
@@ -94,11 +97,36 @@ class CustomDrawer extends StatelessWidget {
                 },
               ),
               ListTile(
-                leading: Icon(
+                leading: const Icon(
+                  Icons.map_rounded,
+                  size: 30,
+                ),
+                title: const Text('Yakındaki Kafeler'),
+                onTap: () async {
+                  const url =
+                      'https://www.google.com/maps/search/?api=1&query=cafe';
+                  if (await launchUrl(Uri.parse(url))) {
+                    // Google Haritalar uygulamasını aç
+                  } else {
+                    // Google Haritalar uygulaması yüklü değilse
+                    // ignore: use_build_context_synchronously
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content:
+                            Text('Google Haritalar uygulamasını açamıyor.'),
+                        backgroundColor: Colors.red,
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
+                  }
+                },
+              ),
+              ListTile(
+                leading: const Icon(
                   Icons.logout,
                   size: 30,
                 ),
-                title: Text('Çıkış Yap'),
+                title: const Text('Çıkış Yap'),
                 onTap: () {
                   _authService.signOut(context);
                   Navigator.of(context).pop(); // Drawer'ı kapatmak için
