@@ -4,6 +4,7 @@ import 'package:bootcamp91/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:bootcamp91/services/avatar_service.dart'; // AvatarService'i import ettik
 import 'package:bootcamp91/view/profile_screen.dart'; // ProfileScreen'i import ettik
+import 'package:bootcamp91/view/faq_screen.dart'; // FAQScreen'i import ettik
 import 'package:url_launcher/url_launcher.dart'; // launch_url paketini import ettik
 
 class CustomDrawer extends StatelessWidget {
@@ -119,6 +120,34 @@ class CustomDrawer extends StatelessWidget {
                       ),
                     );
                   }
+                },
+              ),
+              ListTile(
+                leading: const Icon(
+                  Icons.help_outline,
+                  size: 30,
+                ),
+                title: const Text('SSS'),
+                onTap: () {
+                  Navigator.of(context).push(PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) =>
+                        const FAQScreen(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      var begin = const Offset(1.0, 0.0);
+                      var end = Offset.zero;
+                      var curve = Curves.easeInOut;
+
+                      var tween = Tween(begin: begin, end: end)
+                          .chain(CurveTween(curve: curve));
+                      var offsetAnimation = animation.drive(tween);
+
+                      return SlideTransition(
+                        position: offsetAnimation,
+                        child: child,
+                      );
+                    },
+                  ));
                 },
               ),
               ListTile(
