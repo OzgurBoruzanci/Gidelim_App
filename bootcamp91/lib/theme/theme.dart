@@ -1,7 +1,7 @@
 import 'package:bootcamp91/product/project_colors.dart';
 import 'package:flutter/material.dart';
 
-ThemeData appTheme = ThemeData.dark().copyWith(
+ThemeData appTheme = ThemeData.light().copyWith(
   //SCAFFOLD THEME
   scaffoldBackgroundColor: ProjectColors.firstColor,
   colorScheme: ColorScheme.fromSeed(
