@@ -16,7 +16,7 @@ class _MyCafeScreenState extends State<MyCafeScreen> {
   List<Map<String, dynamic>> _products = [];
 
   final _formKey = GlobalKey<FormState>();
-  String _selectedCategory = 'cold_drinks';
+  String _selectedCategory = 'cold_drinks'; // Default value
   String _productName = '';
   String _productImageUrl = '';
   double _productPrice = 0.0;
@@ -28,6 +28,14 @@ class _MyCafeScreenState extends State<MyCafeScreen> {
     'Çaylar',
     'Yiyecekler',
   ];
+
+  Map<String, String> _categoryMapping = {
+    'Sıcak İçecekler': 'hot_drinks',
+    'Soğuk İçecekler': 'cold_drinks',
+    'Tatlılar': 'desserts',
+    'Çaylar': 'teas',
+    'Yiyecekler': 'foods',
+  };
 
   @override
   void initState() {
@@ -77,9 +85,11 @@ class _MyCafeScreenState extends State<MyCafeScreen> {
   Future<void> _addProduct() async {
     if (_formKey.currentState?.validate() ?? false) {
       try {
+        final categoryValue =
+            _categoryMapping[_selectedCategory] ?? 'cold_drinks';
         await _cafeService.addProduct(
           _cafeDetails!['id'],
-          _selectedCategory,
+          categoryValue,
           _productName,
           _productImageUrl,
           _productPrice,
@@ -213,15 +223,7 @@ class _MyCafeScreenState extends State<MyCafeScreen> {
                                 onChanged: (value) {
                                   setState(() {
                                     _selectedCategory =
-                                        value == 'Sıcak İçecekler'
-                                            ? 'hot_drinks'
-                                            : value == 'Soğuk İçecekler'
-                                                ? 'cold_drinks'
-                                                : value == 'Tatlılar'
-                                                    ? 'desserts'
-                                                    : value == 'Çaylar'
-                                                        ? 'teas'
-                                                        : 'foods';
+                                        value ?? 'Soğuk İçecekler'; // Default
                                   });
                                 },
                                 decoration:
@@ -282,16 +284,22 @@ class _MyCafeScreenState extends State<MyCafeScreen> {
                                         height: 50,
                                         fit: BoxFit.cover,
                                       ),
-                                      title: Text(product['name'] ?? ''),
-                                      subtitle: Text(
-                                          '${product['price']?.toStringAsFixed(2) ?? '0.00'} TL'),
+                                      title:
+                                          Text(product['name'] ?? 'Bilinmiyor'),
+                                      subtitle:
+                                          Text('${product['price'] ?? 0.0} ₺'),
                                       trailing: IconButton(
                                         icon: Icon(Icons.delete),
-                                        onPressed: () =>
-                                            _showDeleteConfirmationDialog(
-                                          product['id'],
-                                          _selectedCategory,
-                                        ),
+                                        onPressed: () {
+                                          _showDeleteConfirmationDialog(
+                                              product['id'],
+                                              _categoryMapping.keys.firstWhere(
+                                                (key) =>
+                                                    _categoryMapping[key] ==
+                                                    product['category'],
+                                                orElse: () => 'cold_drinks',
+                                              ));
+                                        },
                                       ),
                                     ),
                                   );
