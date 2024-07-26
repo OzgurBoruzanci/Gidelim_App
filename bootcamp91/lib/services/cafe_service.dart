@@ -125,6 +125,79 @@ class CafeService {
       return 0.0;
     }
   }
+
+  // Yeni bir kafe oluşturma
+  Future<void> createCafe({
+    required String cafeName,
+    required String cafeDescription,
+    required String cafeImageUrl,
+    required String creatorUid,
+  }) async {
+    if (cafeName.isEmpty || cafeDescription.isEmpty || cafeImageUrl.isEmpty) {
+      throw ArgumentError('Tüm alanları doldurunuz.');
+    }
+
+    try {
+      await _firestore.collection('cafes').add({
+        'name': cafeName,
+        'description': cafeDescription,
+        'imageUrl': cafeImageUrl,
+        'creatorUid': creatorUid, // Kafe yaratıcısının UID'si
+        'createdAt': FieldValue.serverTimestamp(),
+      });
+    } catch (e) {
+      // Hata durumunda konsola log atabilir veya başka bir işleme yapabilirsiniz
+      print('Error creating cafe: $e');
+    }
+  }
+
+  // Kullanıcının kafelerini al
+  Future<List<DocumentSnapshot>> getUserCafes(String userUid) async {
+    try {
+      // Kullanıcıya ait kafeleri getirmek için Firestore sorgusu
+      QuerySnapshot querySnapshot = await _firestore
+          .collection('cafes')
+          .where('ownerUid', isEqualTo: userUid) // Düzeltilmiş
+          .get();
+      return querySnapshot.docs;
+    } catch (e) {
+      print('Hata: $e');
+      rethrow;
+    }
+  }
+
+  // Yeni bir kafe ekle
+  Future<void> addCafe(String name, String logoUrl, String ownerUid) async {
+    try {
+      // Yeni bir kafe eklemek için Firestore'a veri ekleme
+      await _firestore.collection('cafes').add({
+        'name': name,
+        'logoUrl': logoUrl,
+        'ownerUid': ownerUid, // Düzeltilmiş
+      });
+    } catch (e) {
+      print('Hata: $e');
+      rethrow;
+    }
+  }
+
+  // Kullanıcının kafe bilgilerini al
+  Future<Map<String, dynamic>?> getUserCafe(String userId) async {
+    try {
+      final snapshot = await _firestore
+          .collection('cafes')
+          .where('ownerUid', isEqualTo: userId) // Düzeltilmiş
+          .limit(1)
+          .get();
+
+      if (snapshot.docs.isNotEmpty) {
+        return snapshot.docs.first.data();
+      }
+      return null;
+    } catch (e) {
+      throw Exception('Kafe bilgileri alınırken bir hata oluştu: $e');
+    }
+  }
 }
 
 // Kafe modeli

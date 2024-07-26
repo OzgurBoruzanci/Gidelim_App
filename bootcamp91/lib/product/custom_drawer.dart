@@ -1,4 +1,6 @@
 import 'package:bootcamp91/product/project_colors.dart';
+import 'package:bootcamp91/view/add_cafe_screen.dart';
+import 'package:bootcamp91/view/my_cafe_screen.dart'; // MyCafeScreen'i import ettik
 import 'package:flutter/material.dart';
 import 'package:bootcamp91/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -70,10 +72,7 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ),
               ListTile(
-                leading: const Icon(
-                  Icons.person,
-                  size: 30,
-                ),
+                leading: const Icon(Icons.person, size: 30),
                 title: const Text('Profil'),
                 onTap: () {
                   Navigator.of(context).push(PageRouteBuilder(
@@ -84,7 +83,6 @@ class CustomDrawer extends StatelessWidget {
                       var begin = const Offset(1.0, 0.0);
                       var end = Offset.zero;
                       var curve = Curves.easeInOut;
-
                       var tween = Tween(begin: begin, end: end)
                           .chain(CurveTween(curve: curve));
                       var offsetAnimation = animation.drive(tween);
@@ -98,10 +96,56 @@ class CustomDrawer extends StatelessWidget {
                 },
               ),
               ListTile(
-                leading: const Icon(
-                  Icons.map_rounded,
-                  size: 30,
-                ),
+                leading: const Icon(Icons.add_business, size: 30),
+                title: const Text('Kafe Oluştur'),
+                onTap: () {
+                  Navigator.of(context).push(PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) =>
+                        AddCafeScreen(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      var begin = const Offset(1.0, 0.0);
+                      var end = Offset.zero;
+                      var curve = Curves.easeInOut;
+                      var tween = Tween(begin: begin, end: end)
+                          .chain(CurveTween(curve: curve));
+                      var offsetAnimation = animation.drive(tween);
+
+                      return SlideTransition(
+                        position: offsetAnimation,
+                        child: child,
+                      );
+                    },
+                  ));
+                },
+              ),
+              ListTile(
+                leading:
+                    const Icon(Icons.business_center, size: 30), // Yeni simge
+                title: const Text('Kafe Yöneticisi'),
+                onTap: () {
+                  Navigator.of(context).push(PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) =>
+                        MyCafeScreen(), // Yönetici sayfasına yönlendir
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      var begin = const Offset(1.0, 0.0);
+                      var end = Offset.zero;
+                      var curve = Curves.easeInOut;
+                      var tween = Tween(begin: begin, end: end)
+                          .chain(CurveTween(curve: curve));
+                      var offsetAnimation = animation.drive(tween);
+
+                      return SlideTransition(
+                        position: offsetAnimation,
+                        child: child,
+                      );
+                    },
+                  ));
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.map_rounded, size: 30),
                 title: const Text('Yakındaki Kafeler'),
                 onTap: () async {
                   const url =
@@ -123,10 +167,7 @@ class CustomDrawer extends StatelessWidget {
                 },
               ),
               ListTile(
-                leading: const Icon(
-                  Icons.help_outline,
-                  size: 30,
-                ),
+                leading: const Icon(Icons.help_outline, size: 30),
                 title: const Text('SSS'),
                 onTap: () {
                   Navigator.of(context).push(PageRouteBuilder(
@@ -137,7 +178,6 @@ class CustomDrawer extends StatelessWidget {
                       var begin = const Offset(1.0, 0.0);
                       var end = Offset.zero;
                       var curve = Curves.easeInOut;
-
                       var tween = Tween(begin: begin, end: end)
                           .chain(CurveTween(curve: curve));
                       var offsetAnimation = animation.drive(tween);
@@ -151,10 +191,7 @@ class CustomDrawer extends StatelessWidget {
                 },
               ),
               ListTile(
-                leading: const Icon(
-                  Icons.logout,
-                  size: 30,
-                ),
+                leading: const Icon(Icons.logout, size: 30),
                 title: const Text('Çıkış Yap'),
                 onTap: () {
                   _authService.signOut(context);

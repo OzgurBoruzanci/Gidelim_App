@@ -36,6 +36,7 @@ flutter:
     - assets/images/ic_register.png
     - assets/images/ic_login_screen.png   
     - assets/images/ic_card_bg.png 
+    - assets/images/ic_create_cafe.png
     - assets/images/forgot_password.png
     - assets/images/avatars/avatar1.png
     - assets/images/avatars/avatar2.png
