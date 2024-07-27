@@ -293,6 +293,15 @@ class CafeService {
       throw Exception('Ürün güncellenirken hata oluştu: $e');
     }
   }
+
+  Future<void> deleteCafe(String cafeId) async {
+    try {
+      // Cafe belgesini sil
+      await _firestore.collection('cafes').doc(cafeId).delete();
+    } catch (e) {
+      throw Exception('Kafe silinirken bir hata oluştu: $e');
+    }
+  }
 }
 
 // Kafe modeli

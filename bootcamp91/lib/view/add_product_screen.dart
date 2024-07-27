@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bootcamp91/services/cafe_service.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AddProductScreen extends StatefulWidget {
   final String cafeId;
@@ -64,63 +65,96 @@ class _AddProductScreenState extends State<AddProductScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ürün Ekle'),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              DropdownButtonFormField<String>(
-                value: _categories[0],
-                items: _categories.map((category) {
-                  return DropdownMenuItem<String>(
-                    value: category,
-                    child: Text(
-                      category,
-                      style: TextStyle(color: Colors.black), // Siyah renk
-                    ),
-                  );
-                }).toList(),
-                onChanged: (value) {
-                  setState(() {
-                    _selectedCategory = value ?? 'Soğuk İçecekler'; // Default
-                  });
-                },
-                decoration: InputDecoration(labelText: 'Kategori'),
-                validator: (value) =>
-                    value == null ? 'Kategori seçmelisiniz' : null,
-              ),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Ürün Adı'),
-                onChanged: (value) => _productName = value,
-                validator: (value) =>
-                    value!.isEmpty ? 'Ürün adı boş olamaz' : null,
-              ),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Ürün Resim URL\'si'),
-                onChanged: (value) => _productImageUrl = value,
-                validator: (value) =>
-                    value!.isEmpty ? 'Resim URL\'si boş olamaz' : null,
-              ),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Ürün Fiyatı'),
-                keyboardType: TextInputType.number,
-                onChanged: (value) =>
-                    _productPrice = double.tryParse(value) ?? 0.0,
-                validator: (value) =>
-                    value!.isEmpty ? 'Fiyat boş olamaz' : null,
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _addProduct,
-                child: Text('Ürünü Ekle'),
-              ),
-            ],
-          ),
+        title: Text(
+          'Ürün Ekle',
+          style: GoogleFonts.kleeOne(),
         ),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Container(
+            height: 250,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/ic_add_product.png'),
+                fit: BoxFit.contain,
+              ),
+            ),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      DropdownButtonFormField<String>(
+                        value: _categories[0],
+                        items: _categories.map((category) {
+                          return DropdownMenuItem<String>(
+                            value: category,
+                            child: Text(
+                              category,
+                              style:
+                                  TextStyle(color: Colors.black), // Siyah renk
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            _selectedCategory =
+                                value ?? 'Soğuk İçecekler'; // Default
+                          });
+                        },
+                        decoration: InputDecoration(labelText: 'Kategori'),
+                        validator: (value) =>
+                            value == null ? 'Kategori seçmelisiniz' : null,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        decoration: InputDecoration(labelText: 'Ürün Adı'),
+                        onChanged: (value) => _productName = value,
+                        validator: (value) =>
+                            value!.isEmpty ? 'Ürün adı boş olamaz' : null,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        decoration:
+                            InputDecoration(labelText: 'Ürün Resim URL\'si'),
+                        onChanged: (value) => _productImageUrl = value,
+                        validator: (value) =>
+                            value!.isEmpty ? 'Resim URL\'si boş olamaz' : null,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        decoration: InputDecoration(labelText: 'Ürün Fiyatı'),
+                        keyboardType: TextInputType.number,
+                        onChanged: (value) =>
+                            _productPrice = double.tryParse(value) ?? 0.0,
+                        validator: (value) =>
+                            value!.isEmpty ? 'Fiyat boş olamaz' : null,
+                      ),
+                      SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: _addProduct,
+                        child: Text('Ürünü Ekle'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

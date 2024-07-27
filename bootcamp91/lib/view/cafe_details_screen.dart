@@ -203,6 +203,7 @@ class _CafeDetailScreenState extends State<CafeDetailScreen>
                           padding: const EdgeInsets.symmetric(
                               vertical: 4.0, horizontal: 16.0),
                           child: Card(
+                            color: Color.fromARGB(96, 255, 255, 255),
                             elevation: 0, // Daha belirgin gölge
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(
@@ -211,17 +212,6 @@ class _CafeDetailScreenState extends State<CafeDetailScreen>
                             child: Container(
                               height: 120,
                               decoration: BoxDecoration(
-                                gradient: const LinearGradient(
-                                  colors: [
-                                    Color.fromARGB(201, 210, 201, 192),
-                                    ProjectColors.whiteColor // Başlangıç rengi
-                                    // Bitiş rengi
-                                  ],
-                                  begin: Alignment
-                                      .topCenter, // Gradyanın başlangıç noktası (üstten)
-                                  end: Alignment
-                                      .bottomCenter, // Gradyanın bitiş noktası (alttan)
-                                ),
                                 borderRadius: BorderRadius.circular(
                                     8.0), // Köşeleri yuvarlatıyoruz
                               ),

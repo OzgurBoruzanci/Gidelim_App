@@ -3,6 +3,7 @@ import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/services/avatar_service.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'avatar_selection_screen.dart';
 import 'change_password_screen.dart'; // Yeni eklenen import
 
@@ -75,9 +76,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       key: _scaffoldKey, // ScaffoldKey atandı
       appBar: AppBar(
-        title: const Text('Profil'),
+        title: Text(
+          'Profil',
+          style: GoogleFonts.kleeOne(),
+        ),
         centerTitle: true,
-        backgroundColor: ProjectColors.project_yellow,
+        backgroundColor: ProjectColors.firstColor,
         elevation: 0,
         actions: [
           IconButton(
@@ -120,11 +124,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     const SizedBox(height: 2.0),
                     TextButton(
                       onPressed: _showAvatarSelectionBottomSheet,
-                      child: Text(
-                        'Avatarı Değiştir',
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: ProjectColors.blue_color,
-                            ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'Avatarı Değiştir',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall
+                                ?.copyWith(color: ProjectColors.default_color),
+                          ),
+                          SizedBox(width: 2),
+                          Icon(
+                            Icons.edit,
+                            color: ProjectColors.default_color,
+                          ),
+                        ],
                       ),
                     ),
                     const SizedBox(height: 16.0),
@@ -145,9 +160,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     const SizedBox(height: 16.0),
                     ElevatedButton(
                       onPressed: _navigateToChangePasswordScreen,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: ProjectColors.buttonColor,
-                      ),
+                      style: ElevatedButton.styleFrom(),
                       child: const Text('Parolayı Değiştir'),
                     ),
                   ],

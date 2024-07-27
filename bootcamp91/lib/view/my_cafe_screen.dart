@@ -3,6 +3,7 @@ import 'package:bootcamp91/view/add_product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:bootcamp91/services/cafe_service.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MyCafeScreen extends StatefulWidget {
   @override
@@ -155,6 +156,66 @@ class _MyCafeScreenState extends State<MyCafeScreen> {
     );
   }
 
+  void _showDeleteCafeConfirmationDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'Kafe Sil',
+            style: TextStyle(
+                color: ProjectColors.red_color,
+                fontSize: 18,
+                fontWeight: FontWeight.bold),
+          ),
+          content: Text(
+            'Bu kafeyi silmek istediğinizden emin misiniz?',
+            style: TextStyle(color: ProjectColors.default_color, fontSize: 18),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text(
+                'Vazgeç',
+                style:
+                    TextStyle(color: ProjectColors.default_color, fontSize: 18),
+              ),
+            ),
+            TextButton(
+              onPressed: () async {
+                Navigator.pop(context);
+                await _deleteCafe();
+              },
+              child: Text(
+                'Sil',
+                style: TextStyle(color: ProjectColors.red_color, fontSize: 18),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _deleteCafe() async {
+    if (_cafeDetails != null) {
+      try {
+        await _cafeService.deleteCafe(_cafeDetails!['id']);
+        // Kafe silindiğinde kullanıcıyı bilgilendirin ve gerekli yönlendirmeyi yapın
+        Navigator.pop(context); // Kafe ekranını kapat ve önceki ekrana dön
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Kafe başarıyla silindi!')),
+        );
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Kafe silinirken bir hata oluştu: $e')),
+        );
+      }
+    }
+  }
+
   void _navigateToAddProductScreen() {
     Navigator.push(
       context,
@@ -285,7 +346,10 @@ class _MyCafeScreenState extends State<MyCafeScreen> {
     return Scaffold(
       backgroundColor: ProjectColors.firstColor,
       appBar: AppBar(
-        title: Text('Kafem'),
+        title: Text(
+          'Kafem',
+          style: GoogleFonts.kleeOne(),
+        ),
       ),
       body: _isLoading
           ? Center(child: CircularProgressIndicator())
@@ -322,6 +386,10 @@ class _MyCafeScreenState extends State<MyCafeScreen> {
                           IconButton(
                             icon: Icon(Icons.info_outline),
                             onPressed: _showInfoDialog,
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.delete, color: Colors.red),
+                            onPressed: _showDeleteCafeConfirmationDialog,
                           ),
                         ],
                       ),

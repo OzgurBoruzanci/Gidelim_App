@@ -1,7 +1,9 @@
 import 'package:bootcamp91/product/project_colors.dart';
+import 'package:bootcamp91/product/project_texts.dart';
 import 'package:flutter/material.dart';
 import 'package:bootcamp91/view/add_cafe_screen.dart';
 import 'package:bootcamp91/view/my_cafe_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CreateCafeManagementScreen extends StatelessWidget {
   const CreateCafeManagementScreen({super.key});
@@ -10,7 +12,10 @@ class CreateCafeManagementScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Kafe Yönetimi'),
+        title: Text(
+          ProjectTexts().projectName,
+          style: GoogleFonts.kleeOne(),
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(

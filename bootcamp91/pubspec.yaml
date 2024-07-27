@@ -41,6 +41,7 @@ flutter:
     - assets/images/ic_cafe_managament.png
     - assets/images/ic_scaffold.png
     - assets/images/forgot_password.png
+    - assets/images/ic_add_product.png
     - assets/images/avatars/avatar1.png
     - assets/images/avatars/avatar2.png
     - assets/images/avatars/avatar3.png

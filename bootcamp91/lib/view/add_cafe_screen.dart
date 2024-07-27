@@ -2,7 +2,8 @@ import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/services/auth_service.dart'; // Auth servisi
 import 'package:bootcamp91/services/cafe_service.dart'; // Kafe servisi
 import 'package:flutter/material.dart';
-import 'package:bootcamp91/view/my_cafe_screen.dart'; // MyCafeScreen'i import ettik
+import 'package:bootcamp91/view/my_cafe_screen.dart';
+import 'package:google_fonts/google_fonts.dart'; // MyCafeScreen'i import ettik
 
 class AddCafeScreen extends StatefulWidget {
   @override
@@ -89,7 +90,10 @@ class _AddCafeScreenState extends State<AddCafeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Yeni Kafe Ekle'),
+        title: Text(
+          'Kafe Ekle',
+          style: GoogleFonts.kleeOne(),
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
