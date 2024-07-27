@@ -3,6 +3,7 @@ import 'package:bootcamp91/product/project_texts.dart';
 import 'package:bootcamp91/view/login_screen.dart';
 import 'package:bootcamp91/view/regsiter_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SecondWelcomeScreen extends StatefulWidget {
   const SecondWelcomeScreen({super.key});
@@ -15,7 +16,6 @@ class _SecondWelcomeScreenState extends State<SecondWelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ProjectColors.project_yellow,
       appBar: AppBar(
           // title: Text(ProjectTexts().projectName),
           ),
@@ -37,17 +37,17 @@ class _SecondWelcomeScreenState extends State<SecondWelcomeScreen> {
                 padding: const EdgeInsets.only(top: 16.0),
                 child: Text(
                   ProjectTexts().toGidelim,
-                  style: const TextStyle(
-                      color: ProjectColors.whiteTextColor,
+                  style: GoogleFonts.kleeOne(
+                      color: ProjectColors.default_color,
                       fontSize: 50,
                       fontWeight: FontWeight.w800),
                 ),
               ),
               Text(
                 ProjectTexts().welcome,
-                style: const TextStyle(
-                  color: ProjectColors.whiteTextColor,
-                  fontSize: 35,
+                style: GoogleFonts.kleeOne(
+                  color: ProjectColors.default_color,
+                  fontSize: 20,
                   fontWeight: FontWeight.w900,
                 ),
               ),

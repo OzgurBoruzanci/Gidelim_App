@@ -1,5 +1,6 @@
 import 'package:bootcamp91/product/project_colors.dart';
-import 'package:bootcamp91/view/add_cafe_screen.dart';
+import 'package:bootcamp91/view/contributers.dart';
+import 'package:bootcamp91/view/create_cafe_managament_screen.dart';
 import 'package:bootcamp91/view/my_cafe_screen.dart'; // MyCafeScreen'i import ettik
 import 'package:flutter/material.dart';
 import 'package:bootcamp91/services/auth_service.dart';
@@ -37,171 +38,240 @@ class CustomDrawer extends StatelessWidget {
             userName = user?.displayName ?? userData?['user_name'] ?? userName;
           }
 
-          return Column(
-            children: [
-              Container(
-                padding:
-                    const EdgeInsets.only(top: 24.0, left: 16.0, right: 16.0),
-                color: ProjectColors.project_yellow,
-                height: 80, // DrawerHeader'ın yüksekliği
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 24,
-                      backgroundImage:
-                          AssetImage(avatarAsset), // Burada nullable olmamalı
-                      backgroundColor: Colors.grey[200],
-                    ),
-                    const SizedBox(width: 16.0),
-                    Expanded(
-                      child: Text(
-                        userName,
-                        style: const TextStyle(
-                            color: ProjectColors.whiteTextColor,
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold),
+          return Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color(0xffF2B84B), ProjectColors.firstColor],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
+            child: Column(
+              children: [
+                Container(
+                  padding:
+                      const EdgeInsets.only(top: 40.0, left: 16.0, right: 16.0),
+                  height: 150,
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 36,
+                        backgroundImage: AssetImage(avatarAsset),
+                        backgroundColor: Colors.grey[200],
                       ),
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.close, color: Colors.white),
-                      onPressed: () {
-                        Navigator.of(context).pop(); // Drawer'ı kapatmak için
-                      },
-                    ),
-                  ],
+                      const SizedBox(width: 16.0),
+                      Expanded(
+                        child: Text(
+                          userName,
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.close, color: Colors.white),
+                        onPressed: () {
+                          Navigator.of(context).pop(); // Drawer'ı kapatmak için
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              ListTile(
-                leading: const Icon(Icons.person, size: 30),
-                title: const Text('Profil'),
-                onTap: () {
-                  Navigator.of(context).push(PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimation) =>
-                        const ProfileScreen(),
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      var begin = const Offset(1.0, 0.0);
-                      var end = Offset.zero;
-                      var curve = Curves.easeInOut;
-                      var tween = Tween(begin: begin, end: end)
-                          .chain(CurveTween(curve: curve));
-                      var offsetAnimation = animation.drive(tween);
+                Expanded(
+                  child: ListView(
+                    padding: EdgeInsets.zero,
+                    children: [
+                      _buildAnimatedListTile(
+                        icon: Icons.person_outline,
+                        title: 'Profil',
+                        onTap: () {
+                          Navigator.of(context).push(PageRouteBuilder(
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) =>
+                                    const ProfileScreen(),
+                            transitionsBuilder: (context, animation,
+                                secondaryAnimation, child) {
+                              var begin = const Offset(1.0, 0.0);
+                              var end = Offset.zero;
+                              var curve = Curves.easeInOut;
+                              var tween = Tween(begin: begin, end: end)
+                                  .chain(CurveTween(curve: curve));
+                              var offsetAnimation = animation.drive(tween);
 
-                      return SlideTransition(
-                        position: offsetAnimation,
-                        child: child,
-                      );
-                    },
-                  ));
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.add_business, size: 30),
-                title: const Text('Kafe Oluştur'),
-                onTap: () {
-                  Navigator.of(context).push(PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimation) =>
-                        AddCafeScreen(),
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      var begin = const Offset(1.0, 0.0);
-                      var end = Offset.zero;
-                      var curve = Curves.easeInOut;
-                      var tween = Tween(begin: begin, end: end)
-                          .chain(CurveTween(curve: curve));
-                      var offsetAnimation = animation.drive(tween);
-
-                      return SlideTransition(
-                        position: offsetAnimation,
-                        child: child,
-                      );
-                    },
-                  ));
-                },
-              ),
-              ListTile(
-                leading:
-                    const Icon(Icons.business_center, size: 30), // Yeni simge
-                title: const Text('Kafe Yöneticisi'),
-                onTap: () {
-                  Navigator.of(context).push(PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimation) =>
-                        MyCafeScreen(), // Yönetici sayfasına yönlendir
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      var begin = const Offset(1.0, 0.0);
-                      var end = Offset.zero;
-                      var curve = Curves.easeInOut;
-                      var tween = Tween(begin: begin, end: end)
-                          .chain(CurveTween(curve: curve));
-                      var offsetAnimation = animation.drive(tween);
-
-                      return SlideTransition(
-                        position: offsetAnimation,
-                        child: child,
-                      );
-                    },
-                  ));
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.map_rounded, size: 30),
-                title: const Text('Yakındaki Kafeler'),
-                onTap: () async {
-                  const url =
-                      'https://www.google.com/maps/search/?api=1&query=cafe';
-                  if (await launchUrl(Uri.parse(url))) {
-                    // Google Haritalar uygulamasını aç
-                  } else {
-                    // Google Haritalar uygulaması yüklü değilse
-                    // ignore: use_build_context_synchronously
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content:
-                            Text('Google Haritalar uygulamasını açamıyor.'),
-                        backgroundColor: Colors.red,
-                        duration: Duration(seconds: 2),
+                              return SlideTransition(
+                                position: offsetAnimation,
+                                child: child,
+                              );
+                            },
+                          ));
+                        },
                       ),
-                    );
-                  }
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.help_outline, size: 30),
-                title: const Text('SSS'),
-                onTap: () {
-                  Navigator.of(context).push(PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimation) =>
-                        const FAQScreen(),
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      var begin = const Offset(1.0, 0.0);
-                      var end = Offset.zero;
-                      var curve = Curves.easeInOut;
-                      var tween = Tween(begin: begin, end: end)
-                          .chain(CurveTween(curve: curve));
-                      var offsetAnimation = animation.drive(tween);
+                      _buildAnimatedListTile(
+                        icon: Icons.add_business_outlined,
+                        title: 'Kafe Oluştur',
+                        onTap: () {
+                          Navigator.of(context).push(PageRouteBuilder(
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) =>
+                                    CreateCafeManagementScreen(),
+                            transitionsBuilder: (context, animation,
+                                secondaryAnimation, child) {
+                              var begin = const Offset(1.0, 0.0);
+                              var end = Offset.zero;
+                              var curve = Curves.easeInOut;
+                              var tween = Tween(begin: begin, end: end)
+                                  .chain(CurveTween(curve: curve));
+                              var offsetAnimation = animation.drive(tween);
 
-                      return SlideTransition(
-                        position: offsetAnimation,
-                        child: child,
-                      );
-                    },
-                  ));
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.logout, size: 30),
-                title: const Text('Çıkış Yap'),
-                onTap: () {
-                  _authService.signOut(context);
-                  Navigator.of(context).pop(); // Drawer'ı kapatmak için
-                },
-              ),
-            ],
+                              return SlideTransition(
+                                position: offsetAnimation,
+                                child: child,
+                              );
+                            },
+                          ));
+                        },
+                      ),
+                      _buildAnimatedListTile(
+                        icon: Icons.business_center_outlined,
+                        title: 'Kafe Yönetimi',
+                        onTap: () {
+                          Navigator.of(context).push(PageRouteBuilder(
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) =>
+                                    MyCafeScreen(),
+                            transitionsBuilder: (context, animation,
+                                secondaryAnimation, child) {
+                              var begin = const Offset(1.0, 0.0);
+                              var end = Offset.zero;
+                              var curve = Curves.easeInOut;
+                              var tween = Tween(begin: begin, end: end)
+                                  .chain(CurveTween(curve: curve));
+                              var offsetAnimation = animation.drive(tween);
+
+                              return SlideTransition(
+                                position: offsetAnimation,
+                                child: child,
+                              );
+                            },
+                          ));
+                        },
+                      ),
+                      _buildAnimatedListTile(
+                        icon: Icons.map_outlined,
+                        title: 'Yakındaki Kafeler',
+                        onTap: () async {
+                          const url =
+                              'https://www.google.com/maps/search/?api=1&query=cafe';
+                          if (await launchUrl(Uri.parse(url))) {
+                            // Google Haritalar uygulamasını aç
+                          } else {
+                            // Google Haritalar uygulaması yüklü değilse
+                            // ignore: use_build_context_synchronously
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                    'Google Haritalar uygulamasını açamıyor.'),
+                                backgroundColor: Colors.red,
+                                duration: Duration(seconds: 2),
+                              ),
+                            );
+                          }
+                        },
+                      ),
+                      _buildAnimatedListTile(
+                        icon: Icons.help_outline,
+                        title: 'SSS',
+                        onTap: () {
+                          Navigator.of(context).push(PageRouteBuilder(
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) =>
+                                    const FAQScreen(),
+                            transitionsBuilder: (context, animation,
+                                secondaryAnimation, child) {
+                              var begin = const Offset(1.0, 0.0);
+                              var end = Offset.zero;
+                              var curve = Curves.easeInOut;
+                              var tween = Tween(begin: begin, end: end)
+                                  .chain(CurveTween(curve: curve));
+                              var offsetAnimation = animation.drive(tween);
+
+                              return SlideTransition(
+                                position: offsetAnimation,
+                                child: child,
+                              );
+                            },
+                          ));
+                        },
+                      ),
+                      _buildAnimatedListTile(
+                        icon: Icons.group_sharp,
+                        title: 'Emeği Geçenler',
+                        onTap: () {
+                          Navigator.of(context).push(PageRouteBuilder(
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) =>
+                                    const Contributers(),
+                            transitionsBuilder: (context, animation,
+                                secondaryAnimation, child) {
+                              var begin = const Offset(1.0, 0.0);
+                              var end = Offset.zero;
+                              var curve = Curves.easeInOut;
+                              var tween = Tween(begin: begin, end: end)
+                                  .chain(CurveTween(curve: curve));
+                              var offsetAnimation = animation.drive(tween);
+
+                              return SlideTransition(
+                                position: offsetAnimation,
+                                child: child,
+                              );
+                            },
+                          ));
+                        },
+                      ),
+                      _buildAnimatedListTile(
+                        icon: Icons.logout,
+                        title: 'Çıkış Yap',
+                        onTap: () {
+                          _authService.signOut(context);
+                          Navigator.of(context).pop(); // Drawer'ı kapatmak için
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           );
         },
       ),
+    );
+  }
+
+  Widget _buildAnimatedListTile({
+    required IconData icon,
+    required String title,
+    required VoidCallback onTap,
+  }) {
+    return ListTile(
+      leading: Icon(icon, size: 30, color: Colors.white),
+      title: Text(
+        title,
+        style: const TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+      ),
+      onTap: onTap,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+      tileColor: Colors.black.withOpacity(0.1),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
+      horizontalTitleGap: 0,
+      minVerticalPadding: 12.0,
+      trailing: const Icon(Icons.arrow_forward_ios, color: Colors.white),
     );
   }
 }

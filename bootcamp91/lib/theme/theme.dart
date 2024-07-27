@@ -10,19 +10,21 @@ ThemeData appTheme = ThemeData.light().copyWith(
   ),
   //APPBAR THEME
   appBarTheme: const AppBarTheme(
-    backgroundColor: ProjectColors.project_yellow,
-    foregroundColor: ProjectColors.project_yellow,
+    backgroundColor: ProjectColors.firstColor,
+    foregroundColor: ProjectColors.firstColor,
+    toolbarHeight: 75,
     centerTitle: true,
     titleTextStyle: TextStyle(
-      color: ProjectColors.firstColor,
+      color: ProjectColors.buttonColor,
       fontSize: 25,
+      letterSpacing: 1,
       fontWeight: FontWeight.bold,
     ),
     iconTheme: IconThemeData(
-      color: ProjectColors.firstColor,
+      color: ProjectColors.buttonColor,
     ),
     actionsIconTheme: IconThemeData(
-      color: ProjectColors.firstColor,
+      color: ProjectColors.buttonColor,
     ),
   ),
   //TEXT THEME
@@ -45,7 +47,7 @@ ThemeData appTheme = ThemeData.light().copyWith(
           // Buton devre dışı bırakıldığında gri arka plan
         }
         return ProjectColors
-            .buttonColor; // Buton etkin olduğunda sarı arka plan
+            .project_yellow; // Buton etkin olduğunda sarı arka plan
       }),
       foregroundColor:
           WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
@@ -53,7 +55,7 @@ ThemeData appTheme = ThemeData.light().copyWith(
           return Colors.red;
           // Buton devre dışı bırakıldığında kırmızı yazı rengi
         }
-        return ProjectColors.firstColor; // Buton etkin olduğunda metin rengi
+        return ProjectColors.buttonColor; // Buton etkin olduğunda metin rengi
       }),
       textStyle: WidgetStateProperty.all<TextStyle>(
         const TextStyle(

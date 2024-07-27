@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bootcamp91/services/cafe_service.dart';
 import 'package:bootcamp91/product/project_colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart'; // Tarih formatlamak için
 import 'package:flutter_rating_bar/flutter_rating_bar.dart'; // RatingBar için
 import 'package:bootcamp91/services/auth_service.dart'; // AuthService'i ekledik
@@ -157,12 +158,15 @@ class _ReviewScreenState extends State<ReviewScreen> {
     return Scaffold(
       key: _scaffoldKey, // ScaffoldKey atandı
       appBar: AppBar(
-        title: const Text('Yorumlar'), //${widget.cafe.name}
+        title: Text(
+          'Yorumlar',
+          style: GoogleFonts.kleeOne(),
+        ), //${widget.cafe.name}
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(50.0), // Alt kısım yüksekliği
           child: Container(
             padding: const EdgeInsets.all(8.0),
-            color: ProjectColors.whiteColor,
+            color: ProjectColors.firstColor,
             child: Center(
               child: Wrap(
                 alignment: WrapAlignment.center,

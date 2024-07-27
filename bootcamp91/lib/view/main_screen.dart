@@ -75,7 +75,7 @@ class _MainScreenState extends State<MainScreen> {
           },
         ),
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: ProjectColors.project_yellow,
+          backgroundColor: ProjectColors.firstColor,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.coffee, size: 30),
@@ -87,8 +87,8 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor: ProjectColors.buttonColor,
-          unselectedItemColor: Colors.white,
+          selectedItemColor: ProjectColors.project_yellow,
+          unselectedItemColor: ProjectColors.default_color,
           selectedFontSize: 14,
           unselectedFontSize: 12,
           onTap: _onItemTapped,

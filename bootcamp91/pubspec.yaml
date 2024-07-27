@@ -20,6 +20,7 @@ dependencies:
   fluttertoast: ^8.2.6
   intl: ^0.19.0
   flutter_rating_bar: ^4.0.1
+  google_fonts: ^6.2.1
 
 dev_dependencies:
   flutter_test:
@@ -37,7 +38,10 @@ flutter:
     - assets/images/ic_login_screen.png   
     - assets/images/ic_card_bg.png 
     - assets/images/ic_create_cafe.png
+    - assets/images/ic_cafe_managament.png
+    - assets/images/ic_scaffold.png
     - assets/images/forgot_password.png
+    - assets/images/ic_add_product.png
     - assets/images/avatars/avatar1.png
     - assets/images/avatars/avatar2.png
     - assets/images/avatars/avatar3.png
@@ -50,7 +54,7 @@ flutter:
     - assets/images/avatars/avatar10.png
     - assets/images/avatars/avatar11.png
     - assets/images/avatars/avatar12.png
-    - assets/images/ic_change_password.png
+    - assets/images/ic_change_password.png 
 
 flutter_icons:
   android: true

@@ -1,7 +1,10 @@
+import 'package:bootcamp91/product/custom_drawer.dart'; // Yeni eklenen import
+import 'package:bootcamp91/product/project_texts.dart';
 import 'package:bootcamp91/view/forgat_paswword_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/services/auth_service.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({Key? key}) : super(key: key);
@@ -34,8 +37,25 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Parolayı Değiştir'),
+        title: Text(
+          ProjectTexts().projectName,
+          style: GoogleFonts.kleeOne(),
+        ),
+        actions: [
+          Builder(
+            builder: (BuildContext context) => IconButton(
+              icon: Icon(
+                Icons.menu,
+                size: 30,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openEndDrawer(); // endDrawer'ı açar
+              },
+            ),
+          ),
+        ],
       ),
+      endDrawer: CustomDrawer(), // CustomDrawer eklendi
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -118,9 +138,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               const SizedBox(height: 32.0),
               ElevatedButton(
                 onPressed: _changePassword,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: ProjectColors.buttonColor,
-                ),
+                style: ElevatedButton.styleFrom(),
                 child: const Text('Parolayı Güncelle'),
               ),
               TextButton(
