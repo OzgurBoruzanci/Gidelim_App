@@ -1,3 +1,4 @@
+import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/view/add_product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -82,26 +83,71 @@ class _MyCafeScreenState extends State<MyCafeScreen> {
     }
   }
 
+  Future<void> _updateProduct(
+    String productId,
+    String category,
+    String name,
+    double price,
+    String imageUrl,
+  ) async {
+    if (_cafeDetails != null) {
+      try {
+        await _cafeService.updateProduct(
+          _cafeDetails!['id'],
+          category,
+          productId,
+          name,
+          price,
+          imageUrl,
+        );
+        _fetchProducts();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Ürün başarıyla güncellendi!')),
+        );
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Ürün güncellenirken bir hata oluştu: $e')),
+        );
+      }
+    }
+  }
+
   void _showDeleteConfirmationDialog(String productId, String category) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Ürün Sil'),
-          content: Text('Bu ürünü silmek istediğinizden emin misiniz?'),
+          title: Text(
+            'Ürün Sil',
+            style: TextStyle(
+                color: ProjectColors.red_color,
+                fontSize: 18,
+                fontWeight: FontWeight.bold),
+          ),
+          content: Text(
+            'Bu ürünü silmek istediğinizden emin misiniz?',
+            style: TextStyle(color: ProjectColors.default_color, fontSize: 18),
+          ),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Vazgeç'),
+              child: Text(
+                'Vazgeç',
+                style:
+                    TextStyle(color: ProjectColors.default_color, fontSize: 18),
+              ),
             ),
             TextButton(
               onPressed: () async {
                 Navigator.pop(context);
                 await _deleteProduct(productId, category);
               },
-              child: Text('Sil'),
+              child: Text(
+                'Sil',
+                style: TextStyle(color: ProjectColors.red_color, fontSize: 18),
+              ),
             ),
           ],
         );
@@ -121,9 +167,123 @@ class _MyCafeScreenState extends State<MyCafeScreen> {
     );
   }
 
+  void _showInfoDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'Bilgi',
+            style: TextStyle(color: ProjectColors.red_color),
+          ),
+          content: Text(
+              'Eğer ürünleriniz görünmüyor ise lütfen kafenizin onaylanmasını bekleyiniz. \n'
+              'Ürünlerinizi eklemeye devam edebilirsiniz, onaylandıktan sonra görünecektir.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text(
+                'Tamam',
+                style:
+                    TextStyle(color: ProjectColors.default_color, fontSize: 20),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showEditProductDialog(Map<String, dynamic> product) {
+    final TextEditingController nameController =
+        TextEditingController(text: product['name']);
+    final TextEditingController priceController =
+        TextEditingController(text: product['price'].toString());
+    final TextEditingController imageUrlController =
+        TextEditingController(text: product['imageUrl']);
+    final String category = product['category'];
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'Ürünü Düzenle',
+            style: TextStyle(color: ProjectColors.default_color),
+          ),
+          content: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 20,
+                ),
+                TextField(
+                  controller: nameController,
+                  decoration: InputDecoration(labelText: 'Ürün Adı'),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextField(
+                  controller: priceController,
+                  decoration: InputDecoration(labelText: 'Ürün Fiyatı'),
+                  keyboardType: TextInputType.number,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextField(
+                  controller: imageUrlController,
+                  decoration: InputDecoration(labelText: 'Ürün Resim URL\'si'),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text(
+                'Vazgeç',
+                style:
+                    TextStyle(color: ProjectColors.default_color, fontSize: 18),
+              ),
+            ),
+            TextButton(
+              onPressed: () async {
+                final String updatedName = nameController.text;
+                final double updatedPrice =
+                    double.tryParse(priceController.text) ?? 0.0;
+                final String updatedImageUrl = imageUrlController.text;
+
+                Navigator.pop(context);
+                await _updateProduct(
+                  product['id'],
+                  category, // Kategori bilgisini ekledik
+                  updatedName,
+                  updatedPrice,
+                  updatedImageUrl,
+                );
+              },
+              child: Text(
+                'Güncelle',
+                style:
+                    TextStyle(color: ProjectColors.default_color, fontSize: 18),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ProjectColors.firstColor,
       appBar: AppBar(
         title: Text('Kafem'),
       ),
@@ -136,23 +296,35 @@ class _MyCafeScreenState extends State<MyCafeScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      // Kafe adını ve logosunu göstermek için
-                      Text(
-                        _cafeDetails!['name'] ?? 'Bilinmiyor',
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              fontWeight: FontWeight.bold,
+                      Row(
+                        children: [
+                          _cafeDetails!['logoUrl'] != null
+                              ? Image.network(
+                                  _cafeDetails!['logoUrl']!,
+                                  width: 50,
+                                  height: 50,
+                                  fit: BoxFit.cover,
+                                )
+                              : Container(),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              _cafeDetails!['name'] ?? 'Bilinmiyor',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                              textAlign: TextAlign.left,
                             ),
-                        textAlign: TextAlign.center,
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.info_outline),
+                            onPressed: _showInfoDialog,
+                          ),
+                        ],
                       ),
-                      SizedBox(height: 20),
-                      _cafeDetails!['logoUrl'] != null
-                          ? Image.network(
-                              _cafeDetails!['logoUrl']!,
-                              width: 150,
-                              height: 150,
-                              fit: BoxFit.cover,
-                            )
-                          : Container(),
                       SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: _navigateToAddProductScreen,
@@ -164,25 +336,29 @@ class _MyCafeScreenState extends State<MyCafeScreen> {
                           itemCount: _products.length,
                           itemBuilder: (context, index) {
                             final product = _products[index];
-                            return Card(
-                              child: ListTile(
-                                leading: product['imageUrl'] != null
-                                    ? Image.network(
-                                        product['imageUrl']!,
-                                        width: 50,
-                                        height: 50,
-                                        fit: BoxFit.cover,
-                                      )
-                                    : null,
-                                title: Text(product['name'] ?? 'Bilinmiyor'),
-                                subtitle: Text(
-                                  '${product['price']?.toStringAsFixed(2) ?? '0.00'} TL',
-                                ),
-                                trailing: IconButton(
-                                  icon: Icon(Icons.delete),
-                                  onPressed: () =>
-                                      _showDeleteConfirmationDialog(
-                                          product['id'], product['category']),
+                            return GestureDetector(
+                              onTap: () => _showEditProductDialog(product),
+                              child: Card(
+                                color: ProjectColors.whiteColor,
+                                child: ListTile(
+                                  leading: product['imageUrl'] != null
+                                      ? Image.network(
+                                          product['imageUrl'],
+                                          width: 75,
+                                          height: 75,
+                                          fit: BoxFit.cover,
+                                        )
+                                      : Container(),
+                                  title: Text(product['name']),
+                                  subtitle: Text('\$${product['price']}'),
+                                  trailing: IconButton(
+                                    icon: Icon(Icons.delete, color: Colors.red),
+                                    onPressed: () =>
+                                        _showDeleteConfirmationDialog(
+                                      product['id'],
+                                      product['category'],
+                                    ),
+                                  ),
                                 ),
                               ),
                             );

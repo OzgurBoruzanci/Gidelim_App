@@ -266,6 +266,33 @@ class CafeService {
       rethrow;
     }
   }
+
+  // Ürünü güncelle
+  Future<void> updateProduct(
+    String cafeId,
+    String category,
+    String productId,
+    String name,
+    double price,
+    String imageUrl,
+  ) async {
+    try {
+      await _firestore
+          .collection('cafes')
+          .doc(cafeId)
+          .collection('menu')
+          .doc(category)
+          .collection('items')
+          .doc(productId)
+          .update({
+        'name': name,
+        'price': price,
+        'imageUrl': imageUrl,
+      });
+    } catch (e) {
+      throw Exception('Ürün güncellenirken hata oluştu: $e');
+    }
+  }
 }
 
 // Kafe modeli
