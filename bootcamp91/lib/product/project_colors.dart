@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ProjectColors {
-  static const firstColor = Color.fromARGB(255, 251, 248, 242);
+  static const firstColor = Color(0xffFCF5E5);
   static const textColor = Color.fromARGB(244, 40, 40, 40);
   static const whiteTextColor = Color(0xffFFffff);
   static const whiteColor = Color(0xffFFffff);

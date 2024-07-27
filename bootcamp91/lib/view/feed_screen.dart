@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/view/cafe_details_screen.dart';
 import 'package:bootcamp91/product/custom_drawer.dart';
 import 'package:bootcamp91/product/project_texts.dart';
 import 'package:bootcamp91/services/auth_service.dart';
 import 'package:bootcamp91/services/cafe_service.dart';
 import 'package:bootcamp91/product/custom_loading_widget.dart'; // CustomLoadingWidget'ı import ettik
+import 'package:bootcamp91/product/cafe_card.dart'; // CafeCard'ı import ettik
 
 class FeedScreen extends StatefulWidget {
   const FeedScreen({super.key});
@@ -63,7 +66,16 @@ class _FeedScreenState extends State<FeedScreen> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight + 70),
         child: AppBar(
-          title: Text(ProjectTexts().projectName),
+          backgroundColor: Color(0xffD2C9C0),
+          elevation: 0,
+          title: Text(
+            ProjectTexts().projectName,
+            style: GoogleFonts.kaushanScript(
+              textStyle: TextStyle(
+                color: ProjectColors.default_color,
+              ),
+            ),
+          ),
           automaticallyImplyLeading: false,
           actions: [
             IconButton(
@@ -90,7 +102,7 @@ class _FeedScreenState extends State<FeedScreen> {
                     borderSide: BorderSide.none,
                   ),
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: Color.fromARGB(118, 255, 255, 255),
                   contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
                 ),
               ),
@@ -99,47 +111,54 @@ class _FeedScreenState extends State<FeedScreen> {
         ),
       ),
       endDrawer: CustomDrawer(), // CustomDrawer kullanıldı
-      body: NotificationListener<ScrollUpdateNotification>(
-        onNotification: (notification) {
-          if (notification.metrics.pixels <= -50) {
-            // Ekranın yukarıdan çekilme miktarına göre
-            _refreshIndicatorKey.currentState?.show();
-            return true;
-          }
-          return false;
-        },
-        child: RefreshIndicator(
-          key: _refreshIndicatorKey,
-          onRefresh:
-              _refreshData, // Yenileme işlemini gerçekleştirecek fonksiyon
-          child: StreamBuilder<List<Cafe>>(
-            stream: _cafeService.getCafes(),
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return const Center(child: Text('Bir hata oluştu'));
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          // Arka plan resmi
+          Image.asset(
+            'assets/images/ic_scaffold.png',
+            fit: BoxFit.fitWidth,
+          ),
+          // Diğer içerikler
+          NotificationListener<ScrollUpdateNotification>(
+            onNotification: (notification) {
+              if (notification.metrics.pixels <= -50) {
+                // Ekranın yukarıdan çekilme miktarına göre
+                _refreshIndicatorKey.currentState?.show();
+                return true;
               }
-              if (!snapshot.hasData) {
-                return const Center(
-                  child:
-                      CustomLoadingWidget(), // CustomLoadingWidget kullanıldı
-                );
-              }
+              return false;
+            },
+            child: RefreshIndicator(
+              key: _refreshIndicatorKey,
+              onRefresh:
+                  _refreshData, // Yenileme işlemini gerçekleştirecek fonksiyon
+              child: StreamBuilder<List<Cafe>>(
+                stream: _cafeService.getCafes(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return const Center(child: Text('Bir hata oluştu'));
+                  }
+                  if (!snapshot.hasData) {
+                    return const Center(
+                      child:
+                          CustomLoadingWidget(), // CustomLoadingWidget kullanıldı
+                    );
+                  }
 
-              List<Cafe> cafes = snapshot.data!;
-              List<Cafe> filteredCafes = cafes.where((cafe) {
-                return cafe.name.toLowerCase().contains(_searchText);
-              }).toList();
+                  List<Cafe> cafes = snapshot.data!;
+                  List<Cafe> filteredCafes = cafes.where((cafe) {
+                    return cafe.name.toLowerCase().contains(_searchText);
+                  }).toList();
 
-              return ListView.builder(
-                itemCount: filteredCafes.length,
-                itemBuilder: (context, index) {
-                  Cafe cafe = filteredCafes[index];
-                  return FutureBuilder<double>(
-                    future: _cafeService.getAverageRating(cafe.id),
-                    builder: (context, ratingSnapshot) {
-                      double averageRating = ratingSnapshot.data ?? 0.0;
-
-                      return GestureDetector(
+                  return ListView.builder(
+                    itemCount: filteredCafes.length,
+                    itemBuilder: (context, index) {
+                      Cafe cafe = filteredCafes[index];
+                      return CafeCard(
+                        cafe: cafe,
+                        averageRatingFuture:
+                            _cafeService.getAverageRating(cafe.id),
                         onTap: () {
                           Navigator.push(
                             context,
@@ -168,99 +187,14 @@ class _FeedScreenState extends State<FeedScreen> {
                             ),
                           );
                         },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Card(
-                            color: Colors.white,
-                            elevation: 5,
-                            margin: const EdgeInsets.all(0.0),
-                            child: Stack(
-                              children: [
-                                Container(
-                                  height: 150,
-                                  padding: const EdgeInsets.all(16.0),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Expanded(
-                                        child: Center(
-                                          child: Image.network(
-                                            cafe.logoUrl,
-                                            loadingBuilder:
-                                                (context, child, progress) {
-                                              if (progress == null) {
-                                                return child; // Görsel tamamen yüklendi
-                                              } else {
-                                                return const Center(
-                                                  child:
-                                                      CustomLoadingWidget(), // Yükleniyor göstergesi
-                                                );
-                                              }
-                                            },
-                                            errorBuilder:
-                                                (context, error, stackTrace) {
-                                              return const Center(
-                                                child:
-                                                    Text('Görsel yüklenemedi'),
-                                              );
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 8.0),
-                                      Text(
-                                        cafe.name,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge,
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Positioned(
-                                  bottom: 10,
-                                  right: 10,
-                                  child: ratingSnapshot.connectionState ==
-                                          ConnectionState.done
-                                      ? Container(
-                                          padding: const EdgeInsets.all(8.0),
-                                          color: Colors.white.withOpacity(0.8),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              const Icon(
-                                                Icons.star,
-                                                color: Colors.amber,
-                                                size: 20,
-                                              ),
-                                              const SizedBox(width: 4),
-                                              Text(
-                                                averageRating
-                                                    .toStringAsFixed(1),
-                                                style: const TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 16,
-                                                  color: Colors.black,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      : const CustomLoadingWidget(), // Puan yüklenmiyorsa göster
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
                       );
                     },
                   );
                 },
-              );
-            },
+              ),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

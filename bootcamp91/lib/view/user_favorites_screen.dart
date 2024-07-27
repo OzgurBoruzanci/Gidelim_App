@@ -70,7 +70,7 @@ class _UserFavoritesScreenState extends State<UserFavoritesScreen> {
           ),
         ],
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(70.0),
+          preferredSize: const Size.fromHeight(76.0),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(

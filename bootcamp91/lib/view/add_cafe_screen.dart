@@ -1,3 +1,4 @@
+import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/services/auth_service.dart'; // Auth servisi
 import 'package:bootcamp91/services/cafe_service.dart'; // Kafe servisi
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class _AddCafeScreenState extends State<AddCafeScreen> {
   final CafeService _cafeService = CafeService();
 
   bool _isLoading = false;
+  bool _obscureText = true; // Parola görünürlük kontrolü
 
   Future<void> _createCafe() async {
     final name = _nameController.text;
@@ -97,10 +99,13 @@ class _AddCafeScreenState extends State<AddCafeScreen> {
             children: [
               // Üst kısımda resim
               Center(
-                child: Image.asset(
-                  'assets/images/ic_create_cafe.png',
-                  width: 300,
-                  height: 200,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: Image.asset(
+                    'assets/images/ic_create_cafe.png',
+                    width: 300,
+                    height: 200,
+                  ),
                 ),
               ),
               SizedBox(height: 50),
@@ -130,8 +135,21 @@ class _AddCafeScreenState extends State<AddCafeScreen> {
                 decoration: InputDecoration(
                   labelText: 'Parola',
                   border: OutlineInputBorder(),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscureText ? Icons.visibility : Icons.visibility_off,
+                      color: _obscureText
+                          ? ProjectColors.default_color
+                          : ProjectColors.project_yellow,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _obscureText = !_obscureText;
+                      });
+                    },
+                  ),
                 ),
-                obscureText: true,
+                obscureText: _obscureText,
               ),
               SizedBox(height: 20),
               // Buton

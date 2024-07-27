@@ -1,5 +1,5 @@
 import 'package:bootcamp91/product/project_colors.dart';
-import 'package:bootcamp91/view/add_cafe_screen.dart';
+import 'package:bootcamp91/view/create_cafe_managament_screen.dart';
 import 'package:bootcamp91/view/my_cafe_screen.dart'; // MyCafeScreen'i import ettik
 import 'package:flutter/material.dart';
 import 'package:bootcamp91/services/auth_service.dart';
@@ -101,7 +101,7 @@ class CustomDrawer extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(PageRouteBuilder(
                     pageBuilder: (context, animation, secondaryAnimation) =>
-                        AddCafeScreen(),
+                        CreateCafeManagementScreen(),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
                       var begin = const Offset(1.0, 0.0);
