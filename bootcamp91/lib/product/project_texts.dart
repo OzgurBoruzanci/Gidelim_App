@@ -6,8 +6,8 @@ class ProjectTexts {
   final String welcomeButtonText = 'Hemen Başla!';
   final String loginButton = 'Giriş Yap';
   final String registerButton = 'Kayıt Ol';
-  final String welcome = 'HOŞGELDİN';
-  final String toGidelim = 'GİDELİM\'e';
+  final String welcome = 'Merhaba de!';
+  final String toGidelim = 'Gidelim\'e';
   final String name_surname = 'Ad Soyad';
   final String email = 'E-posta';
   final String password = 'Parola';

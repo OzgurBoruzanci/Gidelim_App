@@ -2,6 +2,7 @@ import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/product/project_texts.dart';
 import 'package:bootcamp91/view/second_welcome_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -14,7 +15,7 @@ class WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffF2B84B),
+      backgroundColor: ProjectColors.firstColor,
       appBar: AppBar(
         // title: Text(ProjectTexts().projectName),
         automaticallyImplyLeading: false, // Geri butonunu gizler
@@ -33,8 +34,8 @@ class WelcomeScreenState extends State<WelcomeScreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: Text(
-                  ProjectTexts().projectNameUppercase,
-                  style: const TextStyle(
+                  ProjectTexts().projectName,
+                  style: GoogleFonts.kleeOne(
                       color: ProjectColors.whiteTextColor,
                       fontSize: 50,
                       fontWeight: FontWeight.w800),
@@ -42,7 +43,8 @@ class WelcomeScreenState extends State<WelcomeScreen> {
               ),
               Text(
                 ProjectTexts().welcomeText,
-                style: const TextStyle(
+                style: GoogleFonts.kleeOne(
+                  fontSize: 18,
                   color: ProjectColors.whiteTextColor,
                 ),
               ),
@@ -65,10 +67,10 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                           var begin = const Offset(1.0, 0.0);
                           var end = Offset.zero;
                           var curve = Curves.ease;
-        
+
                           var tween = Tween(begin: begin, end: end)
                               .chain(CurveTween(curve: curve));
-        
+
                           return SlideTransition(
                             position: animation.drive(tween),
                             child: child,

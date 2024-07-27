@@ -48,7 +48,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Padding(
-                padding: const EdgeInsets.all(64.0),
+                padding: const EdgeInsets.all(32.0),
                 child: SizedBox(
                   width: 300,
                   height: 150,

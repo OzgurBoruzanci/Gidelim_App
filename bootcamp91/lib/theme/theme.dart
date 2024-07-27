@@ -47,7 +47,7 @@ ThemeData appTheme = ThemeData.light().copyWith(
           // Buton devre dışı bırakıldığında gri arka plan
         }
         return ProjectColors
-            .buttonColor; // Buton etkin olduğunda sarı arka plan
+            .project_yellow; // Buton etkin olduğunda sarı arka plan
       }),
       foregroundColor:
           WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
@@ -55,7 +55,7 @@ ThemeData appTheme = ThemeData.light().copyWith(
           return Colors.red;
           // Buton devre dışı bırakıldığında kırmızı yazı rengi
         }
-        return ProjectColors.firstColor; // Buton etkin olduğunda metin rengi
+        return ProjectColors.buttonColor; // Buton etkin olduğunda metin rengi
       }),
       textStyle: WidgetStateProperty.all<TextStyle>(
         const TextStyle(
