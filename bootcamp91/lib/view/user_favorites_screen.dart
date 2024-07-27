@@ -57,12 +57,14 @@ class _UserFavoritesScreenState extends State<UserFavoritesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final firstColor = Color(0xffD2C9C0); // firstColor değerini buraya ekleyin
+
     return Scaffold(
       key: _scaffoldKey,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight + 70),
         child: AppBar(
-          backgroundColor: Color(0xffD2C9C0),
+          backgroundColor: firstColor, // AppBar arka plan rengini ayarladık
           elevation: 0,
           title: Text(
             'Favori Kafelerim',
@@ -111,10 +113,9 @@ class _UserFavoritesScreenState extends State<UserFavoritesScreen> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          // Arka plan resmi
-          Image.asset(
-            'assets/images/ic_scaffold.png',
-            fit: BoxFit.fitWidth,
+          // Arka plan rengini ayarlama
+          Container(
+            color: firstColor, // Arka plan rengini firstColor olarak ayarladık
           ),
           // Diğer içerikler
           NotificationListener<ScrollUpdateNotification>(

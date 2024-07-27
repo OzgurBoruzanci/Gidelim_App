@@ -1,10 +1,13 @@
 import 'package:bootcamp91/product/custom_drawer.dart';
+import 'package:bootcamp91/product/project_texts.dart';
 import 'package:bootcamp91/view/categoru_items_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/services/cafe_service.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import 'package:bootcamp91/product/custom_loading_widget.dart';
 import 'package:bootcamp91/view/review_screen.dart'; // Yorum ekranı için gerekli import
 
@@ -100,7 +103,11 @@ class _CafeDetailScreenState extends State<CafeDetailScreen>
     return Scaffold(
       key: _scaffoldKey, // ScaffoldKey atandı
       appBar: AppBar(
-        title: Text(widget.cafe.name),
+        title: Text(
+          ProjectTexts().projectName,
+          style: GoogleFonts.kleeOne(),
+        ),
+        // title: Text(widget.cafe.name),
         actions: [
           IconButton(
             icon: const Icon(
@@ -126,7 +133,7 @@ class _CafeDetailScreenState extends State<CafeDetailScreen>
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.network(
                       widget.cafe.logoUrl,
-                      height: 100.0,
+                      height: 50.0,
                       fit: BoxFit.cover,
                       loadingBuilder: (BuildContext context, Widget child,
                           ImageChunkEvent? loadingProgress) {
@@ -141,53 +148,8 @@ class _CafeDetailScreenState extends State<CafeDetailScreen>
                     ),
                   ),
                 ),
-                const SizedBox(height: 8.0),
-                ElevatedButton(
-                  onPressed: _openGoogleMaps,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: ProjectColors.buttonColor,
-                    foregroundColor: ProjectColors.whiteTextColor,
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  ),
-                  child: Text('En Yakın ${widget.cafe.name}'),
-                ),
-                const SizedBox(height: 8.0),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      PageRouteBuilder(
-                        pageBuilder: (context, animation, secondaryAnimation) {
-                          // Sayfa geçişi animasyonu
-                          const begin = Offset(1.0, 0.0); // Sağdan sola kayma
-                          const end = Offset.zero; // Son konum
-                          const curve = Curves.easeInOut; // Animasyonun eğrisi
-
-                          var tween = Tween(begin: begin, end: end);
-                          var offsetAnimation = animation
-                              .drive(tween.chain(CurveTween(curve: curve)));
-
-                          return SlideTransition(
-                            position: offsetAnimation,
-                            child: ReviewScreen(cafe: widget.cafe),
-                          );
-                        },
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: ProjectColors.buttonColor,
-                    foregroundColor: ProjectColors.whiteTextColor,
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  ),
-                  child: const Text('Yorumlar'),
-                ),
+                const SizedBox(height: 2.0),
+                // Removed previous icon buttons from here
               ],
             ),
           ),
@@ -238,43 +200,48 @@ class _CafeDetailScreenState extends State<CafeDetailScreen>
                         );
                       },
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 16.0),
-                        child: Card(
-                          elevation: 5,
-                          color: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          child: SizedBox(
-                            height: 135,
-                            child: Stack(
-                              children: [
-                                Positioned.fill(
-                                  child: Image.asset(
-                                    'assets/images/ic_card_bg.png',
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
-                                Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(16.0),
-                                    child: Text(
-                                      _getCategoryName(category),
-                                      style: const TextStyle(
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.bold,
-                                        color: ProjectColors.project_gray,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ),
-                              ],
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 4.0, horizontal: 16.0),
+                          child: Card(
+                            elevation: 0, // Daha belirgin gölge
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  8.0), // Daha yuvarlak köşeler
                             ),
-                          ),
-                        ),
-                      ),
+                            child: Container(
+                              height: 120,
+                              decoration: BoxDecoration(
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    Color.fromARGB(201, 210, 201, 192),
+                                    ProjectColors.whiteColor // Başlangıç rengi
+                                    // Bitiş rengi
+                                  ],
+                                  begin: Alignment
+                                      .topCenter, // Gradyanın başlangıç noktası (üstten)
+                                  end: Alignment
+                                      .bottomCenter, // Gradyanın bitiş noktası (alttan)
+                                ),
+                                borderRadius: BorderRadius.circular(
+                                    8.0), // Köşeleri yuvarlatıyoruz
+                              ),
+                              child: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Text(
+                                    _getCategoryName(category),
+                                    style: const TextStyle(
+                                      fontSize: 22.0, // Daha büyük yazı tipi
+                                      fontWeight: FontWeight.bold,
+                                      color: ProjectColors
+                                          .buttonColor, // Yazı rengini beyaz yapıyoruz
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )),
                     );
                   },
                 );
@@ -296,10 +263,11 @@ class _CafeDetailScreenState extends State<CafeDetailScreen>
               onPressed: _toggleFavorite,
               tooltip: _isFavorite ? 'Favorilerden çıkar' : 'Favorilere ekle',
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50), // Yuvarlak kenarlar
+                borderRadius:
+                    BorderRadius.circular(30), // Daha yumuşak yuvarlak köşeler
               ),
               child: Icon(
-                size: 35,
+                size: 30, // İkon boyutunu küçültüyoruz
                 _isFavorite ? Icons.favorite : Icons.favorite_border,
                 color: ProjectColors.whiteColor,
               ),
@@ -307,34 +275,122 @@ class _CafeDetailScreenState extends State<CafeDetailScreen>
           );
         },
       ),
-      bottomNavigationBar: const BottomAppBar(
-        height: 40,
+      bottomNavigationBar: BottomAppBar(
+        height: 75, // Daha kompakt bir yükseklik
         color: ProjectColors.project_yellow,
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment:
+                    MainAxisAlignment.center, // Ortalamayı güncelledik
+                children: [
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(0, 38, 38,
+                          38), // Buton üzerindeki metin ve ikon rengi
+                      padding: EdgeInsets.zero, // İç boşlukları kaldırıyoruz
+                    ),
+                    onPressed: _openGoogleMaps,
+                    child: const Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.map,
+                          size: 20, // İkon boyutu
+                          color: ProjectColors.buttonColor,
+                        ),
+                        SizedBox(height: 4), // İkon ve metin arasında boşluk
+                        Text(
+                          'Haritada Göster',
+                          style: TextStyle(
+                            color: ProjectColors.buttonColor,
+                            fontSize: 12, // Küçük metin boyutu
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment:
+                    MainAxisAlignment.center, // Ortalamayı güncelledik
+                children: [
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(0, 38, 38,
+                          38), // Buton üzerindeki metin ve ikon rengi
+                      padding: EdgeInsets.zero, // İç boşlukları kaldırıyoruz
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                          pageBuilder:
+                              (context, animation, secondaryAnimation) {
+                            const begin = Offset(1.0, 0.0); // Sağdan sola kayma
+                            const end = Offset.zero; // Son konum
+                            const curve =
+                                Curves.easeInOut; // Animasyonun eğrisi
+
+                            var tween = Tween(begin: begin, end: end);
+                            var offsetAnimation = animation
+                                .drive(tween.chain(CurveTween(curve: curve)));
+
+                            return SlideTransition(
+                              position: offsetAnimation,
+                              child: ReviewScreen(cafe: widget.cafe),
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    child: const Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.reviews_rounded,
+                          size: 20, // İkon boyutu
+                          color: ProjectColors.buttonColor,
+                        ),
+                        SizedBox(height: 4), // İkon ve metin arasında boşluk
+                        Text(
+                          'Yorumlar',
+                          style: TextStyle(
+                            color: ProjectColors.buttonColor,
+                            fontSize: 12, // Küçük metin boyutu
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   String _getCategoryName(String category) {
     switch (category) {
-      case 'hot_drinks':
-        return 'SICAK İÇECEKLER';
       case 'cold_drinks':
-        return 'SOĞUK İÇECEKLER';
+        return 'Soğuk İçecekler';
+      case 'hot_drinks':
+        return 'Sıcak İçecekler';
       case 'desserts':
-        return 'TATLILAR';
-      case 'foods':
-        return 'YİYECEKLER';
-      case 'coffees':
-        return 'KAHVELER';
-      case 'cakes':
-        return 'PASTALAR';
-      case 'cookies':
-        return 'KURABİYELER';
-      case 'teas':
-        return 'ÇAYLAR';
+        return 'Tatlılar';
       default:
-        return 'Kategori';
+        return 'Diğer';
     }
   }
 }

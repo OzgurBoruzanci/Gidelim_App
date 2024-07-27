@@ -111,90 +111,88 @@ class _FeedScreenState extends State<FeedScreen> {
         ),
       ),
       endDrawer: CustomDrawer(), // CustomDrawer kullanıldı
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          // Arka plan resmi
-          Image.asset(
-            'assets/images/ic_scaffold.png',
-            fit: BoxFit.fitWidth,
-          ),
-          // Diğer içerikler
-          NotificationListener<ScrollUpdateNotification>(
-            onNotification: (notification) {
-              if (notification.metrics.pixels <= -50) {
-                // Ekranın yukarıdan çekilme miktarına göre
-                _refreshIndicatorKey.currentState?.show();
-                return true;
-              }
-              return false;
-            },
-            child: RefreshIndicator(
-              key: _refreshIndicatorKey,
-              onRefresh:
-                  _refreshData, // Yenileme işlemini gerçekleştirecek fonksiyon
-              child: StreamBuilder<List<Cafe>>(
-                stream: _cafeService.getCafes(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasError) {
-                    return const Center(child: Text('Bir hata oluştu'));
-                  }
-                  if (!snapshot.hasData) {
-                    return const Center(
-                      child:
-                          CustomLoadingWidget(), // CustomLoadingWidget kullanıldı
-                    );
-                  }
-
-                  List<Cafe> cafes = snapshot.data!;
-                  List<Cafe> filteredCafes = cafes.where((cafe) {
-                    return cafe.name.toLowerCase().contains(_searchText);
-                  }).toList();
-
-                  return ListView.builder(
-                    itemCount: filteredCafes.length,
-                    itemBuilder: (context, index) {
-                      Cafe cafe = filteredCafes[index];
-                      return CafeCard(
-                        cafe: cafe,
-                        averageRatingFuture:
-                            _cafeService.getAverageRating(cafe.id),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            PageRouteBuilder(
-                              pageBuilder:
-                                  (context, animation, secondaryAnimation) =>
-                                      CafeDetailScreen(
-                                          cafe: cafe,
-                                          userUid: _authService.currentUserUid
-                                              .toString()),
-                              transitionsBuilder: (context, animation,
-                                  secondaryAnimation, child) {
-                                const begin = Offset(1.0, 0.0);
-                                const end = Offset.zero;
-                                const curve = Curves.ease;
-
-                                var tween = Tween(begin: begin, end: end)
-                                    .chain(CurveTween(curve: curve));
-                                var offsetAnimation = animation.drive(tween);
-
-                                return SlideTransition(
-                                  position: offsetAnimation,
-                                  child: child,
-                                );
-                              },
-                            ),
-                          );
-                        },
+      body: Container(
+        color: ProjectColors.firstColor, // Arka plan rengi burada ayarlandı
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            // Diğer içerikler
+            NotificationListener<ScrollUpdateNotification>(
+              onNotification: (notification) {
+                if (notification.metrics.pixels <= -50) {
+                  // Ekranın yukarıdan çekilme miktarına göre
+                  _refreshIndicatorKey.currentState?.show();
+                  return true;
+                }
+                return false;
+              },
+              child: RefreshIndicator(
+                key: _refreshIndicatorKey,
+                onRefresh:
+                    _refreshData, // Yenileme işlemini gerçekleştirecek fonksiyon
+                child: StreamBuilder<List<Cafe>>(
+                  stream: _cafeService.getCafes(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return const Center(child: Text('Bir hata oluştu'));
+                    }
+                    if (!snapshot.hasData) {
+                      return const Center(
+                        child:
+                            CustomLoadingWidget(), // CustomLoadingWidget kullanıldı
                       );
-                    },
-                  );
-                },
+                    }
+
+                    List<Cafe> cafes = snapshot.data!;
+                    List<Cafe> filteredCafes = cafes.where((cafe) {
+                      return cafe.name.toLowerCase().contains(_searchText);
+                    }).toList();
+
+                    return ListView.builder(
+                      itemCount: filteredCafes.length,
+                      itemBuilder: (context, index) {
+                        Cafe cafe = filteredCafes[index];
+                        return CafeCard(
+                          cafe: cafe,
+                          averageRatingFuture:
+                              _cafeService.getAverageRating(cafe.id),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                pageBuilder:
+                                    (context, animation, secondaryAnimation) =>
+                                        CafeDetailScreen(
+                                            cafe: cafe,
+                                            userUid: _authService.currentUserUid
+                                                .toString()),
+                                transitionsBuilder: (context, animation,
+                                    secondaryAnimation, child) {
+                                  const begin = Offset(1.0, 0.0);
+                                  const end = Offset.zero;
+                                  const curve = Curves.ease;
+
+                                  var tween = Tween(begin: begin, end: end)
+                                      .chain(CurveTween(curve: curve));
+                                  var offsetAnimation = animation.drive(tween);
+
+                                  return SlideTransition(
+                                    position: offsetAnimation,
+                                    child: child,
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    );
+                  },
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
