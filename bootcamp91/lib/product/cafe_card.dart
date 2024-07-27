@@ -21,7 +21,7 @@ class CafeCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
         child: Card(
-          color: Color.fromARGB(78, 255, 255, 255),
+          color: Color.fromARGB(27, 0, 0, 0),
           elevation: 0, // Gölgesiz
           margin: const EdgeInsets.all(0.0),
           shape: RoundedRectangleBorder(

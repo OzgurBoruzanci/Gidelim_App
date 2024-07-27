@@ -1,3 +1,4 @@
+import 'package:bootcamp91/product/custom_drawer.dart'; // Yeni eklenen import
 import 'package:bootcamp91/product/project_texts.dart';
 import 'package:bootcamp91/view/forgat_paswword_screen.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,21 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           ProjectTexts().projectName,
           style: GoogleFonts.kleeOne(),
         ),
+        actions: [
+          Builder(
+            builder: (BuildContext context) => IconButton(
+              icon: Icon(
+                Icons.menu,
+                size: 30,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openEndDrawer(); // endDrawer'ı açar
+              },
+            ),
+          ),
+        ],
       ),
+      endDrawer: CustomDrawer(), // CustomDrawer eklendi
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

@@ -203,7 +203,7 @@ class _CafeDetailScreenState extends State<CafeDetailScreen>
                           padding: const EdgeInsets.symmetric(
                               vertical: 4.0, horizontal: 16.0),
                           child: Card(
-                            color: Color.fromARGB(96, 255, 255, 255),
+                            color: Color.fromARGB(27, 0, 0, 0),
                             elevation: 0, // Daha belirgin gölge
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(

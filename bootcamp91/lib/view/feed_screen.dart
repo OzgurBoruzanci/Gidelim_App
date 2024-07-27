@@ -66,7 +66,6 @@ class _FeedScreenState extends State<FeedScreen> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight + 70),
         child: AppBar(
-          backgroundColor: Color(0xffD2C9C0),
           elevation: 0,
           title: Text(
             ProjectTexts().projectName,

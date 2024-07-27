@@ -1,3 +1,4 @@
+import 'package:bootcamp91/product/custom_drawer.dart';
 import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/product/project_texts.dart';
 import 'package:flutter/material.dart';
@@ -10,12 +11,23 @@ class CreateCafeManagementScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text(
           ProjectTexts().projectName,
           style: GoogleFonts.kleeOne(),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.menu),
+            onPressed: () {
+              _scaffoldKey.currentState?.openEndDrawer();
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -26,39 +38,37 @@ class CreateCafeManagementScreen extends StatelessWidget {
               // Görsel
               Image.asset(
                 'assets/images/ic_cafe_managament.png',
-                height:
-                    300, // Görsel yüksekliği ihtiyacınıza göre ayarlanabilir
-                width: 200, // Görsel genişliği ihtiyacınıza göre ayarlanabilir
+                height: 300,
+                width: 200,
               ),
-              const SizedBox(height: 20.0), // Görsel ile yazı arasında boşluk
+              const SizedBox(height: 20.0),
               // Kafe oluşturma talimatı
               const Text(
                 'Kafenizi Gidelim\'de paylaşın.',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 8.0), // Yazı ile buton arasında boşluk
+              const SizedBox(height: 8.0),
               // Kafe oluştur butonu
               ElevatedButton(
                 onPressed: () {
                   _showCafeCreationDialog(context);
                 },
                 style: ElevatedButton.styleFrom(
-                  // Buton rengi
                   padding: const EdgeInsets.symmetric(
                       vertical: 16.0, horizontal: 32.0),
                   textStyle: const TextStyle(fontSize: 18),
                 ),
                 child: const Text('Kafe Oluştur'),
               ),
-              const SizedBox(height: 40.0), // Butonlar arasında boşluk
+              const SizedBox(height: 40.0),
               // Zaten bir kafeniz var mı yazısı
               const Text(
                 'Zaten bir kafeniz var mı?',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 8.0), // Yazı ile buton arasında boşluk
+              const SizedBox(height: 8.0),
               // Kafe yönetimi butonu
               ElevatedButton(
                 onPressed: () {
@@ -67,7 +77,6 @@ class CreateCafeManagementScreen extends StatelessWidget {
                   ));
                 },
                 style: ElevatedButton.styleFrom(
-                  // Buton rengi
                   padding: const EdgeInsets.symmetric(
                       vertical: 16.0, horizontal: 32.0),
                   textStyle: const TextStyle(fontSize: 18),
@@ -78,6 +87,7 @@ class CreateCafeManagementScreen extends StatelessWidget {
           ),
         ),
       ),
+      endDrawer: CustomDrawer(), // Attach the CustomDrawer to the endDrawer
     );
   }
 

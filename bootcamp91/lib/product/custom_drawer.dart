@@ -1,4 +1,5 @@
 import 'package:bootcamp91/product/project_colors.dart';
+import 'package:bootcamp91/view/contributers.dart';
 import 'package:bootcamp91/view/create_cafe_managament_screen.dart';
 import 'package:bootcamp91/view/my_cafe_screen.dart'; // MyCafeScreen'i import ettik
 import 'package:flutter/material.dart';
@@ -133,7 +134,7 @@ class CustomDrawer extends StatelessWidget {
                       ),
                       _buildAnimatedListTile(
                         icon: Icons.business_center_outlined,
-                        title: 'Kafe Yöneticisi',
+                        title: 'Kafe Yönetimi',
                         onTap: () {
                           Navigator.of(context).push(PageRouteBuilder(
                             pageBuilder:
@@ -186,6 +187,31 @@ class CustomDrawer extends StatelessWidget {
                             pageBuilder:
                                 (context, animation, secondaryAnimation) =>
                                     const FAQScreen(),
+                            transitionsBuilder: (context, animation,
+                                secondaryAnimation, child) {
+                              var begin = const Offset(1.0, 0.0);
+                              var end = Offset.zero;
+                              var curve = Curves.easeInOut;
+                              var tween = Tween(begin: begin, end: end)
+                                  .chain(CurveTween(curve: curve));
+                              var offsetAnimation = animation.drive(tween);
+
+                              return SlideTransition(
+                                position: offsetAnimation,
+                                child: child,
+                              );
+                            },
+                          ));
+                        },
+                      ),
+                      _buildAnimatedListTile(
+                        icon: Icons.group_sharp,
+                        title: 'Emeği Geçenler',
+                        onTap: () {
+                          Navigator.of(context).push(PageRouteBuilder(
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) =>
+                                    const Contributers(),
                             transitionsBuilder: (context, animation,
                                 secondaryAnimation, child) {
                               var begin = const Offset(1.0, 0.0);

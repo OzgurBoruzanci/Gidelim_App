@@ -1,3 +1,4 @@
+import 'package:bootcamp91/product/project_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:bootcamp91/services/cafe_service.dart';
@@ -57,14 +58,14 @@ class _UserFavoritesScreenState extends State<UserFavoritesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final firstColor = Color(0xffD2C9C0); // firstColor değerini buraya ekleyin
+    final firstColor =
+        ProjectColors.firstColor; // firstColor değerini buraya ekleyin
 
     return Scaffold(
       key: _scaffoldKey,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight + 70),
         child: AppBar(
-          backgroundColor: firstColor, // AppBar arka plan rengini ayarladık
           elevation: 0,
           title: Text(
             'Favori Kafelerim',

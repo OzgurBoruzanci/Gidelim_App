@@ -15,7 +15,6 @@ class WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ProjectColors.firstColor,
       appBar: AppBar(
         // title: Text(ProjectTexts().projectName),
         automaticallyImplyLeading: false, // Geri butonunu gizler
@@ -29,14 +28,17 @@ class WelcomeScreenState extends State<WelcomeScreen> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 128.0),
-                child: Image.asset("assets/images/ic_welcome_image.png"),
+                child: Image.asset(
+                  "assets/images/ic_welcome_image.png",
+                  width: 100,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: Text(
                   ProjectTexts().projectName,
                   style: GoogleFonts.kleeOne(
-                      color: ProjectColors.whiteTextColor,
+                      color: ProjectColors.default_color,
                       fontSize: 50,
                       fontWeight: FontWeight.w800),
                 ),
@@ -45,7 +47,7 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                 ProjectTexts().welcomeText,
                 style: GoogleFonts.kleeOne(
                   fontSize: 18,
-                  color: ProjectColors.whiteTextColor,
+                  color: ProjectColors.default_color,
                 ),
               ),
               // Text(

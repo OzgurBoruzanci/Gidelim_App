@@ -3,6 +3,7 @@ import 'package:bootcamp91/services/auth_service.dart'; // Auth servisi
 import 'package:bootcamp91/services/cafe_service.dart'; // Kafe servisi
 import 'package:flutter/material.dart';
 import 'package:bootcamp91/view/my_cafe_screen.dart';
+import 'package:bootcamp91/product/custom_drawer.dart'; // CustomDrawer importu
 import 'package:google_fonts/google_fonts.dart'; // MyCafeScreen'i import ettik
 
 class AddCafeScreen extends StatefulWidget {
@@ -94,7 +95,21 @@ class _AddCafeScreenState extends State<AddCafeScreen> {
           'Kafe Ekle',
           style: GoogleFonts.kleeOne(),
         ),
+        actions: [
+          Builder(
+            builder: (BuildContext context) => IconButton(
+              icon: Icon(
+                Icons.menu,
+                size: 30,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openEndDrawer(); // endDrawer'ı açar
+              },
+            ),
+          ),
+        ],
       ),
+      endDrawer: CustomDrawer(), // CustomDrawer eklendi
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(16.0),

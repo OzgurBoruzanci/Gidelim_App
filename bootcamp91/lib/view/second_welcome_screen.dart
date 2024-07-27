@@ -16,7 +16,6 @@ class _SecondWelcomeScreenState extends State<SecondWelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ProjectColors.firstColor,
       appBar: AppBar(
           // title: Text(ProjectTexts().projectName),
           ),
@@ -39,7 +38,7 @@ class _SecondWelcomeScreenState extends State<SecondWelcomeScreen> {
                 child: Text(
                   ProjectTexts().toGidelim,
                   style: GoogleFonts.kleeOne(
-                      color: ProjectColors.whiteTextColor,
+                      color: ProjectColors.default_color,
                       fontSize: 50,
                       fontWeight: FontWeight.w800),
                 ),
@@ -47,7 +46,7 @@ class _SecondWelcomeScreenState extends State<SecondWelcomeScreen> {
               Text(
                 ProjectTexts().welcome,
                 style: GoogleFonts.kleeOne(
-                  color: ProjectColors.whiteTextColor,
+                  color: ProjectColors.default_color,
                   fontSize: 20,
                   fontWeight: FontWeight.w900,
                 ),
