@@ -19,7 +19,7 @@ class CafeCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
         child: Card(
           color: Color.fromARGB(78, 255, 255, 255),
           elevation: 0, // Gölgesiz

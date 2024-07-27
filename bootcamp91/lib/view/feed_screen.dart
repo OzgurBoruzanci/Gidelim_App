@@ -70,7 +70,7 @@ class _FeedScreenState extends State<FeedScreen> {
           elevation: 0,
           title: Text(
             ProjectTexts().projectName,
-            style: GoogleFonts.kaushanScript(
+            style: GoogleFonts.kleeOne(
               textStyle: TextStyle(
                 color: ProjectColors.default_color,
               ),
