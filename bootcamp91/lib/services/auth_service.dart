@@ -255,4 +255,21 @@ class AuthService {
       _showSnackBar(context, 'Bilinmeyen bir hata oluştu: $e', Colors.red);
     }
   }
+
+  Future<bool> verifyPassword(String password) async {
+    User? user = _firebaseAuth.currentUser;
+    if (user == null) return false;
+
+    try {
+      // Parolayı doğrulamak için geçici olarak bir kullanıcı oluşturuyoruz
+      AuthCredential credential = EmailAuthProvider.credential(
+        email: user.email!,
+        password: password,
+      );
+      await user.reauthenticateWithCredential(credential);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
 }
