@@ -8,7 +8,7 @@
 <hr>
 
 
-# Takım İsmi: Flutter Takım 91
+# Takım: Flutter 91
 
 ### Takım Üyeleri
 
