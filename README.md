@@ -7,10 +7,13 @@
 <hr>
 
 
-# Takım: Flutter 91
 
-### Takım Üyeleri
 
+
+<details> 
+ <summary> <h1> Takım Bilgileri </h1></summary>
+ <h2>Takım: Flutter 91</h2>
+  <hr>
   <table>
     <tr>
       <th>Name</th>
@@ -54,39 +57,53 @@
   </tr>
   </table>
 
-![roller](https://github.com/user-attachments/assets/ffb796e5-cd34-48e3-8743-b548e36ea3d1)
-
+![roller](https://github.com/user-attachments/assets/53b877f0-7732-4bd5-866f-5e142d76bf03)
+</details>
 
   <hr>
 
   <details>
-  <summary> <h1> Ürün İle İlgili Bilgiler </h1></summary>
+  <summary> <h1> Ürün Bilgileri </h1></summary>
     
   ## Ürün İsmi: GİDELİM
   ### Ürün Açıklaması
-  GİDELİM app sayesinde gitmeyi planladığınız kafelerin menülerine  önceden erişim sağlayarak kendinize en uygun tercihi başarıyla gerçekleştirebilirsiniz aynı zamanda bulunduğunuz konumun yakınındaki kafeleri harita üzerinde listeleyerek size yeni deneyimler sunar. Yapay zeka asistanı kullanan gidelim app sizin daha önceki ziyaretlerinizi göz önünde bulundurarak öneriler yapar bu sayede nereye gidelim sorusu da ortadan kalkar. Uygulama içindeki ‘gidelim social’ size arkadaşlarınızla ya da ortak zevklerinizin olduğu insalarla bağlantı kurmanızı, fotoğraf ve video paylaşarak kafe yorumlama ve öneride bulunma imkanı sunar.
+  Bir kafe sahibiyseniz fakat işler çok da iyi gitmiyorsa endişelenmeyin, "Gidelim" uygulamasında kolayca kafenizi, menülerinizi ve birbirinden lezzetli ürünlerinizi çok daha geniş kitleler ile 
+  paylaşabilirsiniz. <br> Sizin için bir kafe oluştururken hesabınızı doğrulamanız ve ürünlerinizi özenle eklmeniz için çok rahat bir arayüz tasarladık. <br><br>
+  Eğer sadece güzel bir mekanda arkadaşlarınızla vakit geçirmek istiyorsanız "Gidelim" uygulaması sayesinde gitmeyi planladığınız kafelerin menülerine ve fiyatlarına önceden erişim sağlayarak size en uygun 
+  kafeyi seçebilirsiniz. Aynı zamanda bulunduğunuz konumun yakınındaki kafeleri harita üzerinde görerek yeni kafeler keşfedebilirsiniz. <br> <br>
+  Arkadaşlarınızla bir kafeye gitmeden önce menü ve fiyatları görmek ya da en sevdiğiniz kafenin, bulunduğunuz konuma en yakın şubesini hızlıca görebilmeniz "Gidelim" ile mümkün! <br><br>
+  Kafelere yorum yapıp puan verebilir ya da en yüksek puanlı kafelere gönül rahatlığıyla gidebilirsiniz. En sevdiğiniz kafeleri favorilerinize ekleyerek uygulama üzerinden rahatça erişebilirsiniz. <br><br>
+  Gidelim ile müşteriler rahat, kafe sahipleri mutlu! Öyleyse hadi, Gidelim!..
+
+  <hr>
 
   ### Ürün Özellikleri
-- Zengin Menü seçeneği
+- Kafe sahiplerinin daha fazla kitleye ulaşmasını sağlamak.
+- Kullanıcıların kafelerin menü ve fiyatlarına tek bir uygulama üzerinden ulaşabilmesini sağlamak.
+- Bir çok uygulama ve karekod ile yapılan işlemleri tek bir uygulamadan yapmak.
+- Zengin menü seçeneğine rahatça ulaşabilmek.
+- Kafelere geri bildirim vererek puanlandırmak.
 - Kullanıcının bulunduğu konuma en yakın kafe önerisi sunması
-- Yapay zeka asistanı desteğiyle kullanıcı tercihlerine göre öneri sunması
-- gidelim social sayesinde daha fazla insanla deneyim ve öneri paylaşma fırsatı
-
-  ### Ürün Hedef Kitlesi
-- Gidecekleri mekanla ilgili ön bilgi sahibi olmak isteyenler
-- Yeni lezzetler ve mekanlar keşfetmek isteyenler
-- Gidecekleri mekan konusunda kararsız olanlar
-- Deneyimlerini paylaşmak isteyenler
-
-</details>
+- Sevdiğiniz kafenin size en yakın şubesini harita üzerinde görebilmek.
+- Konumunuza en yakın kafeleri keşfetmek.
 
 <hr>
 
+  ### Ürün Hedef Kitlesi
+- Kafe işletmesinin daha fazla iş müşteri çekmesini isteyen kafe sahipleri.
+- Büyük kafe firmalarının yanında kendi kafesini de öne çıkarmak isteyen kafe işletmeleri.
+- Ürünlerini kullanıcılara göstermek isteyen kafeler.
+- Gidecekleri mekanın menü ve fiyatları ile ilgili ön bilgi sahibi olmak isteyenler.
+- Sevdikleriyle kafede vakit geçirmeyi sevenler.
+- Yeni lezzetler ve mekanlar keşfetmek isteyenler.
+- Gidecekleri mekan konusunda kararsız olanlar.
+  
+</details>
+<hr>
 <details>
 <summary><h1>Sprint 1</h1></summary>
   
- # Sprint içinde tamamlanması hedeflenen puan
- ## 100 puan
+ # Sprint içinde tamamlanması hedeflenen puan: 100
 
  ### Puan tamamlama mantığı
 Toplamda proje boyunca tamamlanması gereken 350 puanlık backlog bulunmaktadır. İlk sprint 100, ikinci sprint 150 ve son sprintte 100 puanı hedeflemekteyiz.
