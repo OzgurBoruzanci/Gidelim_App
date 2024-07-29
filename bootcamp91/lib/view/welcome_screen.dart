@@ -1,8 +1,8 @@
+import 'package:bootcamp91/product/custom_widgets.dart';
 import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/product/project_texts.dart';
 import 'package:bootcamp91/view/second_welcome_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -12,82 +12,51 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class WelcomeScreenState extends State<WelcomeScreen> {
+  // ignore: non_constant_identifier_names
+  final String pageImage = 'assets/images/ic_welcome_image.png';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // title: Text(ProjectTexts().projectName),
         automaticallyImplyLeading: false, // Geri butonunu gizler
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 8, left: 32, right: 32),
+        child: PaddingContainer(
           child: Column(
-            // crossAxisAlignment: CrossAxisAlignment.stretch,
-            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 128.0),
-                child: Image.asset(
-                  "assets/images/ic_welcome_image.png",
-                  width: 100,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 16.0),
-                child: Text(
-                  ProjectTexts().projectName,
-                  style: GoogleFonts.kleeOne(
-                      color: ProjectColors.default_color,
-                      fontSize: 50,
-                      fontWeight: FontWeight.w800),
-                ),
-              ),
-              Text(
-                ProjectTexts().welcomeText,
-                style: GoogleFonts.kleeOne(
-                  fontSize: 18,
-                  color: ProjectColors.default_color,
-                ),
-              ),
-              // Text(
-              //   textAlign: TextAlign.center,
-              //   ProjectTexts().welcomeText,
-              //   style: Theme.of(context).textTheme.bodyLarge,
-              // ),
-              Padding(
-                padding: const EdgeInsets.only(top: 180.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      PageRouteBuilder(
-                        pageBuilder: (context, animation, secondaryAnimation) =>
-                            const SecondWelcomeScreen(),
-                        transitionsBuilder:
-                            (context, animation, secondaryAnimation, child) {
-                          var begin = const Offset(1.0, 0.0);
-                          var end = Offset.zero;
-                          var curve = Curves.ease;
-
-                          var tween = Tween(begin: begin, end: end)
-                              .chain(CurveTween(curve: curve));
-
-                          return SlideTransition(
-                            position: animation.drive(tween),
-                            child: child,
-                          );
-                        },
-                      ),
-                    ); //NAVIGATION FINISH HERE
-                  },
-                  child: Text(ProjectTexts().welcomeButtonText),
-                ),
+              const CustomSizedBox(height: 64),
+              Image.asset(pageImage, width: 100),
+              const CustomSizedBox(height: 32),
+              CustomText(
+                  customColor: ProjectColors.buttonColor,
+                  size: 50,
+                  text: ProjectTexts().projectName),
+              CustomText(
+                  size: 18,
+                  customColor: ProjectColors.default_color,
+                  text: ProjectTexts().welcomeText),
+              const CustomSizedBox(height: 256),
+              CustomButton(
+                title: ProjectTexts().welcomeButtonText,
+                toPage: SecondWelcomeScreen(),
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class PaddingContainer extends StatelessWidget {
+  final Widget child;
+  const PaddingContainer({super.key, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 32.0),
+      child: child,
     );
   }
 }

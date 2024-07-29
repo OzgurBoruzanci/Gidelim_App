@@ -379,6 +379,10 @@ class _CafeDetailScreenState extends State<CafeDetailScreen>
         return 'Sıcak İçecekler';
       case 'desserts':
         return 'Tatlılar';
+      case 'foods':
+        return 'Yiyecekler';
+      case 'teas':
+        return 'Çaylar';
       default:
         return 'Diğer';
     }

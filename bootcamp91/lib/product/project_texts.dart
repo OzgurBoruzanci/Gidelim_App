@@ -15,4 +15,14 @@ class ProjectTexts {
   final String register = 'Kayıt Ol';
   final String registerTextButton = 'Zaten bir hesabın var mı? Giriş yap.';
   final String loginTextButton = 'Hesabın yok mu? Kayıt ol.';
+  final String forgotPassword = 'Şifremi unuttum';
+  final String forgotPasswordText =
+      'Endişelenme, E-posta adresine parolanı yenilemen için bir bağlantı göndereceğiz!';
+  final String sendEmail = 'E-posta Gönder';
+  final String sendedEmail = 'Şifre sıfırlama e-postası gönderildi!';
+  final String aError = 'Bir hata oluştu';
+  final String cafeNotFound = 'Kafe bulunamadı.';
+  final String noFavoriteCafe = 'Henüz favori kafe yok.';
+  final String searchCafe = 'Kafe ara';
+  final String favoriteCafes = 'Favori Kafelerim';
 }

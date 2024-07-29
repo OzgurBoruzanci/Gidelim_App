@@ -7,7 +7,10 @@ import 'package:bootcamp91/product/custom_drawer.dart'; // CustomDrawer importu
 import 'package:google_fonts/google_fonts.dart'; // MyCafeScreen'i import ettik
 
 class AddCafeScreen extends StatefulWidget {
+  const AddCafeScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _AddCafeScreenState createState() => _AddCafeScreenState();
 }
 

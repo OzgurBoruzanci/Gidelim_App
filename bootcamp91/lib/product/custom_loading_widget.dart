@@ -7,10 +7,10 @@ class CustomLoadingWidget extends StatelessWidget {
   final Color color;
 
   const CustomLoadingWidget({
-    Key? key,
+    super.key,
     this.size = 50.0,
     this.color = Colors.blue,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

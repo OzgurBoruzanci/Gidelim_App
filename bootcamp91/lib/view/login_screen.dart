@@ -1,3 +1,4 @@
+import 'package:bootcamp91/product/custom_widgets.dart';
 import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/product/project_texts.dart';
 import 'package:bootcamp91/services/auth_service.dart';
@@ -16,6 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final AuthService _authService = AuthService();
+  final String pageImage = 'assets/images/ic_login_screen.png';
 
   bool _passwordVisible = false;
 
@@ -27,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
         context: context,
       );
     } catch (e) {
-      print('Hata: $e');
+      //print('Hata: $e');
     }
   }
 
@@ -48,101 +50,49 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: SizedBox(
                   width: 300,
                   height: 150,
-                  child: Image.asset("assets/images/ic_login_screen.png"),
+                  child: Image.asset(pageImage),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
                   children: [
-                    TextField(
+                    CustomTextField(
                       controller: _emailController,
-                      decoration: InputDecoration(
-                        labelText: ProjectTexts().email,
-                      ),
-                      keyboardType: TextInputType.emailAddress,
+                      labelText: ProjectTexts().email,
+                      inputType: TextInputType.emailAddress,
                     ),
-                    const SizedBox(height: 16),
-                    TextField(
-                      controller: _passwordController,
-                      decoration: InputDecoration(
-                        labelText: ProjectTexts().password,
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                              _passwordVisible
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
-                              color: _passwordVisible
-                                  ? ProjectColors.project_yellow
-                                  : ProjectColors.buttonColor),
-                          onPressed: () {
-                            setState(() {
-                              _passwordVisible = !_passwordVisible;
-                            });
-                          },
-                        ),
-                      ),
+                    const CustomSizedBox(height: 16),
+                    CustomTextField(
                       obscureText: !_passwordVisible,
+                      controller: _passwordController,
+                      labelText: ProjectTexts().password,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                            _passwordVisible
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: _passwordVisible
+                                ? ProjectColors.project_yellow
+                                : ProjectColors.buttonColor),
+                        onPressed: () {
+                          setState(() {
+                            _passwordVisible = !_passwordVisible;
+                          });
+                        },
+                      ),
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton(
                       onPressed: _login,
                       child: Text(ProjectTexts().loginButton),
                     ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                            pageBuilder:
-                                (context, animation, secondaryAnimation) =>
-                                    const RegisterScreen(),
-                            transitionsBuilder: (context, animation,
-                                secondaryAnimation, child) {
-                              var begin = const Offset(1.0, 0.0);
-                              var end = Offset.zero;
-                              var curve = Curves.ease;
-
-                              var tween = Tween(begin: begin, end: end)
-                                  .chain(CurveTween(curve: curve));
-
-                              return SlideTransition(
-                                position: animation.drive(tween),
-                                child: child,
-                              );
-                            },
-                          ),
-                        );
-                      },
-                      child: Text(ProjectTexts().loginTextButton),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                            pageBuilder:
-                                (context, animation, secondaryAnimation) =>
-                                    const ForgotPasswordScreen(),
-                            transitionsBuilder: (context, animation,
-                                secondaryAnimation, child) {
-                              var begin = const Offset(1.0, 0.0);
-                              var end = Offset.zero;
-                              var curve = Curves.ease;
-
-                              var tween = Tween(begin: begin, end: end)
-                                  .chain(CurveTween(curve: curve));
-
-                              return SlideTransition(
-                                position: animation.drive(tween),
-                                child: child,
-                              );
-                            },
-                          ),
-                        );
-                      },
-                      child: Text('Şifremi unuttum'),
-                    ),
+                    CustomTextButton(
+                        toPage: const RegisterScreen(),
+                        text: ProjectTexts().loginTextButton),
+                    CustomTextButton(
+                        toPage: const ForgotPasswordScreen(),
+                        text: ProjectTexts().forgotPassword)
                   ],
                 ),
               ),
