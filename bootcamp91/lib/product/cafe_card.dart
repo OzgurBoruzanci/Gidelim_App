@@ -8,11 +8,11 @@ class CafeCard extends StatelessWidget {
   final VoidCallback onTap;
 
   const CafeCard({
-    Key? key,
+    super.key,
     required this.cafe,
     required this.averageRatingFuture,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class CafeCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
         child: Card(
-          color: Color.fromARGB(27, 0, 0, 0),
+          color: const Color.fromARGB(27, 0, 0, 0),
           elevation: 0, // Gölgesiz
           margin: const EdgeInsets.all(0.0),
           shape: RoundedRectangleBorder(
@@ -79,7 +79,7 @@ class CafeCard extends StatelessWidget {
                             ConnectionState.done
                         ? Container(
                             padding: const EdgeInsets.all(8.0),
-                            color: Color.fromARGB(0, 255, 255, 255),
+                            color: const Color.fromARGB(0, 255, 255, 255),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
