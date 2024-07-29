@@ -1,4 +1,5 @@
 import 'package:bootcamp91/product/project_colors.dart';
+import 'package:bootcamp91/product/project_texts.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:bootcamp91/services/cafe_service.dart';
@@ -10,14 +11,15 @@ import 'package:bootcamp91/product/cafe_card.dart'; // CafeCard'ı import ettik
 class UserFavoritesScreen extends StatefulWidget {
   final String userUid;
 
-  const UserFavoritesScreen({required this.userUid});
+  const UserFavoritesScreen({super.key, required this.userUid});
 
   @override
+  // ignore: library_private_types_in_public_api
   _UserFavoritesScreenState createState() => _UserFavoritesScreenState();
 }
 
 class _UserFavoritesScreenState extends State<UserFavoritesScreen> {
-  TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
   String _searchText = '';
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -51,16 +53,11 @@ class _UserFavoritesScreenState extends State<UserFavoritesScreen> {
   }
 
   Future<void> _refreshData() async {
-    setState(() {
-      // Burada, veri yenileme işlemini başlatabilirsiniz.
-    });
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    final firstColor =
-        ProjectColors.firstColor; // firstColor değerini buraya ekleyin
-
     return Scaffold(
       key: _scaffoldKey,
       appBar: PreferredSize(
@@ -68,10 +65,10 @@ class _UserFavoritesScreenState extends State<UserFavoritesScreen> {
         child: AppBar(
           elevation: 0,
           title: Text(
-            'Favori Kafelerim',
+            ProjectTexts().favoriteCafes,
             style: GoogleFonts.kleeOne(
-              textStyle: TextStyle(
-                color: Colors.black,
+              textStyle: const TextStyle(
+                color: ProjectColors.default_color,
               ),
             ),
           ),
@@ -83,8 +80,7 @@ class _UserFavoritesScreenState extends State<UserFavoritesScreen> {
                 size: 30,
               ),
               onPressed: () {
-                _scaffoldKey.currentState
-                    ?.openEndDrawer(); // Sağdan Drawer'ı aç
+                _scaffoldKey.currentState?.openEndDrawer();
               },
             ),
           ],
@@ -95,14 +91,14 @@ class _UserFavoritesScreenState extends State<UserFavoritesScreen> {
               child: TextField(
                 controller: _searchController,
                 decoration: InputDecoration(
-                  hintText: 'Kafe ara',
+                  hintText: ProjectTexts().searchCafe,
                   prefixIcon: const Icon(Icons.search),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
                     borderSide: BorderSide.none,
                   ),
                   filled: true,
-                  fillColor: Color.fromARGB(118, 255, 255, 255),
+                  fillColor: const Color.fromARGB(118, 255, 255, 255),
                   contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
                 ),
               ),
@@ -110,15 +106,13 @@ class _UserFavoritesScreenState extends State<UserFavoritesScreen> {
           ),
         ),
       ),
-      endDrawer: CustomDrawer(), // Sağdan açılan Drawer kullanıldı
+      endDrawer: CustomDrawer(),
       body: Stack(
         fit: StackFit.expand,
         children: [
-          // Arka plan rengini ayarlama
           Container(
-            color: firstColor, // Arka plan rengini firstColor olarak ayarladık
+            color: ProjectColors.firstColor,
           ),
-          // Diğer içerikler
           NotificationListener<ScrollUpdateNotification>(
             onNotification: (notification) {
               if (notification.metrics.pixels <= -50) {
@@ -129,24 +123,22 @@ class _UserFavoritesScreenState extends State<UserFavoritesScreen> {
             },
             child: RefreshIndicator(
               key: _refreshIndicatorKey,
-              onRefresh:
-                  _refreshData, // Yenileme işlemini gerçekleştirecek fonksiyon
+              onRefresh: _refreshData,
               child: StreamBuilder<List<String>>(
                 stream: CafeService().getUserFavorites(widget.userUid),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
-                    return const Center(child: Text('Bir hata oluştu'));
+                    return Center(child: Text(ProjectTexts().aError));
                   }
                   if (!snapshot.hasData) {
                     return const Center(
-                      child:
-                          CustomLoadingWidget(), // CustomLoadingWidget kullanıldı
+                      child: CustomLoadingWidget(),
                     );
                   }
 
                   List<String> favoriteCafeIds = snapshot.data!;
                   if (favoriteCafeIds.isEmpty) {
-                    return Center(child: Text('Henüz favori kafe yok.'));
+                    return Center(child: Text(ProjectTexts().noFavoriteCafe));
                   }
 
                   return ListView.builder(
@@ -168,20 +160,17 @@ class _UserFavoritesScreenState extends State<UserFavoritesScreen> {
                               title: CustomLoadingWidget(),
                             );
                           }
-
                           if (!snapshot.hasData || snapshot.data == null) {
                             return ListTile(
-                              title: Text('Kafe bulunamadı.'),
+                              title: Text(ProjectTexts().cafeNotFound),
                             );
                           }
-
                           Cafe cafe = snapshot.data!;
                           // Arama metniyle kafe adının tam olarak eşleşip eşleşmediğini kontrol et
                           if (_searchText.isNotEmpty &&
                               !cafe.name.toLowerCase().contains(_searchText)) {
                             return Container(); // Eşleşmiyorsa boş bir Container döndür
                           }
-
                           return CafeCard(
                             cafe: cafe,
                             averageRatingFuture:
