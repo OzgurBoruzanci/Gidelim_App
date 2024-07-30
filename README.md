@@ -110,10 +110,13 @@
 Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketlerle ve discord üzerinden toplantılar yaparak gerçekleştirdik.Daily Scrum toplantısı örneği jpeg veya word olarak Readme'de tarafımızdan paylaşılmaktadır
 
 
-
-
 # Sprint Review
-Başlangıç, hoşgeldin, giriş ve kaydolma ekranları ve ana ekran oluşturuldu. Figma taslağı yapıldı. İsime karar verildi.
+  - Başlangıç ekranı tamamlandı.
+  - Hoşgeldin ekranı tamamlandı.
+  - Giriş ve kaydolma ekranları tamamlandı.
+  - Ana ekran tamamlandı.
+  - Figma'da uygulama taslağı tamamlandı.
+  - İsime karar verildi.
 
 # Sprint Retrospective
 Daha daha sık toplantılar yapılmasına karar verildi. Görev dağılımının esnek olmasına karar verildi. Harita özelliğini ekleyip çıkarma konusu ikinci sprinte bırakıldı.
@@ -153,7 +156,15 @@ Daha daha sık toplantılar yapılmasına karar verildi. Görev dağılımının
 Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketlerle ve çoğunlukla discord üzerinden toplantılar yaparak gerçekleştirdik.Daily Scrum toplantısı örneği jpeg veya word olarak Readme'de tarafımızdan paylaşılmaktadır
 
 # Sprint Review
- Uygulamamız için modern ve kullanıcı dostu bir UI teması ve karşılama ekranları tasarlandı. Firebase ile entegrasyon sağlanarak Kayıt Ol ve Giriş Yap ekranları oluşturuldu. Anasayfa, Kafeler ve Favoriler ekranlarını içeriyor ve alt menü ile bu ekranlar arasında geçiş sağlanıyor. <br> Firestore Database'den kafelerin isim ve logoları çekilerek listelendi. Kafe detay sayfasında, kullanıcı tıkladığı kafenin detaylarını, en yakın konumlarını ve menü kategorilerini görebiliyor. <br> Seçilen kafeyi favorilere ekleme butonu eklendi. Ürünler sayfasında, seçilen kategoriye ait ürünler listelendi. Favoriler sayfasında favorilere eklenen kafelerin listesi gösterildi. Menüye Çıkış Yap butonu eklenerek uygulama özelliklerini içeren hedeflerimizi ana hatlarıyla tamamladık.
+  - Uygulamamız için modern ve kullanıcı dostu bir UI teması ve karşılama ekranları tasarlandı.
+  - Firebase ile entegrasyon sağlanarak Kayıt Ol ve Giriş Yap ekranları oluşturuldu.
+  - Anasayfa, Kafeler ve Favoriler ekranlarını içeriyor ve alt menü ile bu ekranlar arasında geçiş sağlanıyor.
+  - Firestore Database'den kafelerin isim ve logoları çekilerek listelendi.
+  - Kafe detay sayfasında, kullanıcı tıkladığı kafenin detaylarını, en yakın konumlarını ve menü kategorilerini görebiliyor.
+  - Seçilen kafeyi favorilere ekleme butonu eklendi.
+  - Ürünler sayfasında, seçilen kategoriye ait ürünler listelendi.
+  - Favoriler sayfasında favorilere eklenen kafelerin listesi gösterildi.
+  - Menüye Çıkış Yap butonu eklenerek uygulamanın temel özelliklerini içeren hedefler tamamlandı.
 
 # Sprint Retrospective
  Bu sprintte ekip arkadaşlarımızla daha sık toplantılar yapmaya özen gösterek yaptığımız işlerde de fikir ayrılığını önelemek açısından birbirimizden geri bildirim alarak ve geri bildirim vererek kararlar netleştirildi.Hedeflerin çoğuna ulaştık ancak veri tabanına ürünlerin ve kategorilerin girilmesi %100 tamamlanmadı, diğer sprinte bırakıldı.
@@ -179,6 +190,14 @@ Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketl
 ![Sprint board ss](https://github.com/user-attachments/assets/62f0a5ba-3838-48f5-bfa6-b9aa317579d0)
 
 </details>
+</details>
+
+<hr>
+
+<details>
+<summary><h1> Sprint 3 </h1></summary>
+  
+
 </details>
 
 <hr>
