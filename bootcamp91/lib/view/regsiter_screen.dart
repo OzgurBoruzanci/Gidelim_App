@@ -5,6 +5,7 @@ import 'package:bootcamp91/product/project_colors.dart';
 import 'package:bootcamp91/services/auth_service.dart';
 import 'package:bootcamp91/product/project_texts.dart';
 import 'package:bootcamp91/view/login_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -41,7 +42,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(ProjectTexts().register),
+        title: Text(ProjectTexts().register, style: GoogleFonts.kleeOne()),
       ),
       body: SingleChildScrollView(
         child: PaddingContainer(
