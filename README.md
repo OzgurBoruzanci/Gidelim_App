@@ -180,6 +180,16 @@ Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketl
 
 </details>
 </details>
+
+<hr>
+
+<details>
+<summary><h1>Görseller</h1></summary>
+  
+![Group 55](https://github.com/user-attachments/assets/40376520-641d-4424-b028-a56f99bd21d7)
+
+</details>
+
 <hr>
 </body>
 </html>
