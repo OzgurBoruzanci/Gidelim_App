@@ -292,7 +292,7 @@ Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketl
 
 # Youtube Tanıtım Videosunu İzlemek İçin <a href=""> Tıkla </a> 
 
-![giphy](https://media.giphy.com/media/efCemwT8zagJ3JZTxX/giphy.gif?cid=790b7611ef0s7uazh3q7u2paaugi0jxcvw78acqtlfukdjg2&ep=v1_stickers_search&rid=giphy.gif&ct=s)
+![giphy](https://media.giphy.com/media/1oKjCzdnatyyMxkdxF/giphy.gif?cid=790b7611rp887lfmmkd9gz1h21ocy9iyh67747qacssh4qe1&ep=v1_gifs_search&rid=giphy.gif&ct=g)![giphy](https://media.giphy.com/media/5xtDarrRvnz4dQjbY64/giphy.gif?cid=ecf05e471tanwhw7fdwyvz8244oxlazek6f85kb0drf42i5q&ep=v1_gifs_search&rid=giphy.gif&ct=g)
 
 </body>
 </html>
