@@ -62,7 +62,6 @@
 
 </details>
 
-  <hr>
 
   <details>
   <summary> <h1> Ürün Bilgileri </h1></summary>
@@ -292,7 +291,15 @@ Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketl
 
 # Youtube Tanıtım Videosunu İzlemek İçin <a href=""> Tıkla </a> 
 
+
+  <hr>
+  <hr>
+  <hr>
+
 ![giphy](https://media.giphy.com/media/1oKjCzdnatyyMxkdxF/giphy.gif?cid=790b7611rp887lfmmkd9gz1h21ocy9iyh67747qacssh4qe1&ep=v1_gifs_search&rid=giphy.gif&ct=g)![giphy](https://media.giphy.com/media/5xtDarrRvnz4dQjbY64/giphy.gif?cid=ecf05e471tanwhw7fdwyvz8244oxlazek6f85kb0drf42i5q&ep=v1_gifs_search&rid=giphy.gif&ct=g)
 
+  <hr>
+  <hr>
+  <hr>
 </body>
 </html>
