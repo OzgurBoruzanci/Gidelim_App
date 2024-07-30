@@ -264,7 +264,7 @@ Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketl
     <details>
     <summary><h2>Sprint board screenshots</h2></summary>
 
-![daily scrum](https://github.com/OzgurBoruzanci/OUA_Bootcamp_Flutter_91/assets/154309718/5fd6fb4a-b01a-4f43-b349-2ebdd62c13dd)
+![Daily Scrum3](https://github.com/user-attachments/assets/72c2cdb2-f16a-4153-87f9-11e9f5eea4f7)
 
 </details>
 </body>
