@@ -68,7 +68,7 @@
   ## Ürün İsmi: GİDELİM
   ### Ürün Açıklaması
   Bir kafe sahibiyseniz fakat işler çok da iyi gitmiyorsa endişelenmeyin, "Gidelim" uygulamasında kolayca kafenizi, menülerinizi ve birbirinden lezzetli ürünlerinizi çok daha geniş kitleler ile 
-  paylaşabilirsiniz. <br> Sizin için bir kafe oluştururken hesabınızı doğrulamanız ve ürünlerinizi özenle eklmeniz için çok rahat bir arayüz tasarladık. <br><br>
+  paylaşabilirsiniz. <br> Sizin için bir kafe oluştururken hesabınızı doğrulamanız ve ürünlerinizi özenle eklemeniz için çok rahat bir arayüz tasarladık. <br><br>
   Eğer sadece güzel bir mekanda arkadaşlarınızla vakit geçirmek istiyorsanız "Gidelim" uygulaması sayesinde gitmeyi planladığınız kafelerin menülerine ve fiyatlarına önceden erişim sağlayarak size en uygun 
   kafeyi seçebilirsiniz. Aynı zamanda bulunduğunuz konumun yakınındaki kafeleri harita üzerinde görerek yeni kafeler keşfedebilirsiniz. <br> <br>
   Arkadaşlarınızla bir kafeye gitmeden önce menü ve fiyatları görmek ya da en sevdiğiniz kafenin, bulunduğunuz konuma en yakın şubesini hızlıca görebilmeniz "Gidelim" ile mümkün! <br><br>
@@ -118,10 +118,12 @@ Başlangıç, hoşgeldin, giriş ve kaydolma ekranları ve ana ekran oluşturuld
 # Sprint Retrospective
 Daha daha sık toplantılar yapılmasına karar verildi. Görev dağılımının esnek olmasına karar verildi. Harita özelliğini ekleyip çıkarma konusu ikinci sprinte bırakıldı.
 <details>
-<summary><h3>Project Images</h3></summary>
-![Proje görselleri](https://github.com/OzgurBoruzanci/OUA_Bootcamp_Flutter_91/assets/154309718/5e124555-4653-4793-bd78-5a0e51346bbf)
-</details>
+<summary><h2>Project Images</h2></summary>
 
+  
+![Component 1](https://github.com/user-attachments/assets/12617bc3-278f-4f0e-a51a-71b242225e08)
+
+</details>
 </body>
 </html>
 
