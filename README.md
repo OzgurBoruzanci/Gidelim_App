@@ -103,7 +103,7 @@
 <details>
 <summary><h1>Sprint 1</h1></summary>
   
- # Sprint için hedeflenen puan: 100 
+ # Sprint 1 için hedeflenen puan: 100 
  `(100 puan ile tamamlandı)` Toplamda proje boyunca tamamlanması gereken 350 puanlık backlog bulunmaktadır. İlk sprint 100, ikinci sprint 150 ve son sprintte 100 puanı hedeflemekteyiz.
 
 ## Daily Scrum
@@ -149,7 +149,7 @@ Daha daha sık toplantılar yapılmasına karar verildi. Görev dağılımının
 <details>
 <summary><h1>Sprint 2</h1></summary>
   
- # Sprint için hedeflenen puan: 150
+ # Sprint 2 için hedeflenen puan: 150
  `(150 puan ile tamamlandı)` Toplamda proje boyunca tamamlanması gereken 350 puanlık backlog bulunmaktadır. İlk sprint 100, ikinci sprint 150 ve son sprintte 100 puanı hedeflemekteyiz. İkinci sprintte 50 puan tasarım, 50 puan kodlama ve 50 puan backlog yönetimi olarak bölüştürülmüştür.
 
  ## Daily Scrum
@@ -194,9 +194,82 @@ Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketl
 
 <hr>
 
+
+<!--
+********************************************************************************************************************
+********************************************************************************************************************
+********************************************************************************************************************
+**************************************************** SPRINT 3 ******************************************************
+********************************************************************************************************************
+********************************************************************************************************************
+********************************************************************************************************************
+-->
+
 <details>
 <summary><h1> Sprint 3 </h1></summary>
+   
+ # Sprint 3 için hedeflenen puan: 100 
+ `(100 puan ile tamamlandı)` Toplamda proje boyunca tamamlanması gereken 350 puanlık backlog bulunmaktadır. İlk sprint 100, ikinci sprint 150 ve son sprintte 100 puanı hedeflemekteyiz.
+
+## Daily Scrum
+  - Daily Scrum toplantılarınını Discord üzerinden toplantılarla gerçekleştirdik.
+  - Daily Scrum toplantısı örneği jpeg veya word olarak Readme'de tarafımızdan paylaşılmaktadır
+
+
+# Sprint Review
+
+- Profil Sayfası
+- Şifre güncelleme sayfası.
+- Kullanıcnın avatar (Profil resmi) Belirlemesi işlemi.
+- Yakındaki tüm kafeleri görme
+- Uygulama tanıtım sayfası
+- SSS (Uygulama hakkındaki soruların yanıtlandığı sayfa)
+- Emeği geçenler sayfası (Contributors)
+- Kafe sayfaları için menü
+- Şifre unutma seçeneği (Henüz araştırılmadı)
+- Yeni ürün, kafe için bildirim (Cloud messaging)
+- Kullanıcının kafesini eklemesi için başvuru sayfası
+- Kullanıcının kafesini eklemesi için gerekli veri tabanı yapısı.
+- Kullanıcının kafesine ürün ve kategori eklemesi.
+- Kullanıcının kafesinin veri tabanında onaylanması.
+- Ürün silme işlemi. Kafe silme işlemi
+- Kafe ile özelliklerin hepsi için Kafe Yönetimi sayfasının oluştulması ve gerekli verilerin çekilmesi.
+- Yeni UI teması.
+- Yeni kafe detayları sayfası.
+- Kullanıcının kafe için yorum yapması ve puan vermesi özelliiği.
+- Yorumlar ve puanlar için sayfa yapılıp gerekli verilerin çekilmesi, puanların ortalamasının kafe puanı olarak belirlenmesi.
+- Yeni ve daha kullanışlı kafe sayfası ve favoriye ekleme işlemi. 
+- Özelleştirilmiş menü.
+- Kafeler için daha fazla ürün kategorisi.
+- Sayfalar arasında daha kaygan geçiş için MainScreen sayfasında birleştrime.
+- Kafeler arasında arama işlemi.
+- Ugulamanın tanıtım (reklam) videosu.
+
+# Sprint Retrospective
+- Veri tabanına gerekli eksik verilerin eklenmesine karar verildi.
+
+<details>
+<summary><h2>Project Images</h2></summary>
   
+![Group 55](https://github.com/user-attachments/assets/40376520-641d-4424-b028-a56f99bd21d7)
+
+</details>
+
+</body>
+</html>
+
+  <html>
+  <head></head>
+  <body>
+    <details>
+    <summary><h2>Sprint board screenshots</h2></summary>
+
+![daily scrum](https://github.com/OzgurBoruzanci/OUA_Bootcamp_Flutter_91/assets/154309718/5fd6fb4a-b01a-4f43-b349-2ebdd62c13dd)
+
+</details>
+</body>
+</html>
+
 
 </details>
 
