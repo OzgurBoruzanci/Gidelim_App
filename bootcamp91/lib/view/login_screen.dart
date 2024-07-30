@@ -5,6 +5,7 @@ import 'package:bootcamp91/services/auth_service.dart';
 import 'package:bootcamp91/view/forgat_paswword_screen.dart';
 import 'package:bootcamp91/view/regsiter_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -37,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(ProjectTexts().loginButton),
+        title: Text(ProjectTexts().loginButton, style: GoogleFonts.kleeOne()),
       ),
       body: SingleChildScrollView(
         child: Padding(
