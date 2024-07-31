@@ -258,7 +258,7 @@ Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketl
 <details>
 <summary><h2>Project Images</h2></summary>
   
-![Group 55](https://github.com/user-attachments/assets/40376520-641d-4424-b028-a56f99bd21d7)
+![Group 60](https://github.com/user-attachments/assets/2d8456a0-0e99-4ef0-9d5e-7791c4758261)
 
 </details>
 
@@ -285,7 +285,7 @@ Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketl
 <details>
 <summary><h1> 😍 Görseller 😍 </h1></summary>
   
-![Group 55](https://github.com/user-attachments/assets/40376520-641d-4424-b028-a56f99bd21d7)
+![Group 60](https://github.com/user-attachments/assets/2d8456a0-0e99-4ef0-9d5e-7791c4758261)
 
 </details>
 
