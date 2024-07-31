@@ -11,7 +11,7 @@
 
 
 <details> 
- <summary> <h1> 💪 Takım Bilgileri 💪 </h1></summary>
+ <summary> <h1> 💪 Takım Bilgileri </h1></summary>
  <h2>Takım: Flutter 91</h2>
   <hr>
   <table>
@@ -66,7 +66,7 @@
 
 
   <details>
-  <summary> <h1> 🎯 Ürün Bilgileri 🎯 </h1></summary>
+  <summary> <h1> 🎯 Ürün Bilgileri </h1></summary>
     
   ## 🚧 Ürün İsmi: GİDELİM  🚧
   ### Ürün Açıklaması
@@ -107,7 +107,7 @@
 </details>
 <hr>
 <details>
-<summary><h1> 🚀 Sprint 1 🚀 </h1></summary>
+<summary><h1> 🚀 Sprint 1 </h1></summary>
   
  # Sprint 1 için hedeflenen puan: 💯 
  `(100 puan ile tamamlandı)` Toplamda proje boyunca tamamlanması gereken 350 puanlık backlog bulunmaktadır. İlk sprint 100, ikinci sprint 150 ve son sprintte 100 puanı hedeflemekteyiz.
@@ -153,7 +153,7 @@ Daha daha sık toplantılar yapılmasına karar verildi. Görev dağılımının
 <hr>
 
 <details>
-<summary><h1> ✨ Sprint 2 ✨ </h1></summary>
+<summary><h1> 🚀 Sprint 2 </h1></summary>
   
  # Sprint 2 için hedeflenen puan: 150
  `(150 puan ile tamamlandı)` Toplamda proje boyunca tamamlanması gereken 350 puanlık backlog bulunmaktadır. İlk sprint 100, ikinci sprint 150 ve son sprintte 100 puanı hedeflemekteyiz. İkinci sprintte 50 puan tasarım, 50 puan kodlama ve 50 puan backlog yönetimi olarak bölüştürülmüştür.
@@ -212,7 +212,7 @@ Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketl
 -->
 
 <details>
-<summary><h1> 👑 Sprint 3 👑 </h1></summary>
+<summary><h1> 🚀 Sprint 3 </h1></summary>
    
  # Sprint 3 için hedeflenen puan: 💯 
  `(100 puan ile tamamlandı)` Toplamda proje boyunca tamamlanması gereken 350 puanlık backlog bulunmaktadır. İlk sprint 100, ikinci sprint 150 ve son sprintte 100 puanı hedeflemekteyiz.
@@ -283,7 +283,7 @@ Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketl
 <hr>
 
 <details>
-<summary><h1> 😍 Görseller 😍 </h1></summary>
+<summary><h1> 😍 Görseller </h1></summary>
   
 ![Group 60](https://github.com/user-attachments/assets/2d8456a0-0e99-4ef0-9d5e-7791c4758261)
 
@@ -292,13 +292,13 @@ Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketl
 <hr>
 
 
-# 👇 Kullanılan Diller ve Araçlar 👇 
+# Kullanılan Diller ve Araçlar 
 <br>
 
 ![Langs](https://skillicons.dev/icons?i=flutter,dart,firebase,vscode,git,github,figma,pr,") 
 <br>
 
-# Youtube Tanıtım Videosunu İzlemek İçin <a href=""> 📽 Tıkla 📽</a> 
+# 📽 Youtube Tanıtım Videosunu İzlemek İçin <a href="https://youtu.be/rFz43C1ivdo">Tıkla </a> 
 
 
   <hr>
