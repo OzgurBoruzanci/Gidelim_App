@@ -265,7 +265,7 @@ Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketl
     <details>
     <summary><h2>Sprint board screenshots</h2></summary>
 
-![Daily Scrum3](https://github.com/user-attachments/assets/72c2cdb2-f16a-4153-87f9-11e9f5eea4f7)
+![dailyscrumss](https://github.com/user-attachments/assets/f31f5104-25d1-476f-aa64-8a409014988a)
 
 </details>
 </body>
