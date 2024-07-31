@@ -11,7 +11,7 @@
 
 
 <details> 
- <summary> <h1> Takım Bilgileri </h1></summary>
+ <summary> <h1> 💪 Takım Bilgileri 💪 </h1></summary>
  <h2>Takım: Flutter 91</h2>
   <hr>
   <table>
@@ -52,7 +52,7 @@
       <td>Yasemin Yılmaz</td>
       <td>Developer</td>
       <td>
-        <a href=""><img src="bootcamp91/readme-images/ic_github.png" width="20" height="20"/></a>
+        <a href="https://github.com/yasolin"><img src="bootcamp91/readme-images/ic_github.png" width="20" height="20"/></a>
       </td>
   </tr>
   </table>
@@ -62,19 +62,24 @@
 
 </details>
 
+<hr>
+
 
   <details>
-  <summary> <h1> Ürün Bilgileri </h1></summary>
+  <summary> <h1> 🎯 Ürün Bilgileri 🎯 </h1></summary>
     
-  ## Ürün İsmi: GİDELİM
+  ## 🚧 Ürün İsmi: GİDELİM  🚧
   ### Ürün Açıklaması
-  Bir kafe sahibiyseniz fakat işler çok da iyi gitmiyorsa endişelenmeyin, "Gidelim" uygulamasında kolayca kafenizi, menülerinizi ve birbirinden lezzetli ürünlerinizi çok daha geniş kitleler ile 
+  👉 Bir kafe sahibiyseniz fakat işler çok da iyi gitmiyorsa endişelenmeyin, "Gidelim" uygulamasında kolayca kafenizi, menülerinizi ve birbirinden lezzetli ürünlerinizi çok daha geniş kitleler ile 
   paylaşabilirsiniz. <br> Sizin için bir kafe oluştururken hesabınızı doğrulamanız ve ürünlerinizi özenle eklemeniz için çok rahat bir arayüz tasarladık. <br><br>
-  Eğer sadece güzel bir mekanda arkadaşlarınızla vakit geçirmek istiyorsanız "Gidelim" uygulaması sayesinde gitmeyi planladığınız kafelerin menülerine ve fiyatlarına önceden erişim sağlayarak size en uygun 
+  
+  👉 Eğer sadece güzel bir mekanda arkadaşlarınızla vakit geçirmek istiyorsanız "Gidelim" uygulaması sayesinde gitmeyi planladığınız kafelerin menülerine ve fiyatlarına önceden erişim sağlayarak size en uygun 
   kafeyi seçebilirsiniz. Aynı zamanda bulunduğunuz konumun yakınındaki kafeleri harita üzerinde görerek yeni kafeler keşfedebilirsiniz. <br> <br>
-  Arkadaşlarınızla bir kafeye gitmeden önce menü ve fiyatları görmek ya da en sevdiğiniz kafenin, bulunduğunuz konuma en yakın şubesini hızlıca görebilmeniz "Gidelim" ile mümkün! <br><br>
-  Kafelere yorum yapıp puan verebilir ya da en yüksek puanlı kafelere gönül rahatlığıyla gidebilirsiniz. En sevdiğiniz kafeleri favorilerinize ekleyerek uygulama üzerinden rahatça erişebilirsiniz. <br><br>
-  Gidelim ile müşteriler rahat, kafe sahipleri mutlu! Öyleyse hadi, Gidelim!..
+  
+  👉 Arkadaşlarınızla bir kafeye gitmeden önce menü ve fiyatları görmek ya da en sevdiğiniz kafenin, bulunduğunuz konuma en yakın şubesini hızlıca görebilmeniz "Gidelim" ile mümkün! <br><br>
+  
+  👉 Kafelere yorum yapıp puan verebilir ya da en yüksek puanlı kafelere gönül rahatlığıyla gidebilirsiniz. En sevdiğiniz kafeleri favorilerinize ekleyerek uygulama üzerinden rahatça erişebilirsiniz. <br><br>
+      💛 Gidelim ile müşteriler rahat, kafe sahipleri mutlu! Öyleyse hadi, Gidelim!.. 💛
 
   <hr>
 
@@ -102,9 +107,9 @@
 </details>
 <hr>
 <details>
-<summary><h1>Sprint 1</h1></summary>
+<summary><h1> 🚀 Sprint 1 🚀 </h1></summary>
   
- # Sprint 1 için hedeflenen puan: 100 
+ # Sprint 1 için hedeflenen puan: 💯 
  `(100 puan ile tamamlandı)` Toplamda proje boyunca tamamlanması gereken 350 puanlık backlog bulunmaktadır. İlk sprint 100, ikinci sprint 150 ve son sprintte 100 puanı hedeflemekteyiz.
 
 ## Daily Scrum
@@ -148,7 +153,7 @@ Daha daha sık toplantılar yapılmasına karar verildi. Görev dağılımının
 <hr>
 
 <details>
-<summary><h1>Sprint 2</h1></summary>
+<summary><h1> ✨ Sprint 2 ✨ </h1></summary>
   
  # Sprint 2 için hedeflenen puan: 150
  `(150 puan ile tamamlandı)` Toplamda proje boyunca tamamlanması gereken 350 puanlık backlog bulunmaktadır. İlk sprint 100, ikinci sprint 150 ve son sprintte 100 puanı hedeflemekteyiz. İkinci sprintte 50 puan tasarım, 50 puan kodlama ve 50 puan backlog yönetimi olarak bölüştürülmüştür.
@@ -207,9 +212,9 @@ Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketl
 -->
 
 <details>
-<summary><h1> Sprint 3 </h1></summary>
+<summary><h1> 👑 Sprint 3 👑 </h1></summary>
    
- # Sprint 3 için hedeflenen puan: 100 
+ # Sprint 3 için hedeflenen puan: 💯 
  `(100 puan ile tamamlandı)` Toplamda proje boyunca tamamlanması gereken 350 puanlık backlog bulunmaktadır. İlk sprint 100, ikinci sprint 150 ve son sprintte 100 puanı hedeflemekteyiz.
 
 ## Daily Scrum
@@ -278,7 +283,7 @@ Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketl
 <hr>
 
 <details>
-<summary><h1>Görseller</h1></summary>
+<summary><h1> 😍 Görseller 😍 </h1></summary>
   
 ![Group 55](https://github.com/user-attachments/assets/40376520-641d-4424-b028-a56f99bd21d7)
 
@@ -287,10 +292,13 @@ Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketl
 <hr>
 
 
-# Kullanılan Diller ve Araçlar
-![Langs](https://skillicons.dev/icons?i=flutter,dart,firebase,vscode,git,github,figma,pr,") 
+# 👇 Kullanılan Diller ve Araçlar 👇 
+<br>
 
-# Youtube Tanıtım Videosunu İzlemek İçin <a href=""> Tıkla </a> 
+![Langs](https://skillicons.dev/icons?i=flutter,dart,firebase,vscode,git,github,figma,pr,") 
+<br>
+
+# Youtube Tanıtım Videosunu İzlemek İçin <a href=""> 📽 Tıkla 📽</a> 
 
 
   <hr>
