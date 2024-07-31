@@ -41,8 +41,8 @@ class _ContributersState extends State<Contributers> {
                 'Figma üzerinde uygulamanın ilk taslağının yapılması.\n\nVeri tabnı üzerinde 3 kafenin verilerinin girilmesi.',
           ),
           _buildFAQTile(
-            question: 'Yasemin Yılmaz (Rol Yok)',
-            answer: 'Ekip üyesi.\n\nKatkı yok.',
+            question: 'Yasemin Yılmaz (Destek)',
+            answer: 'Ekip üyesi.\n\nVeri tabanı üzerinde 3 kafenin verilerinin girilmesi.',
           ),
         ],
       ),
