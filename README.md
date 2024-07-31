@@ -227,13 +227,13 @@ Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketl
 - SSS (Uygulama hakkındaki soruların yanıtlandığı sayfa)
 - Emeği geçenler sayfası (Contributors)
 - Kafe sayfaları için menü
-- Şifre unutma seçeneği (Henüz araştırılmadı)
+- Şifre unutma seçeneği 
 - Yeni ürün, kafe için bildirim (Cloud messaging)
 - Kullanıcının kafesini eklemesi için başvuru sayfası
 - Kullanıcının kafesini eklemesi için gerekli veri tabanı yapısı.
 - Kullanıcının kafesine ürün ve kategori eklemesi.
 - Kullanıcının kafesinin veri tabanında onaylanması.
-- Ürün silme işlemi. Kafe silme işlemi
+- Ürün ve kafe silme işlemi
 - Kafe ile özelliklerin hepsi için Kafe Yönetimi sayfasının oluştulması ve gerekli verilerin çekilmesi.
 - Yeni UI teması.
 - Yeni kafe detayları sayfası.
@@ -247,7 +247,8 @@ Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketl
 - Ugulamanın tanıtım (reklam) videosu.
 
 # Sprint Retrospective
-- Veri tabanına gerekli eksik verilerin eklenmesine karar verildi.
+- Projenin  başında belirlenen ve önceki sprintlerde bahsedilen tüm özellikler eklenerek proje başarıyla tamamlandı.
+  
 
 <details>
 <summary><h2>Project Images</h2></summary>
