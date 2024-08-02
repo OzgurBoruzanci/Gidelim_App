@@ -295,7 +295,7 @@ Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketl
 # Kullanılan Diller ve Araçlar 
 <br>
 
-![Langs](https://skillicons.dev/icons?i=flutter,dart,firebase,vscode,git,github,figma,pr,") 
+![Langs](https://skillicons.dev/icons?i=flutter,dart,firebase,vscode,androidstudio,kotlin,swift,git,github,figma,pr,ps,discord,gmail,") 
 <br>
 
 # 📽 Youtube Tanıtım Videosunu İzlemek İçin <a href="https://youtu.be/rFz43C1ivdo">Tıkla </a> 
