@@ -291,6 +291,8 @@ Daily Scrum toplantılarınını whatsapp üzerinden sesli konuşmalarla, anketl
 
 <hr>
 
+# Uygulamayı APK olarak indirerek deneyimlemek için: <a href="https://drive.google.com/file/d/1xC_ceS7Z1fQqsXsqKQ8Rc_f-C5rzvLut/view?usp=sharing"> Tıklayın </a>
+
 
 # Kullanılan Diller ve Araçlar 
 <br>
