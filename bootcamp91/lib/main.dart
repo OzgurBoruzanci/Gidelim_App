@@ -36,13 +36,11 @@ class _HomeScreen extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
-        } else if (snapshot.hasData && snapshot.data != null) {
-          return MainScreen(
-              userUid:
-                  snapshot.data!.uid); // Kullanıcı giriş yapmışsa MainScreen
-        } else {
-          return const WelcomeScreen(); // Kullanıcı giriş yapmamışsa WelcomeScreen
         }
+        if (snapshot.hasData && snapshot.data != null) {
+          return MainScreen(userUid: snapshot.data!.uid);
+        }
+        return const WelcomeScreen(); // Diğer tüm durumlar için WelcomeScreen döndürülür
       },
     );
   }
